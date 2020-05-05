@@ -11,13 +11,14 @@ public class Jugador {
 	private PImage caminarHombre[];
 	private PImage caminarMujer[];
 	private PImage mujer;
-	private int camino;
+	private int camino,direc;
 	private boolean up,down,left,right;
 	
 	public Jugador(PApplet app,int posX,int posY) {
 		this.app=app;
 		this.posX=posX;
 		this.posY=posY;
+		this.direc=0;
 		this.camino=0;
 		this.up=false;
 		this.down=false;
@@ -42,9 +43,9 @@ public class Jugador {
 	}
 	
 	public void pintarJugadorCaminando() {
-		for(int i=0;i<caminarMujer.length;i++) {
-			switch(app.keyCode) {
-			case PConstants.LEFT:
+		
+			switch(this.direc) {
+			case 1:
 			switch(this.camino) {
 			case 0:
 				app.image(caminarMujer[10],this.posX,this.posY);
@@ -52,24 +53,24 @@ public class Jugador {
 				break;
 			case 1:
 				app.image(caminarMujer[11],this.posX,this.posY);
-				this.camino=0;
+			
 				break;
 			}
 				
 				break;
-			case PConstants.RIGHT:
+			case 2:
 				switch(this.camino) {	
 			case 0:
-				app.image(caminarMujer[9],this.posX,this.posY);
+				app.image(caminarMujer[8],this.posX,this.posY);
 				this.camino++;
 				break;
 			case 1:
-				app.image(caminarMujer[8],this.posX,this.posY);
-				this.camino=0;
+				app.image(caminarMujer[9],this.posX,this.posY);
+				
 				break;
 				}
 			
-			case PConstants.UP:
+			case 3:
 				switch(this.camino) {
 			case 0:
 				app.image(caminarMujer[6],this.posX,this.posY);
@@ -77,13 +78,13 @@ public class Jugador {
 				break;
 			case 1:
 				app.image(caminarMujer[7],this.posX,this.posY);
-				this.camino=0;
+				
 			
 				}
 			
 				
 				break;
-			case PConstants.DOWN:
+			case 4:
 				switch(this.camino) {
 				case 0:
 					app.image(caminarMujer[5],this.posX,this.posY);
@@ -91,16 +92,15 @@ public class Jugador {
 					break;
 				case 1:
 					app.image(caminarMujer[4],this.posX,this.posY);
-					this.camino=0;
-				
+					
+					break;
 					}
 				}
+	
+	}
 			
-				
-				break;
-			}
 			
-		}
+		
 		
 	
 	
@@ -122,9 +122,6 @@ public class Jugador {
 		}
 		
 		
-//		app.image(mujer,50,50);
-		
-		
 	}
 	
 	public void caminarDos(PApplet app) {
@@ -132,21 +129,24 @@ public class Jugador {
 		switch(app.keyCode) {
 		case PConstants.LEFT:
 			this.posX-=10;	
+			this.direc=1;
 //			app.image(caminarMujer[10],this.posX,this.posY);
 			
 			
 			break;
 		case PConstants.RIGHT:
 			this.posX+=10;	
-			
+			this.direc=2;
 			break;
 		case PConstants.UP:
 			this.posY-=10;	
+			this.direc=3;
 			
 			
 			break;
 		case PConstants.DOWN:
 			this.posY+=10;	
+			this.direc=4;
 			
 			break;
 		}
@@ -160,6 +160,7 @@ public class Jugador {
 			this.right=false;
 			this.up=false;
 			this.down=false;
+			
 			
 			break;
 		case PConstants.RIGHT:

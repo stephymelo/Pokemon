@@ -19,6 +19,9 @@ public class MapaController {
 		juego.jugadores();
 		
 	}
+	public void caminar() {
+		juego.caminar();
+	}
 	public void caminarJugadorTop() {
 		juego.jugadorCaminar();
 	

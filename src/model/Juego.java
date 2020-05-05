@@ -13,14 +13,18 @@ public class Juego {
 	
 	public void jugadores() {
 		jugador.pintarJugador();
-		jugador.caminar(app);
+		jugador.pintarJugadorCaminando();
+		jugador.caminarDos(app);
+		
 
 		
 	}
+	public void caminar() {
+		jugador.caminar(app);
+	}
 	
 	public void jugadorCaminar() {
-		jugador.pintarJugadorCaminando();
-		jugador.caminarDos(app);
+	
 		
 	}
 	

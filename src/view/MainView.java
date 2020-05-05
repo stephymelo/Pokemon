@@ -36,6 +36,7 @@ public class MainView extends PApplet {
 			break;
 		case 1:
 			mapaScreen.drawScreen();
+		
 			break;
 		case 2:
 //			batallaScreen.drawScreen();
@@ -96,8 +97,8 @@ public class MainView extends PApplet {
 	
 	
 	public void keyPressed() {
-		
 		mapaScreen.jugadorCaminando();
+	
 		
 //		switch(keyCode) {
 //		case LEFT:
@@ -119,6 +120,7 @@ public class MainView extends PApplet {
 	}
 	
 	public void keyReleased() {
+		mapaScreen.caminar();
 		
 	}
 	
