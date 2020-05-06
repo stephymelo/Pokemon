@@ -4,17 +4,17 @@ import processing.core.PApplet;
 
 public class Juego {
 	private PApplet app;
-	private Jugador jugador;
+	private JugadorMujer jugador;
 	
 	public Juego(PApplet app) {
 		this.app=app;
-		jugador=new Jugador(app,50,50);
+		jugador=new JugadorMujer(app,50,50);
 	}
 	
 	public void jugadores() {
 		jugador.pintarJugador();
-		jugador.pintarJugadorCaminando();
-		jugador.caminarDos(app);
+		
+		
 		
 
 		
@@ -24,9 +24,15 @@ public class Juego {
 	}
 	
 	public void jugadorCaminar() {
-	
+		jugador.caminarDos(app);
 		
 	}
+	
+	
+	public void encontrarPokemon() {
+		//if jugador en area sensible de pasto, jugador encuentra pokemon
+	}
+	
 	
   
 }

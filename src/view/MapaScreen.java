@@ -37,5 +37,7 @@ public class MapaScreen extends ScreenView {
 	public void caminar() {
 		mapaController.caminar();
 	}
+	
+	
 
 }

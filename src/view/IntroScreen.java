@@ -9,7 +9,7 @@ import processing.core.PImage;
 
 public class IntroScreen extends ScreenView {
 	private PImage start,starthover,gender,genderGirl,genderBoy,userGirl,userBoy,continueButton,professor,professorDos;
-	private PImage pokemonSelect,pokemonBlue,pokemonWhite,pokemonGreen,professorRival,professorFinal;
+	private PImage pokemonSelect,pokemonBlue,pokemonWhite,pokemonGreen,professorRival,professorFinal,rivalPantalla;
 	private int pantallaIntro;
 	private ControlP5 cp5;
 	private String input,username;
@@ -40,6 +40,7 @@ public class IntroScreen extends ScreenView {
 		this.pokemonGreen=app.loadImage("imagenes/seleccionarVerde.png");
 		this.professorRival=app.loadImage("imagenes/introprofesorTres.png");
 		this.professorFinal=app.loadImage("imagenes/introprofesorCuatro.png");
+		this.rivalPantalla=app.loadImage("imagenes/rivalPantalla.png");
 		this.girlClick=false;
 		this.boyClick=false;
 		this.pantallaIntro=0;
@@ -126,12 +127,13 @@ if(pantallaIntro!=2) {
 			
 			break;
 		case 7:
-			//rival
+			app.image(rivalPantalla,0,0);
+			app.image(continueButton,490,720);
 			
 			break;
 		case 8:
 			app.image(professorFinal,0,0);
-			app.image(continueButton,970,700);
+			
 			break;
 			
 	}
@@ -145,6 +147,65 @@ if(pantallaIntro!=2) {
 	public void getInfoForm() {
 		
 	}
+	
+	
+	public void mouseClick() {
+		
+		if(app.mouseX>480&&app.mouseY>670&&app.mouseX<710&&app.mouseY<750 &&pantallaIntro==0) {
+			setPantallaIntro(1);
+				
+	}
+	if(app.mouseX>230&&app.mouseY>30&&app.mouseX<455&&app.mouseY<570&&pantallaIntro==1) {
+		pantallaIntro=2;
+		girlClick=true;
+	}
+	if(app.mouseX>800&&app.mouseY>30&&app.mouseX<1045&&app.mouseY<570&&pantallaIntro==1) {
+		pantallaIntro=2;
+	     boyClick=true;
+	}
+	if(app.mouseX>900&&app.mouseY>700&&app.mouseX<1115&&app.mouseY<750&&pantallaIntro==2) {
+		pantallaIntro=3;
+		return;
+	}
+	if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==3) {
+		pantallaIntro=4;
+		return;
+	}
+	if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==4) {
+		pantallaIntro=5;
+		return;
+	}
+	//CHOOSE POKEMON
+	
+	if(pantallaIntro==5) {
+		//azul
+	if(app.mouseX>900&&app.mouseY>130&&app.mouseX<1155&&app.mouseY<570) {
+		pantallaIntro=6;
+		return;
+	}
+	//blanco
+	if(app.mouseX>490&&app.mouseY>60&&app.mouseX<720&&app.mouseY<530) {
+		pantallaIntro=6;
+		return;
+	}
+	//verde
+	if(app.mouseX>90&&app.mouseY>170&&app.mouseX<300&&app.mouseY<570) {
+		pantallaIntro=6;
+		return;
+		
+	}
+	}
+	
+	
+	if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==6) {
+		pantallaIntro=7;
+		return;
+	}
+	
+	
+	
+}
+
 	
 	
 	
