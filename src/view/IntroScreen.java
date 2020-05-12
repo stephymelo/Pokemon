@@ -1,6 +1,9 @@
 package view;
 
 import controlP5.ControlP5;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import controlP5.Textfield;
 import processing.core.PFont;
 import processing.core.PSurfaceNone.AnimationThread;
@@ -12,7 +15,7 @@ public class IntroScreen extends ScreenView {
 	private PImage pokemonSelect,pokemonBlue,pokemonWhite,pokemonGreen,professorRival,professorFinal,rivalPantalla;
 	private int pantallaIntro;
 	private ControlP5 cp5;
-	private String input,username;
+	private String input,username,fecha;
 	private PFont pixel;
 	
 	
@@ -50,6 +53,7 @@ public class IntroScreen extends ScreenView {
 		
 		
 		this.input = "username";
+		this.fecha = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 		
 
 			cp5.addTextfield(input).setPosition(500, 700).setSize(200, 30).setAutoClear(true)
@@ -145,6 +149,27 @@ if(pantallaIntro!=2) {
 	
 	
 	public void getInfoForm() {
+		String[] user;
+		user = new String [2];
+		user[0]=username;
+		user[1]=fecha;
+		
+		for (int i = 0; i < user.length; i++) {
+			user[i]=username+" "+fecha;
+			
+		}
+		
+		if(app.mouseX>900&&app.mouseY>700&&app.mouseX<1115&&app.mouseY<750&&pantallaIntro==2) {
+			
+			username = cp5.get(Textfield.class, "username").getText();
+			
+			app.saveStrings("./usuariosTXT/userRegister.txt",user);
+			
+//			System.out.print(username+fecha);
+			
+			pantallaIntro=3;
+			return;
+		}
 		
 	}
 	
@@ -163,10 +188,7 @@ if(pantallaIntro!=2) {
 		pantallaIntro=2;
 	     boyClick=true;
 	}
-	if(app.mouseX>900&&app.mouseY>700&&app.mouseX<1115&&app.mouseY<750&&pantallaIntro==2) {
-		pantallaIntro=3;
-		return;
-	}
+	
 	if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==3) {
 		pantallaIntro=4;
 		return;

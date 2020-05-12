@@ -20,7 +20,7 @@ public class MainView extends PApplet {
 		background(0);
 		mapaScreen=new MapaScreen(this);
 		introScreen=new IntroScreen(this);
-		pantalla=0;
+		pantalla=1;
 	}
 
 	public void draw() {
@@ -56,6 +56,7 @@ public class MainView extends PApplet {
 		
 		if(pantalla==0) {
 			introScreen.mouseClick();
+			introScreen.getInfoForm();
 
 		if(mouseX>490&&mouseY>700&&mouseX<670&&mouseY<750&&introScreen.getPantallaIntro()==7) {
 			pantalla=1;

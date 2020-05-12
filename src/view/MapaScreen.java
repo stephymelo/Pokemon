@@ -7,7 +7,7 @@ import processing.core.PImage;
 public class MapaScreen extends ScreenView {
 
 
-	private PImage mapa;
+	private PImage mapa,grass;
 	private MapaController mapaController;
 	
 	
@@ -17,6 +17,9 @@ public class MapaScreen extends ScreenView {
 		mapaController=new MapaController(app);
 		
 		this.mapa=app.loadImage("imagenes/fondoPixel.png");
+		this.grass=app.loadImage("imagenes/grassSeperate.png");
+	
+		
 	
 		
 	}
@@ -25,6 +28,7 @@ public class MapaScreen extends ScreenView {
 	
 		app.image(mapa,0,0);
 		mapaController.pintarJugador();
+		app.image(grass,0,0);
 		
 		
 	}

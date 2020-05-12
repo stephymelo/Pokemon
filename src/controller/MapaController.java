@@ -17,6 +17,7 @@ public class MapaController {
 	
 	public void pintarJugador() {
 		juego.jugadores();
+		juego.encontrarPokemon();
 		
 	}
 	public void caminar() {

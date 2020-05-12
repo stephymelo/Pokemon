@@ -29,8 +29,26 @@ public class Juego {
 	}
 	
 	
+	
+	
+	
+	
 	public void encontrarPokemon() {
 		//if jugador en area sensible de pasto, jugador encuentra pokemon
+		
+		if(jugador.getPosX()<8&&jugador.getPosY()<460&&jugador.getPosX()>420&&
+				jugador.getPosY()>750) {
+			
+			System.out.println("im in");
+//			encuentroPokemon=true;
+		}
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	
