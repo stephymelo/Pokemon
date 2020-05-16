@@ -7,7 +7,7 @@ import processing.core.PApplet;
 public class MapaController {
 	private PApplet app;
 	private Juego juego;
-	
+
 	
 	public MapaController(PApplet app) {
 		this.app=app;
@@ -18,6 +18,7 @@ public class MapaController {
 	public void pintarJugador() {
 		juego.jugadores();
 		juego.encontrarPokemon();
+		juego.pintarPokemonInicial();
 		
 	}
 	public void caminar() {
@@ -28,4 +29,11 @@ public class MapaController {
 	
 		
 	}
+	
+	
+	public void pintarMapa() {
+        juego.pintarMapa();
+	}
+	
+	
 }

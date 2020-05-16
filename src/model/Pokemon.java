@@ -2,12 +2,16 @@ package model;
 
 public abstract class Pokemon {
 	protected int posX,posY;
-	protected int ataque,defensa;
+	protected int dano;
 	protected float vida;
-	protected String nombre;
+	protected String id;
 	
 	
-	public Pokemon() {
+	public Pokemon(String id, int posX,int posY) {
+		this.id=id;
+		this.posX=posX;
+		this.posY=posY;
+		
 		
 	}
 	

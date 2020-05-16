@@ -20,7 +20,7 @@ public class MainView extends PApplet {
 		background(0);
 		mapaScreen=new MapaScreen(this);
 		introScreen=new IntroScreen(this);
-		pantalla=1;
+		pantalla=0;
 	}
 
 	public void draw() {
@@ -36,6 +36,7 @@ public class MainView extends PApplet {
 			break;
 		case 1:
 			mapaScreen.drawScreen();
+			
 		
 			break;
 		case 2:

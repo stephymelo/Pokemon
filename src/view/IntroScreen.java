@@ -5,6 +5,7 @@ import controlP5.ControlP5;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import controlP5.Textfield;
+import controller.ControllerMain;
 import processing.core.PFont;
 import processing.core.PSurfaceNone.AnimationThread;
 import processing.core.PApplet;
@@ -18,6 +19,11 @@ public class IntroScreen extends ScreenView {
 	private String input,username,fecha;
 	private PFont pixel;
 	
+	private ControllerMain controller;
+	
+	
+	private String agua,hierba,fuego;
+	
 	
 	private boolean girlClick,boyClick;
 	
@@ -25,6 +31,12 @@ public class IntroScreen extends ScreenView {
 		super(app);
 		
 		cp5 = new ControlP5(app);
+		
+		controller=new ControllerMain(app);
+		
+		this.agua="agua";
+		this.fuego="fuego";
+		this.hierba="hierba";
 	
 		
 		this.start=app.loadImage("imagenes/start.png");
@@ -114,13 +126,21 @@ if(pantallaIntro!=2) {
 			app.image(pokemonSelect,0,0);
 			if(app.mouseX>900&&app.mouseY>130&&app.mouseX<1155&&app.mouseY<570) {
 				app.image(pokemonBlue,0,0);
+				
+				controller.escogerPokemon(agua);
+
+				
 			}
 			if(app.mouseX>490&&app.mouseY>60&&app.mouseX<720&&app.mouseY<530) {
 				app.image(pokemonWhite,0,0);
+				
+				controller.escogerPokemon(fuego);
 			}
 			
 			if(app.mouseX>90&&app.mouseY>170&&app.mouseX<300&&app.mouseY<570) {
 				app.image(pokemonGreen,0,0);
+				
+				controller.escogerPokemon(hierba);
 			}
 			
 			

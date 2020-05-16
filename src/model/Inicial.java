@@ -2,7 +2,8 @@ package model;
 
 public class Inicial extends Pokemon {
 	
-	public Inicial() {
+	public Inicial(String id, int posX,int posY) {
+		super(id,posX,posY);
 		
 	}
 	

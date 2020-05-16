@@ -8,6 +8,8 @@ public class Jugador {
 	protected PApplet app;
 	protected int posX;
 	protected int posY;
+	
+
 		
 	protected int camino,direc;
 	protected boolean up,down,left,right;
@@ -15,13 +17,14 @@ public class Jugador {
 	public Jugador(PApplet app,int posX,int posY) {
 		this.app=app;
 		this.posX=posX;
-		this.posY=posY;
+		this.posY=posY+40;
 		this.direc=0;
 		this.camino=0;
 		this.up=false;
 		this.down=false;
 		this.left=false;
 		this.right=false;
+		
 		
 		
 		
