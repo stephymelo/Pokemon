@@ -7,6 +7,7 @@ public class Juego {
 	private JugadorMujer jugador;
 	private int pintarPokemon;
 	private boolean camino;
+	private String id;
 	
 	private int mapa[][]={{0,0,0,0,0,0,1,1,0,0,0,0},
 			              {0,0,0,0,0,0,1,1,0,0,0,0},
@@ -33,7 +34,7 @@ public class Juego {
 		jugador=new JugadorMujer(app,50,50);
 		this.pintarPokemon=0;
 		this.camino=false;
-		
+		this.id=id;		
 		
 
       	
@@ -102,8 +103,10 @@ public class Juego {
 	
 	
 	public void escogerPokemon(String id) {
-		if(id.contentEquals("agua")) {
+		if(id.equals("agua")) {
+			app.ellipse(100, 100, 200, 300);
 			this.pintarPokemon=1;
+			System.out.println("alo");
 			
 		}
 		
@@ -112,11 +115,14 @@ public class Juego {
 	public void pintarPokemonInicial() {
 		switch(pintarPokemon) {
 		case 1:
+			app.fill(255);
 			app.ellipse(100, 100, 200, 300);
+			
+			System.out.println("entro");
+			
 			break;
 		}
 		
-
 	}
 	
 	

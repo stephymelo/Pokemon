@@ -20,6 +20,8 @@ public class MapaController {
 		juego.encontrarPokemon();
 		juego.pintarPokemonInicial();
 		
+		
+		
 	}
 	public void caminar() {
 		juego.caminar();
@@ -33,6 +35,7 @@ public class MapaController {
 	
 	public void pintarMapa() {
         juego.pintarMapa();
+       
 	}
 	
 	

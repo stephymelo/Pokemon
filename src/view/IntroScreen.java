@@ -127,20 +127,20 @@ if(pantallaIntro!=2) {
 			if(app.mouseX>900&&app.mouseY>130&&app.mouseX<1155&&app.mouseY<570) {
 				app.image(pokemonBlue,0,0);
 				
-				controller.escogerPokemon(agua);
+				
 
 				
 			}
 			if(app.mouseX>490&&app.mouseY>60&&app.mouseX<720&&app.mouseY<530) {
 				app.image(pokemonWhite,0,0);
 				
-				controller.escogerPokemon(fuego);
+		
 			}
 			
 			if(app.mouseX>90&&app.mouseY>170&&app.mouseX<300&&app.mouseY<570) {
 				app.image(pokemonGreen,0,0);
 				
-				controller.escogerPokemon(hierba);
+		
 			}
 			
 			
@@ -223,16 +223,19 @@ if(pantallaIntro!=2) {
 		//azul
 	if(app.mouseX>900&&app.mouseY>130&&app.mouseX<1155&&app.mouseY<570) {
 		pantallaIntro=6;
+		controller.escogerPokemon(agua);
 		return;
 	}
 	//blanco
 	if(app.mouseX>490&&app.mouseY>60&&app.mouseX<720&&app.mouseY<530) {
 		pantallaIntro=6;
+		controller.escogerPokemon(fuego);
 		return;
 	}
 	//verde
 	if(app.mouseX>90&&app.mouseY>170&&app.mouseX<300&&app.mouseY<570) {
 		pantallaIntro=6;
+		controller.escogerPokemon(hierba);
 		return;
 		
 	}
