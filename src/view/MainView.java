@@ -1,9 +1,11 @@
 package view;
+import controller.ControllerMain;
 import processing.core.PApplet;
 
 public class MainView extends PApplet {
 	private MapaScreen mapaScreen; 
 	private IntroScreen introScreen;
+	private ControllerMain controllerMain;
 	private int pantalla;
 	
 
@@ -20,7 +22,8 @@ public class MainView extends PApplet {
 		background(0);
 		mapaScreen=new MapaScreen(this);
 		introScreen=new IntroScreen(this);
-		pantalla=0;
+		controllerMain=new ControllerMain(this);
+		pantalla=1;
 	}
 
 	public void draw() {
@@ -51,7 +54,9 @@ public class MainView extends PApplet {
 	
 	
 	public void mouseClicked() {
-		System.out.println(mouseX+"mouseX"+mouseY+"mouseY");
+		controllerMain.verificarClicks();
+		
+//		System.out.println(mouseX+"mouseX"+mouseY+"mouseY");
 		
 	////////INTRO
 		

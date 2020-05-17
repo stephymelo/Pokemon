@@ -1,6 +1,7 @@
 package model;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class Juego {
 	private PApplet app;
@@ -8,6 +9,8 @@ public class Juego {
 	private int pintarPokemon;
 	private boolean camino;
 	private String id;
+	private int matX,matY;
+	private int posXJugador;
 	
 	private int mapa[][]={{0,0,0,0,0,0,1,1,0,0,0,0},
 			              {0,0,0,0,0,0,1,1,0,0,0,0},
@@ -35,7 +38,11 @@ public class Juego {
 		this.pintarPokemon=0;
 		this.camino=false;
 		this.id=id;		
+		this.matY = 4;
+		this.matX = 1;
 		
+		this.posXJugador=this.jugador.getPosX();
+		this.jugador.getPosY();
 
       	
 		
@@ -45,6 +52,7 @@ public class Juego {
 	
 	public void jugadores() {
 		jugador.pintarJugador();
+	
 		
 		
 		
@@ -82,12 +90,60 @@ public class Juego {
 		
 	}
 	
+	public void verificarJugador() {
+	
+			if (app.keyCode == PConstants.LEFT) {
+				if (matY - 1 > -1 && mapa[matY - 1][matX] != 0) {
+					matY -= 1;
+					this.posXJugador-=10;
+					
+				
+					
+				}
+
+			}
+
+			if (app.keyCode == PConstants.RIGHT) {
+				if (matY + 1 < 20 && mapa[matY + 1][matX] != 0) {
+					matY += 1;
+					posXJugador+=10;
+					
+				}
+
+			}
+
+			if (app.keyCode == PConstants.UP) {
+System.out.println("alo");
+					
+					
+				}
+
+//			}
+
+			if (app.keyCode == PConstants.DOWN) {
+				if (matX + 1 < 12 && mapa[matY][matX + 1] != 0) {
+					matX += 1;
+					
+
+				}
+
+			}
+		}
+		
+
+		
+		
+
+		
+	
+	
 	
 	
 	
 	public void caminar() {
 	
 		jugador.caminar(app);
+		verificarJugador();
 		
 	}
 	
@@ -97,6 +153,14 @@ public class Juego {
 			
 		
 		
+	}
+	
+	public void verificarClicks() {
+//		for (int fila = 0; fila < 16; fila++) {
+//			for (int col = 0; col < 12; col++) {
+//		System.out.println(mapa[fila][col]);
+//			}
+//		}
 	}
 	
 	

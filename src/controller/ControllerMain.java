@@ -21,5 +21,11 @@ public class ControllerMain {
 	
 	}
 	
+	
+	
+	public void verificarClicks() {
+		juego.verificarClicks();
+	}
+	
 
 }

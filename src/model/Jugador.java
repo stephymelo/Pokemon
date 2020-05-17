@@ -39,24 +39,24 @@ public class Jugador {
 
 		switch(app.keyCode) {
 		case PConstants.LEFT:
-			this.posX-=10;	
+//			this.posX-=10;	
 			this.direc=1;
 //			app.image(caminarMujer[10],this.posX,this.posY);
 			
 			
 			break;
 		case PConstants.RIGHT:
-			this.posX+=10;	
+//			this.posX+=10;	
 			this.direc=2;
 			break;
 		case PConstants.UP:
-			this.posY-=10;	
+//			this.posY-=10;	
 			this.direc=3;
 			
 			
 			break;
 		case PConstants.DOWN:
-			this.posY+=10;	
+//			this.posY+=10;	
 			this.direc=4;
 			
 			break;
