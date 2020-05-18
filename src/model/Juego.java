@@ -16,6 +16,10 @@ public class Juego {
 
 	private double varCaptura;
 	private boolean intentoCaptura;
+	
+	private int turno;
+	private boolean ataque, ataqueRival;
+	private boolean combate;
 
 	private int mapa[][] = { 
 			{ 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 }, 
@@ -50,6 +54,11 @@ public class Juego {
 
 		this.varCaptura = 0;
 		this.intentoCaptura = false;
+		
+		this.turno = 0;
+		this.combate = false;
+		this.ataque =false;
+		this.ataqueRival =false;
 
 	}
 
@@ -239,9 +248,29 @@ public class Juego {
 				}
 				
 			}
-		}
-		
-		
+		}	
 	}
-
+	
+	public void ataqueDePokemon() {
+		if (this.combate == true) {
+			this.turno = 1;
+			switch (turno) {
+			case 1:
+				if(this.ataque == true) {
+					this.pokemones.setVida(vida) = this.pokemones.setVida(vida) - this.pokemones.getDano();
+					this.ataque = false;
+					this.turno = 2;
+				}
+				break;
+			case 2:
+				this.ataqueRival = true;
+				if(this.ataqueRival == true) {
+					this.pokemones.setVida(vida) = this.pokemones.setVida(vida) - this.pokemones.getDano();
+					this.ataqueRival = false;
+					this.turno = 1;
+				}
+				break;
+			}
+		}
+	}
 }
