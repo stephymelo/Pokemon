@@ -2,18 +2,22 @@ package model;
 
 import processing.core.PApplet;
 import processing.core.PConstants;
+
+import java.util.LinkedList;
+
 import model.Pokemon;
 
 public class Juego {
 	private PApplet app;
-	private JugadorMujer jugador;
+	private Jugador jugador;
 	private Pokemon pokemones;
+	private Inicial pokemonInicial;
+//	private LinkedList <Pokemon>pokemonInicial;
+	
 	private int pintarPokemon;
-	private boolean camino;
-	private String id;
+	
 	private int matX, matY;
-	private int posXJugador;
-
+	
 	private double varCaptura;
 	private boolean intentoCaptura;
 	
@@ -42,15 +46,18 @@ public class Juego {
 	public Juego(PApplet app) {
 		this.app = app;
 
-		jugador = new JugadorMujer(app, 50, 50);
-		this.pintarPokemon = 0;
-		this.camino = false;
-		this.id = id;
+		jugador = new Jugador(app, 50, 50);
+//		pokemonInicial=new LinkedList<Pokemon>();
+
+	
+		
+
+
+		
 		this.matY = 4;
 		this.matX = 1;
 
-		this.posXJugador = this.jugador.getPosX();
-		this.jugador.getPosY();
+
 
 		this.varCaptura = 0;
 		this.intentoCaptura = false;
@@ -95,7 +102,8 @@ public class Juego {
 		if (app.keyCode == PConstants.LEFT) {
 			if (matY - 1 > -1 && mapa[matY - 1][matX] != 0) {
 				matY -= 1;
-				this.posXJugador -= 10;
+			    jugador.setPosX(-10);
+			
 
 			}
 
@@ -104,22 +112,27 @@ public class Juego {
 		if (app.keyCode == PConstants.RIGHT) {
 			if (matY + 1 < 20 && mapa[matY + 1][matX] != 0) {
 				matY += 1;
-				posXJugador += 10;
+				
+				jugador.setPosX(10);
 
 			}
 
 		}
 
 		if (app.keyCode == PConstants.UP) {
-			System.out.println("alo");
+			if (matX + 1 < 12 && mapa[matY][matX + 1] != 0) {
+				matX -= 1;
+			jugador.setPosY(-10);
 
 		}
+		}
 
-//			}
+			
 
 		if (app.keyCode == PConstants.DOWN) {
 			if (matX + 1 < 12 && mapa[matY][matX + 1] != 0) {
 				matX += 1;
+				jugador.setPosY(10);
 
 			}
 
@@ -147,11 +160,16 @@ public class Juego {
 //		}
 	}
 
+	
 	public void escogerPokemon(String id) {
-		if (id.equals("agua")) {
-			app.ellipse(100, 100, 200, 300);
+		if (id.toLowerCase().trim().equals("agua")) {
+			
 			this.pintarPokemon = 1;
 			System.out.println("alo");
+			pokemonInicial=new Inicial(id,"./imagenes/sobbleAtras.png","./imagenes/sobbleDelante.png",10,10,app);
+			
+
+			
 
 		}
 
@@ -160,15 +178,27 @@ public class Juego {
 	public void pintarPokemonInicial() {
 		switch (pintarPokemon) {
 		case 1:
-			app.fill(255);
-			app.ellipse(100, 100, 200, 300);
+		
+            pokemonInicial.setDeltante("./imagenes/sobbleAtras.png");
+			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+//			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+//				
 
-			System.out.println("entro");
-
+			break;
+			
+		case 2:
+			break;
+		case 3:
 			break;
 		}
 
 	}
+	
+	
+	public void pintarenBatalla() {
+//		pokemonInicial.pintar(this.pokemoInical.getPokemonImagenAtras(),10,10);
+	}
+	
 
 	public void encontrarPokemon() {
 		// if jugador en area sensible de pasto, jugador encuentra pokemon
@@ -257,7 +287,7 @@ public class Juego {
 			switch (turno) {
 			case 1:
 				if(this.ataque == true) {
-					this.pokemones.setVida(vida) = this.pokemones.setVida(vida) - this.pokemones.getDano();
+//					this.pokemones.setVida(vida) = this.pokemones.setVida(vida) - this.pokemones.getDano();
 					this.ataque = false;
 					this.turno = 2;
 				}
@@ -265,7 +295,7 @@ public class Juego {
 			case 2:
 				this.ataqueRival = true;
 				if(this.ataqueRival == true) {
-					this.pokemones.setVida(vida) = this.pokemones.setVida(vida) - this.pokemones.getDano();
+//					this.pokemones.setVida(vida) = this.pokemones.setVida(vida) - this.pokemones.getDano();
 					this.ataqueRival = false;
 					this.turno = 1;
 				}
@@ -273,4 +303,23 @@ public class Juego {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

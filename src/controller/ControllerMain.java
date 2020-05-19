@@ -6,9 +6,11 @@ import processing.core.PApplet;
 public class ControllerMain {
 	private Juego juego;
 	private PApplet app;
-	public ControllerMain(PApplet app) {
+	
+	
+	public ControllerMain(PApplet app,Juego juego) {
 		this.app=app;
-		this.juego = new Juego(app);
+		this.juego = juego;
 	}
 	
 	

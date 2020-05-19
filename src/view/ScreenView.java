@@ -1,5 +1,6 @@
 package view;
 
+import model.Juego;
 import processing.core.PApplet;
 
  abstract class ScreenView {
@@ -7,7 +8,7 @@ import processing.core.PApplet;
 
 
  
- public ScreenView(PApplet app) {
+ public ScreenView(PApplet app,Juego juego) {
 	 this.app=app;
 	 
  }

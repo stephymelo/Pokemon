@@ -1,10 +1,12 @@
 package view;
 import controller.ControllerMain;
+import model.Juego;
 import processing.core.PApplet;
 
 public class MainView extends PApplet {
 	private MapaScreen mapaScreen; 
 	private IntroScreen introScreen;
+	private Juego juego;
 	private ControllerMain controllerMain;
 	private int pantalla;
 	
@@ -15,14 +17,14 @@ public class MainView extends PApplet {
 
 	public void settings() {
 		size(1200, 800);
-		
+		juego=new Juego(this);
 	}
 
 	public void setup() {
 		background(0);
-		mapaScreen=new MapaScreen(this);
-		introScreen=new IntroScreen(this);
-		controllerMain=new ControllerMain(this);
+		mapaScreen=new MapaScreen(this,juego);
+		introScreen=new IntroScreen(this,juego);
+		controllerMain=new ControllerMain(this,juego);
 		pantalla=1;
 	}
 
@@ -33,9 +35,7 @@ public class MainView extends PApplet {
 		case 0:
 			introScreen.drawScreen();
 			
-			if(mouseX>1180&&mouseY>1170&&mouseX<1380&&mouseY<1340) {
-				System.out.println("alo");
-			}
+			
 			break;
 		case 1:
 			mapaScreen.drawScreen();
@@ -81,13 +81,13 @@ public class MainView extends PApplet {
 	
 	public void keyPressed() {
 		mapaScreen.jugadorCaminando();
-	
+		mapaScreen.caminar();
 
 		
 	}
 	
 	public void keyReleased() {
-		mapaScreen.caminar();
+	
 		
 	}
 	

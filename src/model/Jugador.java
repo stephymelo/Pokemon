@@ -5,14 +5,14 @@ import processing.core.PConstants;
 import processing.core.PImage;
 
 public class Jugador {
-	protected PApplet app;
-	protected int posX;
-	protected int posY;
-	
+	private PApplet app;
+	private int posX;
+	private int posY;
+	private PImage caminarMujer[];
 
 		
-	protected int camino,direc;
-	protected boolean up,down,left,right;
+	private int camino,direc;
+	private boolean up,down,left,right;
 	
 	public Jugador(PApplet app,int posX,int posY) {
 		this.app=app;
@@ -27,12 +27,49 @@ public class Jugador {
 		
 		
 		
+		caminarMujer= new PImage[12];
+		caminarMujer[0]=app.loadImage("imagenes/PersonajeFemenino/PFIzquierda1.png");
+		caminarMujer[1]=app.loadImage("imagenes/PersonajeFemenino/PFDerecha1.png");
+		caminarMujer[2]=app.loadImage("imagenes/PersonajeFemenino/PFArriba1.png");
+		caminarMujer[3]=app.loadImage("imagenes/PersonajeFemenino/PFAbajo1.png");
+		caminarMujer[4]=app.loadImage("imagenes/PersonajeFemenino/PFAbajo2.png");
+		caminarMujer[5]=app.loadImage("imagenes/PersonajeFemenino/PFAbajo3.png");
+		caminarMujer[6]=app.loadImage("imagenes/PersonajeFemenino/PFArriba2.png");
+		caminarMujer[7]=app.loadImage("imagenes/PersonajeFemenino/PFArriba3.png");
+		caminarMujer[8]=app.loadImage("imagenes/PersonajeFemenino/PFDerecha2.png");
+		caminarMujer[9]=app.loadImage("imagenes/PersonajeFemenino/PFDerecha3.png");
+		caminarMujer[10]=app.loadImage("imagenes/PersonajeFemenino/PFIzquierda2.png");
+		caminarMujer[11]=app.loadImage("imagenes/PersonajeFemenino/PFIzquierda3.png");
+		
 		
 		
 	}
+	
+	
+	
 	public void pintarJugador() {
 		
+			for(int i=0;i<caminarMujer.length;i++) {
+				app.image(caminarMujer[0],this.posX,this.posY);
+				if(up) {
+					app.image(caminarMujer[2],this.posX,this.posY);
+				}
+				if(down) {
+					app.image(caminarMujer[3],this.posX,this.posY);
+				}
+				if(left) {
+					app.image(caminarMujer[0],this.posX,this.posY);
+				}
+				if(right) {
+					app.image(caminarMujer[1],this.posX,this.posY);
+				}
+			}
+			
+			
+		
+
 	}
+	
 	
 	
 	public void caminarDos(PApplet app) {
@@ -107,7 +144,7 @@ public class Jugador {
 	}
 
 	public void setPosX(int posX) {
-		this.posX = posX;
+		this.posX += posX;
 	}
 
 	public int getPosY() {
@@ -115,7 +152,7 @@ public class Jugador {
 	}
 
 	public void setPosY(int posY) {
-		this.posY = posY;
+		this.posY += posY;
 	}
 
 	public boolean isUp() {

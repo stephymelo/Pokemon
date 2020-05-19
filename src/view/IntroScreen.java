@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import controlP5.Textfield;
 import controller.ControllerMain;
+import model.Juego;
 import processing.core.PFont;
 import processing.core.PSurfaceNone.AnimationThread;
 import processing.core.PApplet;
@@ -27,12 +28,12 @@ public class IntroScreen extends ScreenView {
 	
 	private boolean girlClick,boyClick;
 	
-	public IntroScreen(PApplet app){
-		super(app);
+	public IntroScreen(PApplet app,Juego juego){
+		super(app,juego);
 		
 		cp5 = new ControlP5(app);
 		
-		controller=new ControllerMain(app);
+		controller=new ControllerMain(app,juego);
 		
 		this.agua="agua";
 		this.fuego="fuego";

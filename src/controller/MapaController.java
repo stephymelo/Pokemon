@@ -9,9 +9,9 @@ public class MapaController {
 	private Juego juego;
 
 	
-	public MapaController(PApplet app) {
+	public MapaController(PApplet app,Juego juego) {
 		this.app=app;
-		juego=new Juego(app);
+		this.juego=juego;
 		
 	}
 	
@@ -19,6 +19,7 @@ public class MapaController {
 		juego.jugadores();
 		juego.encontrarPokemon();
 		juego.pintarPokemonInicial();
+	
 		
 		
 		
@@ -28,6 +29,7 @@ public class MapaController {
 	}
 	public void caminarJugadorTop() {
 		juego.jugadorCaminar();
+		
 	
 		
 	}
@@ -35,6 +37,7 @@ public class MapaController {
 	
 	public void pintarMapa() {
         juego.pintarMapa();
+    	
        
 	}
 	
