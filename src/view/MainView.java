@@ -80,7 +80,7 @@ public class MainView extends PApplet {
 	
 	
 	public void keyPressed() {
-		mapaScreen.jugadorCaminando();
+		
 		mapaScreen.caminar();
 
 		

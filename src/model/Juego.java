@@ -12,7 +12,11 @@ public class Juego {
 	private Jugador jugador;
 	private Pokemon pokemones;
 	private Inicial pokemonInicial;
-//	private LinkedList <Pokemon>pokemonInicial;
+	private Salvaje pokemonSalvaje;
+	
+	
+	
+	private LinkedList <Salvaje>pokemonCapturados;
 	
 	private int pintarPokemon;
 	
@@ -20,7 +24,7 @@ public class Juego {
 	
 	private double varCaptura;
 	private boolean intentoCaptura;
-	
+	private int posXMatriz,posYMatriz;
 	private int turno;
 	private boolean ataque, ataqueRival;
 	private boolean combate;
@@ -47,15 +51,17 @@ public class Juego {
 		this.app = app;
 
 		jugador = new Jugador(app, 50, 50);
-//		pokemonInicial=new LinkedList<Pokemon>();
+		pokemonCapturados=new LinkedList<Salvaje>();
+		pokemonSalvaje=new Salvaje("wooloo","./imagenes/pokemones/wooloo.png","noexiste",200,200,app);
 
 	
 		
 
-
+        this.posXMatriz=100;
+        this.posYMatriz=50;
 		
-		this.matY = 4;
-		this.matX = 1;
+		this.matY = 1;
+		this.matX = 5;
 
 
 
@@ -73,6 +79,12 @@ public class Juego {
 		jugador.pintarJugador();
 
 	}
+	public void caminar() {
+
+		jugador.caminar(app);
+		verificarJugador();
+
+	}
 
 	public void pintarMapa() {
 		for (int fila = 0; fila < 16; fila++) {
@@ -82,26 +94,29 @@ public class Juego {
 
 				}
 				if (mapa[fila][col] == 1) {
-					app.fill(255, 255, 255);
+					app.fill(255, 255, 255,80);
 
 				}
 				if (mapa[fila][col] == 2) {
 					app.fill(255, 0, 0, 20);
+					
 
 				}
 
 //				app.noStroke();
-				app.rect((col * 100), (fila * 50), 100, 50);
+				app.rect((col *posXMatriz), (fila * posYMatriz), 100, 50);
 			}
 		}
+		
+		jugadorPasto();
 
 	}
 
 	public void verificarJugador() {
 
 		if (app.keyCode == PConstants.LEFT) {
-			if (matY - 1 > -1 && mapa[matY - 1][matX] != 0) {
-				matY -= 1;
+			if (matX - 1 > -1 && mapa[matX - 1][matY] != 0) {
+//				matX -= 1;
 			    jugador.setPosX(-10);
 			
 
@@ -110,9 +125,8 @@ public class Juego {
 		}
 
 		if (app.keyCode == PConstants.RIGHT) {
-			if (matY + 1 < 20 && mapa[matY + 1][matX] != 0) {
-				matY += 1;
-				
+			if (matX + 1 < 16 && mapa[matX + 1][matY] != 0) {
+//				matX += 1;
 				jugador.setPosX(10);
 
 			}
@@ -120,8 +134,8 @@ public class Juego {
 		}
 
 		if (app.keyCode == PConstants.UP) {
-			if (matX + 1 < 12 && mapa[matY][matX + 1] != 0) {
-				matX -= 1;
+			if (matY + 1 < 12 && mapa[matX][matY + 1] != 0) {
+//				matY -= 1;
 			jugador.setPosY(-10);
 
 		}
@@ -130,8 +144,8 @@ public class Juego {
 			
 
 		if (app.keyCode == PConstants.DOWN) {
-			if (matX + 1 < 12 && mapa[matY][matX + 1] != 0) {
-				matX += 1;
+			if (matY + 1 < 12 && mapa[matX][matY + 1] != 0) {
+//				matY += 1;
 				jugador.setPosY(10);
 
 			}
@@ -139,25 +153,63 @@ public class Juego {
 		}
 	}
 
-	public void caminar() {
+	
 
-		jugador.caminar(app);
-		verificarJugador();
+	public void escogerGenero(int generoChoose) {
+		jugador.setGenero(generoChoose);
+			
+		}
 
-	}
+	
 
-	public void jugadorCaminar() {
+	public void jugadorPasto() {
+		
+		for (int i = 0; i < 16; i++) {
+			for (int j = 0; j < 12; j++) {
+				if(mapa [i][j]==2){
+					if(app.dist(jugador.getPosX(),jugador.getPosY(),j*posXMatriz,i*posXMatriz)<50){
+						System.out.println("funciona");
 
-		jugador.caminarDos(app);
-
-	}
-
+					}
+					}
+//		if(dist(jugador.getPosX(),jugador.getPosY(),mapa[i].getPosXMatriz(),mapa[i][j].getPosYMatriz())<100 && mapa[i][j]==2) {
+//			
+//			pokemonSalvaje.caminarPasto();
+//		}
+		
+		
+			}
+		}
+			
+			//thread start
+			//enPasto==true;
+			
+			
+		}
+	
+	
+	
 	public void verificarClicks() {
 //		for (int fila = 0; fila < 16; fila++) {
 //			for (int col = 0; col < 12; col++) {
 //		System.out.println(mapa[fila][col]);
 //			}
 //		}
+		
+//		for (int i = 0; i < 16; i++) {
+//		for (int j = 0; j < 12; j++) {
+////		System.out.println("The max is: "+app.mouseX+"space"+app.mouseY+" at index ["+i+"]["+j+"]");
+//		}
+		for (int i = 0; i < 16; i++) {
+		for (int j = 0; j < 12; j++) {
+			System.out.println(i+"maty "+j+"mouse"+app.mouseX+" "+app.mouseY);
+		}
+		
+		}
+		System.out.println(app.mouseX+" "+app.mouseY);
+	
+		
+		
 	}
 
 	
@@ -165,13 +217,27 @@ public class Juego {
 		if (id.toLowerCase().trim().equals("agua")) {
 			
 			this.pintarPokemon = 1;
-			System.out.println("alo");
-			pokemonInicial=new Inicial(id,"./imagenes/sobbleAtras.png","./imagenes/sobbleDelante.png",10,10,app);
 			
-
+			pokemonInicial=new Inicial(id,"./imagenes/pokemones/sobbleDelante.png","./imagenes/pokemones/sobbleAtras.png",10,10,app);
 			
 
 		}
+	if (id.toLowerCase().trim().equals("fuego")) {
+			
+			this.pintarPokemon = 2;
+			
+			pokemonInicial=new Inicial(id,"./imagenes/pokemones/scorbunnyDelante.png","./imagenes/pokemones/scorbunnyAtras.png",10,10,app);
+			
+
+		}
+	if (id.toLowerCase().trim().equals("hierba")) {
+		
+		this.pintarPokemon = 3;
+		
+		pokemonInicial=new Inicial(id,"./imagenes/pokemones/grookeyDelante.png","./imagenes/pokemones/grookeyAtras.png",10,10,app);
+		
+
+	}
 
 	}
 
@@ -179,24 +245,46 @@ public class Juego {
 		switch (pintarPokemon) {
 		case 1:
 		
-            pokemonInicial.setDeltante("./imagenes/sobbleAtras.png");
-			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
-//			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
-//				
+            
+			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
+			
 
 			break;
 			
 		case 2:
+	     
+			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());	
+			
+			
 			break;
 		case 3:
+			
+			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());	
+			
+			
 			break;
 		}
 
 	}
 	
 	
-	public void pintarenBatalla() {
-//		pokemonInicial.pintar(this.pokemoInical.getPokemonImagenAtras(),10,10);
+	public void pintarPokemonInicialVS() {
+		switch (pintarPokemon) {
+		case 1:
+			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+			
+			break;
+			
+		case 2:
+			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());	
+			
+			break;
+		case 3:
+			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());	
+			
+			
+			break;
+		}
 	}
 	
 
@@ -302,6 +390,22 @@ public class Juego {
 				break;
 			}
 		}
+	}
+
+	public int getPosXMatriz() {
+		return posXMatriz;
+	}
+
+	public void setPosXMatriz(int posXMatriz) {
+		this.posXMatriz = posXMatriz;
+	}
+
+	public int getPosYMatriz() {
+		return posYMatriz;
+	}
+
+	public void setPosYMatriz(int posYMatriz) {
+		this.posYMatriz = posYMatriz;
 	}
 	
 	

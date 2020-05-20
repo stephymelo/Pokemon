@@ -9,17 +9,18 @@ public class Jugador {
 	private int posX;
 	private int posY;
 	private PImage caminarMujer[];
+	private PImage caminarHombre[];
 
 		
-	private int camino,direc;
+	private int genero;
 	private boolean up,down,left,right;
 	
 	public Jugador(PApplet app,int posX,int posY) {
 		this.app=app;
 		this.posX=posX;
 		this.posY=posY+40;
-		this.direc=0;
-		this.camino=0;
+		
+		this.genero=0;
 		this.up=false;
 		this.down=false;
 		this.left=false;
@@ -41,6 +42,21 @@ public class Jugador {
 		caminarMujer[10]=app.loadImage("imagenes/PersonajeFemenino/PFIzquierda2.png");
 		caminarMujer[11]=app.loadImage("imagenes/PersonajeFemenino/PFIzquierda3.png");
 		
+		caminarHombre= new PImage[12];
+		caminarHombre[0]=app.loadImage("imagenes/PersonajeMasculino/PMIzquierda1.png");
+		caminarHombre[1]=app.loadImage("imagenes/PersonajeMasculino/PMDerecha1.png");
+		caminarHombre[2]=app.loadImage("imagenes/PersonajeMasculino/PMArriba1.png");
+		caminarHombre[3]=app.loadImage("imagenes/PersonajeMasculino/PMAbajo1.png");
+		caminarHombre[4]=app.loadImage("imagenes/PersonajeMasculino/PMAbajo2.png");
+		caminarHombre[5]=app.loadImage("imagenes/PersonajeMasculino/PMAbajo3.png");
+		caminarHombre[6]=app.loadImage("imagenes/PersonajeMasculino/PMArriba2.png");
+		caminarHombre[7]=app.loadImage("imagenes/PersonajeMasculino/PMArriba3.png");
+		caminarHombre[8]=app.loadImage("imagenes/PersonajeMasculino/PMDerecha2.png");
+		caminarHombre[9]=app.loadImage("imagenes/PersonajeMasculino/PMDerecha3.png");
+		caminarHombre[10]=app.loadImage("imagenes/PersonajeMasculino/PMIzquierda2.png");
+		caminarHombre[11]=app.loadImage("imagenes/PersonajeMasculino/PMIzquierda3.png");
+		
+		
 		
 		
 	}
@@ -48,7 +64,7 @@ public class Jugador {
 	
 	
 	public void pintarJugador() {
-		
+		if(genero==0) {
 			for(int i=0;i<caminarMujer.length;i++) {
 				app.image(caminarMujer[0],this.posX,this.posY);
 				if(up) {
@@ -64,41 +80,62 @@ public class Jugador {
 					app.image(caminarMujer[1],this.posX,this.posY);
 				}
 			}
+		}
+		
+		if(genero==1) {
+			for(int i=0;i<caminarHombre.length;i++) {
+				app.image(caminarHombre[0],this.posX,this.posY);
+				if(up) {
+					app.image(caminarHombre[2],this.posX,this.posY);
+				}
+				if(down) {
+					app.image(caminarHombre[3],this.posX,this.posY);
+				}
+				if(left) {
+					app.image(caminarHombre[0],this.posX,this.posY);
+				}
+				if(right) {
+					app.image(caminarHombre[1],this.posX,this.posY);
+				}
+			}
+		}
+			
+		}
 			
 			
 		
 
-	}
 	
 	
 	
-	public void caminarDos(PApplet app) {
-
-		switch(app.keyCode) {
-		case PConstants.LEFT:
-//			this.posX-=10;	
-			this.direc=1;
-//			app.image(caminarMujer[10],this.posX,this.posY);
-			
-			
-			break;
-		case PConstants.RIGHT:
-//			this.posX+=10;	
-			this.direc=2;
-			break;
-		case PConstants.UP:
-//			this.posY-=10;	
-			this.direc=3;
-			
-			
-			break;
-		case PConstants.DOWN:
-//			this.posY+=10;	
-			this.direc=4;
-			
-			break;
-		}
-	}
+	
+//	public void caminarDos(PApplet app) {
+//
+//		switch(app.keyCode) {
+//		case PConstants.LEFT:
+////			this.posX-=10;	
+//			this.direc=1;
+////			app.image(caminarMujer[10],this.posX,this.posY);
+//			
+//			
+//			break;
+//		case PConstants.RIGHT:
+////			this.posX+=10;	
+//			this.direc=2;
+//			break;
+//		case PConstants.UP:
+////			this.posY-=10;	
+//			this.direc=3;
+//			
+//			
+//			break;
+//		case PConstants.DOWN:
+////			this.posY+=10;	
+//			this.direc=4;
+//			
+//			break;
+//		}
+//	}
 	public void caminar(PApplet app) {
 
 		switch(app.keyCode) {
@@ -186,6 +223,19 @@ public class Jugador {
 	public void setRight(boolean right) {
 		this.right = right;
 	}
+
+
+
+	public int getGenero() {
+		return genero;
+	}
+
+
+
+	public void setGenero(int genero) {
+		this.genero = genero;
+	}
+	
 	
 	
 

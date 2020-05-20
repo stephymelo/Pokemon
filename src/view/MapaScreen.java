@@ -26,21 +26,18 @@ public class MapaScreen extends ScreenView {
 	}
 	
 	public void drawScreen(){
-		mapaController.pintarMapa();
+		
 		app.image(mapa,0,0);
 		mapaController.pintarJugador();
 		app.image(grass,0,0);
+		mapaController.pintarMapa();
 		
 
 		
 		
 	}
 	
-	public void jugadorCaminando() {
-		mapaController.caminarJugadorTop();
-		
-		
-	}
+
 	public void caminar() {
 		mapaController.caminar();
 	}

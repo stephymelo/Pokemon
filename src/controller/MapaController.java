@@ -27,12 +27,7 @@ public class MapaController {
 	public void caminar() {
 		juego.caminar();
 	}
-	public void caminarJugadorTop() {
-		juego.jugadorCaminar();
-		
 	
-		
-	}
 	
 	
 	public void pintarMapa() {

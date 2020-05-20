@@ -19,9 +19,15 @@ public class ControllerMain {
 		juego.escogerPokemon(id);
 	}
 	
+
+	public void escogerGenero(int generoChoose) {
+		juego.escogerGenero(generoChoose);
+	}
+	
 	public void pintarPokemon() {
 	
 	}
+	
 	
 	
 	

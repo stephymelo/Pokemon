@@ -203,10 +203,12 @@ if(pantallaIntro!=2) {
 	}
 	if(app.mouseX>230&&app.mouseY>30&&app.mouseX<455&&app.mouseY<570&&pantallaIntro==1) {
 		pantallaIntro=2;
+		controller.escogerGenero(0);
 		girlClick=true;
 	}
 	if(app.mouseX>800&&app.mouseY>30&&app.mouseX<1045&&app.mouseY<570&&pantallaIntro==1) {
 		pantallaIntro=2;
+		controller.escogerGenero(1);
 	     boyClick=true;
 	}
 	
