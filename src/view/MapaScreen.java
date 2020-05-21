@@ -28,9 +28,10 @@ public class MapaScreen extends ScreenView {
 	public void drawScreen(){
 		
 		app.image(mapa,0,0);
-		mapaController.pintarJugador();
+	
 		app.image(grass,0,0);
 		mapaController.pintarMapa();
+		mapaController.pintarJugador();
 		
 
 		

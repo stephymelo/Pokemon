@@ -2,6 +2,7 @@ package view;
 import controller.ControllerMain;
 import model.Juego;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class MainView extends PApplet {
 	private MapaScreen mapaScreen; 
@@ -26,6 +27,7 @@ public class MainView extends PApplet {
 		introScreen=new IntroScreen(this,juego);
 		controllerMain=new ControllerMain(this,juego);
 		pantalla=1;
+		imageMode(CENTER);
 	}
 
 	public void draw() {

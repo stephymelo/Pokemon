@@ -18,7 +18,7 @@ public class Jugador {
 	public Jugador(PApplet app,int posX,int posY) {
 		this.app=app;
 		this.posX=posX;
-		this.posY=posY+40;
+		this.posY=posY;
 		
 		this.genero=0;
 		this.up=false;
@@ -181,7 +181,7 @@ public class Jugador {
 	}
 
 	public void setPosX(int posX) {
-		this.posX += posX;
+		this.posX = posX;
 	}
 
 	public int getPosY() {
@@ -189,7 +189,7 @@ public class Jugador {
 	}
 
 	public void setPosY(int posY) {
-		this.posY += posY;
+		this.posY = posY;
 	}
 
 	public boolean isUp() {
