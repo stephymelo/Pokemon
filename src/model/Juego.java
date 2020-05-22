@@ -14,7 +14,7 @@ public class Juego {
 	private Inicial pokemonInicial;
 	private Salvaje pokemonSalvaje;
 
-	private LinkedList<Salvaje> pokemonCapturados;
+	private LinkedList<Pokemon> pokemonCapturados;
 
 	private int pintarPokemon;
 
@@ -27,20 +27,28 @@ public class Juego {
 	private boolean ataque, ataqueRival;
 	private boolean combate;
 
-	private int mapa[][] = { { 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 },
-			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 }, { 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 },
-			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 }, { 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 },
-			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 }, { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0 }, };
+	private int mapa[][] = { { 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 
+			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 }, 
+			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 }, 
+			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2 }, 
+			{ 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0 }, };
 
 	public Juego(PApplet app) {
 		this.app = app;
 
 		jugador = new Jugador(app, 50, 150);
-		pokemonCapturados = new LinkedList<Salvaje>();
+		pokemonCapturados = new LinkedList<Pokemon>();
 		pokemonSalvaje = new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 200, 200, app);
 
 		this.posXMatriz = 100;
@@ -78,26 +86,17 @@ public class Juego {
 				app.fill(mapa[fila][col] == 0 ? 150 : mapa[fila][col] == 2 ? 100 : mapa[fila][col] == 1 ? 255 : 0);
 				app.rect(col * 100, fila * 50, 100, 50);
 
-//				if (mapa[fila][col] == 0) {
-//					app.fill(0, 0, 0, 30);
-//z
-//				}
-//				if (mapa[fila][col] == 1) {
-//					app.fill(255, 255, 255,80);
-//
-//				}
-//				if (mapa[fila][col] == 2) {
-//					app.fill(255, 0, 0, 20);
-//					
-//
-//				}
-
-//				app.rect((col *posXMatriz), (fila * posYMatriz), 100, 50);
 			}
 		}
 
 		jugadorPasto();
 		
+
+	}
+	
+	
+	public void escogerGenero(int generoChoose) {
+		jugador.setGenero(generoChoose);
 
 	}
 
@@ -141,7 +140,8 @@ public class Juego {
 				if (mapa[matX + 1][matY] != 0) {
 					matX += 1;
 					jugador.setPosY(jugador.getPosY() + 100);
-					
+//					pokemonSalvaje.setEnPasto(true);
+		
 				}
 			}
 			break;
@@ -149,47 +149,75 @@ public class Juego {
 		}
 	}
 
-	public void escogerGenero(int generoChoose) {
-		jugador.setGenero(generoChoose);
-
-	}
+	
 
 	public void jugadorPasto() {
-		
-		if(mapa[matX][matY]==2) {
+		if (matY+1<3) {
+			pokemonSalvaje.setDirX(-1);
+			pokemonSalvaje.setDirY(-1);
 			
 		}
 		
+		if (matY-1<0) {
+			pokemonSalvaje.setDirX(1);
+			pokemonSalvaje.setDirY(1);
+			
+		}
+		if (matX+1<15) {
+			pokemonSalvaje.setDirX(-1);
+			pokemonSalvaje.setDirY(-1);
+			
+		}
 
-		for (int i = 0; i < 16; i++) {
+		if (matY-1<10) {
+			pokemonSalvaje.setDirX(1);
+			pokemonSalvaje.setDirY(1);
+			
+		}
+
+      for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 12; j++) {
-				if ((jugador.getPosX() > (j * 50)+50 && jugador.getPosX() < (j * 50)+50
-						&& jugador.getPosY() > (i * 50) - 50 && jugador.getPosY() < (i * 50) + 50) && mapa[i][j] == 2) {
+				if(mapa[i][j] == 2) {
+					
+				if ((jugador.getPosX() > (j * 50)-50 && jugador.getPosX() < (j * 50)+50
+						&& jugador.getPosY() > (i * 50) - 50 && jugador.getPosY() < (i * 50) + 50) ) {
 					System.out.println("entro");
-					pokemonSalvaje.setEnPasto(true);
+//					pokemonSalvaje.setEnPasto(true);
+				}else {
+					pokemonSalvaje.setEnPasto(false);
+					
 					
 			
 
 				}
+				}
 			}
+				
 
 		}
 
 		if(pokemonSalvaje.isEnPasto()==true) {
 			new Thread(pokemonSalvaje).start();
 		}
-
+      
+		
+		
+		if(jugador.getPosX()<pokemonSalvaje.getPosX()&&jugador.getPosX()+100>pokemonSalvaje.getPosX()+100&&
+				jugador.getPosY()<pokemonSalvaje.getPosY()&&jugador.getPosY()+50>pokemonSalvaje.getPosY()+50) {
+			//batalla pokemon
+		}
+		
 
 	
 	}
 
+	
+	
+
+	
+	
+	
 	public void verificarClicks() {
-
-//		for (int i = 0; i < 16; i++) {
-//		for (int j = 0; j < 12; j++) {
-////		System.out.println("The max is: "+app.mouseX+"space"+app.mouseY+" at index ["+i+"]["+j+"]");
-//		}
-
 		System.out.println(app.mouseX + " " + app.mouseY);
 
 	}
