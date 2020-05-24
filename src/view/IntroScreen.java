@@ -10,9 +10,11 @@ import model.Juego;
 import processing.core.PFont;
 import processing.core.PSurfaceNone.AnimationThread;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class IntroScreen extends ScreenView {
+	
 	private PImage start,starthover,gender,genderGirl,genderBoy,userGirl,userBoy,continueButton,professor,professorDos;
 	private PImage pokemonSelect,pokemonBlue,pokemonWhite,pokemonGreen,professorRival,professorFinal,rivalPantalla;
 	private int pantallaIntro;
@@ -30,6 +32,8 @@ public class IntroScreen extends ScreenView {
 	
 	public IntroScreen(PApplet app,Juego juego){
 		super(app,juego);
+		
+		
 		
 		cp5 = new ControlP5(app);
 		
@@ -78,6 +82,7 @@ public class IntroScreen extends ScreenView {
 	
 	
 	public void drawScreen(){
+		app.imageMode(PConstants.CORNER);
 if(pantallaIntro!=2) {
 	this.username = cp5.get(Textfield.class, "username").setVisible(false).getText();
 }

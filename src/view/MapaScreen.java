@@ -2,7 +2,7 @@ package view;
 import controller.MapaController;
 import model.Juego;
 import processing.core.PApplet;
-
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class MapaScreen extends ScreenView {
@@ -26,10 +26,11 @@ public class MapaScreen extends ScreenView {
 	}
 	
 	public void drawScreen(){
+		app.imageMode(PConstants.CENTER);
 		
-		app.image(mapa,0,0);
+		app.image(mapa,app.width/2,app.height/2);
 	
-		app.image(grass,0,0);
+		app.image(grass,app.width/2,app.height/2);
 		mapaController.pintarMapa();
 		mapaController.pintarJugador();
 		

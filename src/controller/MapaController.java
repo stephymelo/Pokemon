@@ -17,8 +17,8 @@ public class MapaController {
 	
 	public void pintarJugador() {
 		juego.jugadores();
-		juego.encontrarPokemon();
-		juego.pintarPokemonInicial();
+		
+	
 	
 		
 		
@@ -32,6 +32,8 @@ public class MapaController {
 	
 	public void pintarMapa() {
         juego.pintarMapa();
+        juego.encontrarPokemon();
+        juego.pintarPokemonSalvaje();
     	
        
 	}

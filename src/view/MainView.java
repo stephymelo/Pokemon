@@ -3,13 +3,18 @@ import controller.ControllerMain;
 import model.Juego;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.sound.*;
 
 public class MainView extends PApplet {
 	private MapaScreen mapaScreen; 
 	private IntroScreen introScreen;
+	private BatallaScreen batallaScreen;
 	private Juego juego;
 	private ControllerMain controllerMain;
 	private int pantalla;
+	
+	
+	private SoundFile musicaFondo;
 	
 
 	public static void main(String[] args) {
@@ -19,15 +24,23 @@ public class MainView extends PApplet {
 	public void settings() {
 		size(1200, 800);
 		juego=new Juego(this);
+		
 	}
 
 	public void setup() {
 		background(0);
 		mapaScreen=new MapaScreen(this,juego);
 		introScreen=new IntroScreen(this,juego);
+		batallaScreen=new BatallaScreen(this,juego);
 		controllerMain=new ControllerMain(this,juego);
-		pantalla=1;
+		pantalla=0;
 		imageMode(CENTER);
+		musicaFondo=new SoundFile(this, "./sonidos/mapaMusic.mp3");
+//		musicaFondo.play();
+//		musicaFondo.amp(-1);
+	//loop soundfile
+		
+		
 	}
 
 	public void draw() {
@@ -42,21 +55,27 @@ public class MainView extends PApplet {
 		case 1:
 			mapaScreen.drawScreen();
 			
+			
 		
 			break;
 		case 2:
-//			batallaScreen.drawScreen();
+			batallaScreen.drawScreen();
 			break;
 			
 		}
 		
-		
+		if(controllerMain.encontro()==true) {
+			pantalla=2;
+		}
 
 	}
 	
 	
 	public void mouseClicked() {
+		if(pantalla==2) {
 		controllerMain.verificarClicks();
+		}
+		System.out.println(pantalla);
 		
 //		System.out.println(mouseX+"mouseX"+mouseY+"mouseY");
 		
@@ -92,6 +111,17 @@ public class MainView extends PApplet {
 	
 		
 	}
+
+	public int getPantalla() {
+		return pantalla;
+	}
+
+	public void setPantalla(int pantalla) {
+		this.pantalla = pantalla;
+	}
+	
+	
+	
 	
 	
 

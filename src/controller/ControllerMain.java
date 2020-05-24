@@ -6,11 +6,12 @@ import processing.core.PApplet;
 public class ControllerMain {
 	private Juego juego;
 	private PApplet app;
-	
+	private boolean encontro;
 	
 	public ControllerMain(PApplet app,Juego juego) {
 		this.app=app;
 		this.juego = juego;
+		encontro=false;
 	}
 	
 	
@@ -26,6 +27,10 @@ public class ControllerMain {
 	
 	public void pintarPokemon() {
 	
+	}
+	
+	public boolean encontro() {
+		return juego.isEncontroPokemon();
 	}
 	
 	

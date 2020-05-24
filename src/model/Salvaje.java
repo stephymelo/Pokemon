@@ -1,21 +1,23 @@
 package model;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Salvaje extends Pokemon implements Runnable{
 	
 	private boolean enPasto;
 	private int dirX,dirY;
-	
+	private PImage pokemonImagenAdelante;
 	public Salvaje(String id,String delante,String atras, int posX,int posY,PApplet app) {
 		super(id,delante, atras, posX,posY, app);
 		this.enPasto=false;
 		this.dirX=1;
 		this.dirY=1;
+		this.pokemonImagenAdelante=app.loadImage(delante);
 	}
 	
 	public void run() {
-		if(enPasto==true) {
+		while(enPasto==true) {
 			caminarPasto();
 			System.out.println("hiloEntro");
 			
@@ -33,6 +35,11 @@ public class Salvaje extends Pokemon implements Runnable{
 	
 	public void captura() {
 		
+	}
+	
+	
+	public void pintar(PImage pokemonImagen) {
+		app.image(pokemonImagen, posX, posY);
 	}
 	
 	
@@ -73,6 +80,18 @@ public class Salvaje extends Pokemon implements Runnable{
 	}
 	
 	
+
+	public PImage getPokemonImagenAdelante() {
+		return pokemonImagenAdelante;
+	}
+
+
+
+
+	public void setPokemonImagenAdelante(PImage pokemonImagenAdelante) {
+		this.pokemonImagenAdelante = pokemonImagenAdelante;
+	}
+
 
 
 	

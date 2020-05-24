@@ -17,6 +17,7 @@ public abstract class Pokemon  {
 		this.id=id;
 		this.posX=posX;
 		this.posY=posY;
+		this.vida=100;
 		this.app=app;
 //		
 //		this.pokemonImagenAdelante=app.loadImage(delante);
@@ -29,6 +30,14 @@ public abstract class Pokemon  {
 //		app.image(pokemonImagen, posX, posY);
 //		
 //	}
+	
+	
+	public void mostrarVida(int posX, int posY) {
+		app.fill(0,0,255);
+		app.rect(posX,posY,vida, 50);
+		
+	}
+	
 	
 	
 	public void atacar() {
