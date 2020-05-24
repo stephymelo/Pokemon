@@ -194,7 +194,6 @@ if(pantallaIntro!=2) {
 			
 			app.saveStrings("./usuariosTXT/userRegister.txt"+date.getTime(),user);
 			
-//			System.out.print(username+fecha);
 			
 			pantallaIntro=3;
 			return;

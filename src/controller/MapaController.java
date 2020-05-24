@@ -10,6 +10,7 @@ public class MapaController {
 
 	
 	public MapaController(PApplet app,Juego juego) {
+//		app.imageMode(app.CENTER);
 		this.app=app;
 		this.juego=juego;
 		
@@ -17,7 +18,7 @@ public class MapaController {
 	
 	public void pintarJugador() {
 		juego.jugadores();
-		
+		 juego.pintarPokemonSalvaje();
 	
 	
 		
@@ -33,7 +34,7 @@ public class MapaController {
 	public void pintarMapa() {
         juego.pintarMapa();
         juego.encontrarPokemon();
-        juego.pintarPokemonSalvaje();
+       
     	
        
 	}
