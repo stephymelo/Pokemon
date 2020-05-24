@@ -26,7 +26,6 @@ public class Juego {
 	private PokedexTipo pokeOrd;
 	private boolean verdeB;
 
-	private PFont pixel;
 	private PImage verde;
 
 	private ArrayList<Pokemon> pokemonUsers;
@@ -84,8 +83,6 @@ public class Juego {
 		pokeOrd = new PokedexTipo();
 
 		verde = app.loadImage("../imagenes/Pokedex/Verde.png");
-
-		//pixel = app.createFont("pokemon_pixel_font.ttf", 60);
 
 		text = app.loadStrings("../pokedexTXT/pokedex.txt");
 
@@ -553,9 +550,8 @@ public class Juego {
 	// POKEDEX
 
 	public void pintarPokedex() {
-		//app.textFont(pixel, 60);
-		app.textSize(60);
 		app.fill(86, 89, 85);
+		app.textSize(60);
 		for (int i = 0; i < pokedexList.size(); i++) {
 			Pokedex poke = pokedexList.get(i);
 			app.text(poke.getNombre(), 735, 150 + (i * 68));
