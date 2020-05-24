@@ -3,6 +3,7 @@ import controller.ControllerMain;
 import model.Juego;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PFont;
 import processing.sound.*;
 
 public class MainView extends PApplet {
@@ -12,6 +13,8 @@ public class MainView extends PApplet {
 	private Juego juego;
 	private ControllerMain controllerMain;
 	private int pantalla;
+	private PFont pixelFont;
+	
 	
 	
 	private SoundFile musicaFondo;
@@ -40,11 +43,11 @@ public class MainView extends PApplet {
 //		musicaFondo.amp(-1);
 	//loop soundfile
 		
-		
+		pixelFont=createFont("./pokemon_pixel_font.ttf", 20);
 	}
 
 	public void draw() {
-		
+		textFont(pixelFont,20);
 		
 		switch(pantalla){
 		case 0:

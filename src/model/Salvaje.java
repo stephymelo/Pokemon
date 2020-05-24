@@ -17,9 +17,9 @@ public class Salvaje extends Pokemon implements Runnable{
 	}
 	
 	public void run() {
-		while(enPasto==true) {
+		if(enPasto==true) {
 			caminarPasto();
-			System.out.println("hiloEntro");
+			
 			
 			try {
 				Thread.sleep(2000);

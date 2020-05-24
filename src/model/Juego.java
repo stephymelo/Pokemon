@@ -3,6 +3,7 @@ package model;
 
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PFont;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,6 +20,7 @@ public class Juego {
 	private Salvaje pokemonSalvajeBatalla;
 
 
+
 	private ArrayList<Pokemon> pokemonUsers;
 
 	private int pintarPokemon;
@@ -31,7 +33,7 @@ public class Juego {
 	private int turno;
 	private boolean ataque, ataqueRival;
 	private boolean combate;
-	private boolean encontroPokemon,mostrarPokemon,atacando;
+	private boolean encontroPokemon,mostrarPokemon,atacando,mostrarPoder;
 	
 
 
@@ -54,11 +56,13 @@ public class Juego {
 
 	public Juego(PApplet app) {
 		this.app = app;
-
+		
+		
 		jugador = new Jugador(app, 50, 150);
 
 		pokemonUsers=new ArrayList<Pokemon>();
         mostrarPokemon=false;
+        mostrarPoder=true;
 		this.encontroPokemon=false;
 		pokemonSalvaje = new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app);
 		pokemonSalvajeBatalla=null;
@@ -102,17 +106,30 @@ public class Juego {
 		//clic y cambiar turno
 		
 		
-		pokemonSalvajeBatalla.mostrarVida(100, 100);
-		pokemonInicial.mostrarVida(400, 500);
+		pokemonSalvajeBatalla.mostrarVida(250, 155);
+		pokemonInicial.mostrarVida(852, 468);
+		
 		switch(turno) {
 		case 1:
 		
 			//mostrarPoderes=dar clic en boton poder pasar atacando a true y turno =2 
-			pokemonSalvajeBatalla.setPosX( 780);
-			pokemonSalvajeBatalla.setPosY(200);
-			pokemonInicial.setPosX(100);
-			pokemonInicial.setPosY(400);
+			pokemonSalvajeBatalla.setPosX( 800);
+			pokemonSalvajeBatalla.setPosY(250);
+			pokemonInicial.setPosX(277);
+			pokemonInicial.setPosY(420);
 		
+			
+			
+			
+			
+			break;
+		case 2:
+			
+			
+			
+			
+			
+			
 			
 			if(atacando==false) {
 				//mostrarPoder
@@ -120,18 +137,23 @@ public class Juego {
 				turno=2;
 			}
 			
-			break;
-		case 2:
-			//atacando
-			
-			
-			//  if( frameRate){
+		case 3:
+			//atacandoMi
 			pokemonSalvajeBatalla.setPosX(app.width/2-100);
 			pokemonSalvajeBatalla.setPosY(app.height/2+100);
 			pokemonInicial.setPosX(app.width/2+100);
 			pokemonInicial.setPosY(app.height/2-100);
 //			}
 			System.out.println(pokemonInicial.getVida());
+//atacando
+			
+			
+			//  if( frameRate){
+			
+			
+		
+	
+			//hacer metodo de reiniciarPosiciones batalla
 		
 			if(atacando) {
 				pokemonSalvajeBatalla.setVida(pokemonSalvajeBatalla.getVida()-10);
@@ -146,16 +168,9 @@ public class Juego {
 				
 			}
 			
-		
-	
-			//hacer metodo de reiniciarPosiciones batalla
-			
-			
-		case 3:
-			//atacandoMi
-			
-			
+		case 4:
 			break;
+			
 		}
 		
 		if(pokemonSalvajeBatalla.getVida()<=0) {
@@ -213,6 +228,7 @@ public class Juego {
 	}
 
 	public void verificarJugador() {
+	
 
 		switch (app.keyCode) {
 
@@ -252,8 +268,8 @@ public class Juego {
 				if (mapa[matX + 1][matY] != 0) {
 					matX += 1;
 					jugador.setPosY(jugador.getPosY() + 100);
-					pokemonSalvaje.setEnPasto(true);
-					System.out.println(pokemonSalvaje.isEnPasto());
+					
+					
 
 
 
@@ -264,11 +280,16 @@ public class Juego {
 			break;
 
 		}
+		
+
 	}
 
 
 
 	public void jugadorPasto() {
+	
+			pokemonSalvaje.setEnPasto(true);
+		
 
 		if (pokemonSalvaje.getPosY()<450+100) {
 
@@ -295,27 +316,20 @@ public class Juego {
 		}
 
 
+		
 
 
 
-
-		for (int i = 0; i < 16; i++) {
-			for (int j = 0; j < 12; j++) {
-				if(mapa[i][j] == 2) {
-
-					if ((jugador.getPosX() > (j * 50)-50 && jugador.getPosX() < (j * 50)+50
-							&& jugador.getPosY() > (i * 50) - 50 && jugador.getPosY() < (i * 50) + 50) ) {
-						//					System.out.println("jugadorAdentro");
-						//					pokemonSalvaje.setEnPasto(true);
-					}else {
-						//					pokemonSalvaje.setEnPasto(false);
-
-
-
-
-					}
-				}
-			}
+//		for (int i = 0; i < 16; i++) {
+//			for (int j = 0; j < 12; j++) {
+//				if(mapa[i][j] == 2) {
+//
+//					if ((jugador.getPosX() > (j * 50)-50 && jugador.getPosX() < (j * 50)+50
+//							&& jugador.getPosY() > (i * 50) - 50 && jugador.getPosY() < (i * 50) + 50) ) {
+//						//					System.out.println("jugadorAdentro");
+//						//					pokemonSalvaje.setEnPasto(true);
+//					}else {
+//						//					pokemonSalvaje.setEnPasto(false);
 
 
 		}
@@ -325,18 +339,8 @@ public class Juego {
 
 
 
-
-
-
-	}
-
-
-
 	public void encontrarPokemon() {
 		if(PApplet.dist(jugador.getPosX(),jugador.getPosY(), pokemonSalvaje.getPosX(),pokemonSalvaje.getPosY())<100) {
-			System.out.println("encontroPokemon");
-			
-			
 			encontroPokemon=true;
 
 		}
@@ -344,7 +348,7 @@ public class Juego {
 		if(encontroPokemon==true) {
 			pokemonSalvaje.setEnPasto(false);
 			if(pokemonSalvajeBatalla==null) {
-				pokemonSalvajeBatalla=new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 780, 200, app);
+				pokemonSalvajeBatalla=new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 850, 250, app);
 			}
 		}
 		
@@ -356,9 +360,15 @@ public class Juego {
 		System.out.println(app.mouseX + " " + app.mouseY);
 		
 		if(PApplet.dist(app.mouseX,app.mouseY,700, 650)<100) {
-			atacando=true;
+			mostrarPoder=true;
 			turno=1;
 		}
+		if(PApplet.dist(app.mouseX,app.mouseY,300, 650)<100) {
+			atacando=true;
+			turno=2;
+		}
+		
+		
 
 	}
 
@@ -371,7 +381,7 @@ public class Juego {
 
 
 			pokemonInicial = new Inicial(id, "./imagenes/pokemones/sobbleDelante.png",
-					"./imagenes/pokemones/sobbleAtras.png", 200, 560, app);
+					"./imagenes/pokemones/sobbleAtras.png", 277, 430, app);
 
 		}
 		if (id.toLowerCase().trim().equals("fuego")) {
@@ -379,7 +389,7 @@ public class Juego {
 			this.pintarPokemon = 2;
 
 			pokemonInicial = new Inicial(id, "./imagenes/pokemones/scorbunnyDelante.png",
-					"./imagenes/pokemones/scorbunnyAtras.png", 10, 10, app);
+					"./imagenes/pokemones/scorbunnyAtras.png", 277, 430, app);
 
 		}
 		if (id.toLowerCase().trim().equals("hierba")) {
@@ -387,7 +397,8 @@ public class Juego {
 			this.pintarPokemon = 3;
 
 			pokemonInicial = new Inicial(id, "./imagenes/pokemones/grookeyDelante.png",
-					"./imagenes/pokemones/grookeyAtras.png", 10, 10, app);
+					"./imagenes/pokemones/grookeyAtras.png",277, 430, app);
+			
 
 		}
 
@@ -398,22 +409,70 @@ public class Juego {
 		case 1:
 
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
-
+			
 			break;
 
 		case 2:
 
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
-
+		
 			break;
 		case 3:
 
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
+			
+			
 
 			break;
 		}
 
 	}
+	
+	public void pintarPoder() {
+		switch (pintarPokemon) {
+		case 1:
+
+		
+			if(mostrarPoder=true) {
+				  app.fill(255,255,250);
+				  app.textSize(30);
+					app.text("Sooble",400,400);
+			}
+			
+			break;
+
+		case 2:
+
+		
+			if(mostrarPoder=true) {
+			  app.fill(255,255,250);
+			  app.textSize(30);
+				app.text("Scorbunny",400,400);
+			}
+			break;
+		case 3:
+
+			
+			if(mostrarPoder=true) {
+            app.fill(255,255,250);
+            app.textSize(30);
+			app.text("Grookey",400,400);
+			}
+
+			break;
+		}
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public void pintarPokemonInicialVS() {
 		switch (pintarPokemon) {
@@ -424,10 +483,12 @@ public class Juego {
 
 		case 2:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+			
 
 			break;
 		case 3:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+			
 
 			break;
 		}
