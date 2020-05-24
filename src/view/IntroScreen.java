@@ -175,6 +175,9 @@ if(pantallaIntro!=2) {
 	
 	
 	public void getInfoForm() {
+		
+		Date date = new Date();
+		
 		String[] user;
 		user = new String [2];
 		user[0]=username;
@@ -189,7 +192,7 @@ if(pantallaIntro!=2) {
 			
 			username = cp5.get(Textfield.class, "username").getText();
 			
-			app.saveStrings("./usuariosTXT/userRegister.txt",user);
+			app.saveStrings("./usuariosTXT/userRegister.txt"+date.getTime(),user);
 			
 //			System.out.print(username+fecha);
 			
