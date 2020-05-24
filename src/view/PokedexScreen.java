@@ -11,9 +11,9 @@ public class PokedexScreen {
 	public PokedexScreen(PApplet app) {
 		this.app = app;
 
-		this.pokedex = app.loadImage("data/View.jpg");
-		this.botonNom = app.loadImage("data/BotonNom.png");
-		this.botonTipo = app.loadImage("data/BotonTipo.png");
+		this.pokedex = app.loadImage("../imagenes/Pokedex/View.jpg");
+		this.botonNom = app.loadImage("../imagenes/Pokedex/BotonNom.png");
+		this.botonTipo = app.loadImage("../imagenes/Pokedex/BotonTipo.png");
 	}
 
 	public void drawPokedex() {

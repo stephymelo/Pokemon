@@ -84,10 +84,9 @@ public class Juego {
 		pokeOrd = new PokedexTipo();
 
 		verde = app.loadImage("../imagenes/Pokedex/Verde.png");
-		
-		/*this.pixel = app.createFont("pokemon_pixel_font.ttf", 60);
-		PFont pixel = app.createFont("pokemon_pixel_font.ttf", 60);*/
-		
+
+		//pixel = app.createFont("pokemon_pixel_font.ttf", 60);
+
 		text = app.loadStrings("../pokedexTXT/pokedex.txt");
 
 		verdeB = false;
@@ -554,7 +553,7 @@ public class Juego {
 	// POKEDEX
 
 	public void pintarPokedex() {
-		app.textFont(pixel);
+		//app.textFont(pixel, 60);
 		app.fill(86, 89, 85);
 		for (int i = 0; i < pokedexList.size(); i++) {
 			Pokedex poke = pokedexList.get(i);
@@ -568,8 +567,8 @@ public class Juego {
 	}
 
 	public void mouseLogica() {
-		if (app.mousePressed == true){
-			//for (int i = 0; i < pokedex.getNombre().pokedexList.size(); i++) {
+		if (app.mousePressed == true) {
+			// for (int i = 0; i < pokedex.getNombre().pokedexList.size(); i++) {
 
 			if (pokedexList.get(0).getNombre().equals("Grockey")) {
 				verdeB = true;
