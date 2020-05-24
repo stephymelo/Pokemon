@@ -1,0 +1,10 @@
+001 Grockey Grass
+002 Caterpie Bug
+003 Butterfree Flying
+004 Scorbunny Fire
+005 Sobble Water
+006 Hoothoot Flying
+007 Rookidee Flying
+008 Wooloo Normal 
+009 Roselia Poison
+010 Munna Psychc
