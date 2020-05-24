@@ -554,6 +554,7 @@ public class Juego {
 
 	public void pintarPokedex() {
 		//app.textFont(pixel, 60);
+		app.textSize(60);
 		app.fill(86, 89, 85);
 		for (int i = 0; i < pokedexList.size(); i++) {
 			Pokedex poke = pokedexList.get(i);

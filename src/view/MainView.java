@@ -82,9 +82,9 @@ public class MainView extends PApplet {
 		}
 		
 		//POKEDEX 
-		pokeScreen.drawPokedex();
+		/*pokeScreen.drawPokedex();
 		pokeController.pintarJuego();
-		pokeController.mouseJuego();
+		pokeController.mouseJuego();*/
 	}
 	
 	
