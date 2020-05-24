@@ -3,8 +3,10 @@ package model;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
+import processing.core.PImage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import model.Pokemon;
@@ -24,7 +26,7 @@ public class Juego {
 	private PokedexTipo pokeOrd;
 	private boolean verdeB;
 
-	private PFont font;
+	private PFont pixel;
 	private PImage verde;
 
 	private ArrayList<Pokemon> pokemonUsers;
@@ -82,9 +84,10 @@ public class Juego {
 		pokeOrd = new PokedexTipo();
 
 		verde = app.loadImage("../imagenes/Pokedex/Verde.png");
-
-		font = app.createFont("font.ttf", 60);
-
+		
+		/*this.pixel = app.createFont("pokemon_pixel_font.ttf", 60);
+		PFont pixel = app.createFont("pokemon_pixel_font.ttf", 60);*/
+		
 		text = app.loadStrings("../pokedexTXT/pokedex.txt");
 
 		verdeB = false;
@@ -551,7 +554,7 @@ public class Juego {
 	// POKEDEX
 
 	public void pintarPokedex() {
-		app.textFont(font);
+		app.textFont(pixel);
 		app.fill(86, 89, 85);
 		for (int i = 0; i < pokedexList.size(); i++) {
 			Pokedex poke = pokedexList.get(i);
@@ -572,6 +575,7 @@ public class Juego {
 				verdeB = true;
 				System.out.println("hola");
 			}
+		}
 	}
 
 	public void OrdenarTipo() {

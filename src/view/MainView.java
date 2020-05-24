@@ -1,5 +1,7 @@
 package view;
 import controller.ControllerMain;
+//import controller.MainController;
+import controller.PokedexController;
 import model.Juego;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -14,6 +16,10 @@ public class MainView extends PApplet {
 	private ControllerMain controllerMain;
 	private int pantalla;
 	private PFont pixelFont;
+	
+	//POKEDEX
+	private PokedexScreen pokeScreen;
+	private PokedexController pokeController;
 	
 	
 	
@@ -44,6 +50,10 @@ public class MainView extends PApplet {
 	//loop soundfile
 		
 		pixelFont=createFont("./pokemon_pixel_font.ttf", 20);
+		
+		//POKEDEX
+		pokeController = new PokedexController(this);
+		pokeScreen = new PokedexScreen(this);
 	}
 
 	public void draw() {
@@ -70,7 +80,11 @@ public class MainView extends PApplet {
 		if(controllerMain.encontro()==true) {
 			pantalla=2;
 		}
-
+		
+		//POKEDEX 
+		pokeScreen.drawPokedex();
+		pokeController.pintarJuego();
+		pokeController.mouseJuego();
 	}
 	
 	
@@ -95,11 +109,17 @@ public class MainView extends PApplet {
 		}
 		/////////
 		
+		//POKEDEX 
+		if (mouseX > 76 & mouseX < 280 && mouseY > 570 & mouseY < 617) {
+			pokeController.ordenarParcial();
+		}
 		
-		
-		
-		
+		if (mouseX > 322 & mouseX < 519 && mouseY > 570 & mouseY < 617) {
+			pokeController.ordenarNatural();
+		}
 	}
+		
+		
 	
 	
 	
