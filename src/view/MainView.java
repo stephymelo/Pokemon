@@ -54,6 +54,9 @@ public class MainView extends PApplet {
 		//POKEDEX
 		pokeController = new PokedexController(this);
 		pokeScreen = new PokedexScreen(this);
+		//musica
+//		new Thread(juego).start();
+		
 	}
 
 	public void draw() {
@@ -92,7 +95,7 @@ public class MainView extends PApplet {
 		if(pantalla==2) {
 		controllerMain.verificarClicks();
 		}
-		System.out.println(pantalla);
+		
 		
 //		System.out.println(mouseX+"mouseX"+mouseY+"mouseY");
 		

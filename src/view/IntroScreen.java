@@ -4,6 +4,8 @@ import controlP5.ControlP5;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import Exception.exceptionCatchPokemon;
 import controlP5.Textfield;
 import controller.ControllerMain;
 import model.Juego;
@@ -28,7 +30,7 @@ public class IntroScreen extends ScreenView {
 	private String agua,hierba,fuego;
 	
 	
-	private boolean girlClick,boyClick;
+	private boolean girlClick,boyClick,escogioPokemon,clickWhite,clickBlue,clickGreen,showText;
 	
 	public IntroScreen(PApplet app,Juego juego){
 		super(app,juego);
@@ -42,8 +44,9 @@ public class IntroScreen extends ScreenView {
 		this.agua="agua";
 		this.fuego="fuego";
 		this.hierba="hierba";
+		this.escogioPokemon=false;
 	
-		
+	
 		this.start=app.loadImage("imagenes/start.png");
 		this.starthover=app.loadImage("imagenes/startMouse.png");
 		this.gender=app.loadImage("imagenes/chooseGender.png");
@@ -64,11 +67,14 @@ public class IntroScreen extends ScreenView {
 		this.girlClick=false;
 		this.boyClick=false;
 		this.pantallaIntro=0;
+		this.clickBlue=false;
+		this.clickGreen=false;
+		this.clickWhite=false;
 		
 		this.pixel = app.createFont("pokemon_pixel_font.ttf", 14);
 		PFont pixel = app.createFont("pokemon_pixel_font.ttf", 16);
 		
-		
+		this.showText=false;
 		this.input = "username";
 		this.fecha = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 		
@@ -148,6 +154,20 @@ if(pantallaIntro!=2) {
 				
 		
 			}
+			if(clickBlue) {
+			app.image(pokemonBlue,0,0);
+			}
+			if(clickWhite) {
+				app.image(pokemonWhite,0,0);
+				}
+			if(clickGreen) {
+				app.image(pokemonGreen,0,0);
+				}
+				
+			if(showText) {
+			app.text("Choose a pokemon first",app.width/2,600);
+			}
+			app.image(continueButton,970,700);
 			
 			
 			break;
@@ -232,24 +252,47 @@ if(pantallaIntro!=2) {
 	if(pantallaIntro==5) {
 		//azul
 	if(app.mouseX>900&&app.mouseY>130&&app.mouseX<1155&&app.mouseY<570) {
-		pantallaIntro=6;
+		
 		controller.escogerPokemon(agua);
+		clickBlue=true;
+		escogioPokemon=true;
 		return;
 	}
 	//blanco
 	if(app.mouseX>490&&app.mouseY>60&&app.mouseX<720&&app.mouseY<530) {
-		pantallaIntro=6;
+		
 		controller.escogerPokemon(fuego);
+		clickWhite=true;
+		escogioPokemon=true;
 		return;
 	}
 	//verde
 	if(app.mouseX>90&&app.mouseY>170&&app.mouseX<300&&app.mouseY<570) {
-		pantallaIntro=6;
+		
 		controller.escogerPokemon(hierba);
+		clickGreen=true;
+		escogioPokemon=true;
 		return;
 		
 	}
 	}
+	
+
+		try {
+			if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==5&&escogioPokemon==true) {
+				pantallaIntro=6;
+				return;
+			}
+			throw new exceptionCatchPokemon("no escogio");
+		} catch (exceptionCatchPokemon e) {
+			this.showText=true;
+			System.out.println(e.getMessage());
+		}
+		
+	
+	
+
+	
 	
 	
 	if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==6) {

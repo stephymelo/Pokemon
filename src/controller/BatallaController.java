@@ -17,11 +17,16 @@ public class BatallaController {
 	
 	public void pintar() {
 		juego.batallaPintar();
-		juego.batalla();
+		
 		
 	}
 	public void pintarPoder() {
-		juego.pintarPoder();
+		juego.poder();
+		juego.vidaPokemon();
+		juego.batalla();
 	}
 
+	
+	
+	
 }

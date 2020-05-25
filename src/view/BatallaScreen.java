@@ -24,7 +24,7 @@ public class BatallaScreen extends ScreenView {
 	public void drawScreen() {
 		app.fill(86, 89, 85);
 		app.textSize(80);
-		batallaController.pintarPoder();
+		
 		
 		app.imageMode(PConstants.CENTER);
 		app.image(batallaBg, app.width / 2, app.height / 2);
@@ -35,17 +35,16 @@ public class BatallaScreen extends ScreenView {
 		app.image(menu, app.width / 2, 680);
 
 		if (app.mouseX > 684 && app.mouseY > 633 && app.mouseX < 827 && app.mouseY < 679) {
-			app.image(triangle, 650, 668);
+			app.image(triangle, 650, 659);
 		}
 		if (app.mouseX > 960 && app.mouseY > 633 && app.mouseX < 1111 && app.mouseY < 679) {
-			app.image(triangle, 920, 668);
+			app.image(triangle, 920, 659);
 		}
 		if (app.mouseX > 960 && app.mouseY > 717 && app.mouseX < 1047 && app.mouseY < 758) {
 			app.image(triangle, 920, 730);
 		}
 
-		app.fill(255, 255, 250);
-		app.textSize(30);
+	
 		batallaController.pintarPoder();
 
 	}

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -11,7 +13,7 @@ public class Jugador {
 	private PImage caminarMujer[];
 	private PImage caminarHombre[];
 
-		
+    private ArrayList<Pokemon> pokemonCapturados;
 	private int genero;
 	private boolean up,down,left,right;
 	
@@ -25,6 +27,8 @@ public class Jugador {
 		this.down=false;
 		this.left=false;
 		this.right=false;
+		
+		this.pokemonCapturados=new ArrayList<Pokemon>();
 		
 		
 		
@@ -92,10 +96,10 @@ public class Jugador {
 					app.image(caminarHombre[3],this.posX,this.posY);
 				}
 				if(left) {
-					app.image(caminarHombre[0],this.posX,this.posY);
+					app.image(caminarHombre[1],this.posX,this.posY);
 				}
 				if(right) {
-					app.image(caminarHombre[1],this.posX,this.posY);
+					app.image(caminarHombre[0],this.posX,this.posY);
 				}
 			}
 		}
@@ -107,35 +111,22 @@ public class Jugador {
 
 	
 	
+
+	public void capturarPokemon() {
+		
+		for(Pokemon elPokemon : pokemonCapturados) {
+			
+			
+			
+		}
+		
+		
+		
+	}
 	
 	
-//	public void caminarDos(PApplet app) {
-//
-//		switch(app.keyCode) {
-//		case PConstants.LEFT:
-////			this.posX-=10;	
-//			this.direc=1;
-////			app.image(caminarMujer[10],this.posX,this.posY);
-//			
-//			
-//			break;
-//		case PConstants.RIGHT:
-////			this.posX+=10;	
-//			this.direc=2;
-//			break;
-//		case PConstants.UP:
-////			this.posY-=10;	
-//			this.direc=3;
-//			
-//			
-//			break;
-//		case PConstants.DOWN:
-////			this.posY+=10;	
-//			this.direc=4;
-//			
-//			break;
-//		}
-//	}
+	
+	
 	public void caminar(PApplet app) {
 
 		switch(app.keyCode) {
@@ -234,6 +225,18 @@ public class Jugador {
 
 	public void setGenero(int genero) {
 		this.genero = genero;
+	}
+
+
+
+	public ArrayList<Pokemon> getPokemonCapturados() {
+		return pokemonCapturados;
+	}
+
+
+
+	public void setPokemonCapturados(ArrayList<Pokemon> pokemonCapturados) {
+		this.pokemonCapturados = pokemonCapturados;
 	}
 	
 	
