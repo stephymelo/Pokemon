@@ -7,6 +7,7 @@ public abstract class Pokemon  {
 	protected PApplet app;
 	protected int posX,posY;
 	protected int dano;
+	protected int experiencia,nivel;
 	protected float vida;
 	protected String id;
 	protected String deltante,atras;
@@ -19,6 +20,10 @@ public abstract class Pokemon  {
 		this.posY=posY;
 		this.vida=250;
 		this.app=app;
+		this.experiencia=experiencia;
+		this.nivel=nivel;
+		
+		
 //		
 //		this.pokemonImagenAdelante=app.loadImage(delante);
 //		this.pokemonImagenAtras=app.loadImage(atras);
@@ -36,8 +41,19 @@ public abstract class Pokemon  {
 		app.fill(96, 209, 126);
 		app.noStroke();
 		app.rect(posX,posY,vida, 20);
+		if(vida==0) {
+			vida=0;
+		}
 		
 	}
+	
+	public void nivel() {
+		if(experiencia==5) {
+			nivel++;
+		}
+		
+	}
+	
 	
 	
 	
@@ -93,21 +109,22 @@ public abstract class Pokemon  {
 		this.id = id;
 	}
 
-//	public PImage getPokemonImagenAdelante() {
-//		return pokemonImagenAdelante;
-//	}
-//
-//	public void setPokemonImagenAdelante(PImage pokemonImagenAdelante) {
-//		this.pokemonImagenAdelante = pokemonImagenAdelante;
-//	}
-//
-//	public PImage getPokemonImagenAtras() {
-//		return pokemonImagenAtras;
-//	}
-//
-//	public void setPokemonImagenAtras(PImage pokemonImagenAtras) {
-//		this.pokemonImagenAtras = pokemonImagenAtras;
-//	}
+
+	public int getExperiencia() {
+		return experiencia;
+	}
+
+	public void setExperiencia(int experiencia) {
+		this.experiencia = experiencia;
+	}
+
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
 
 	public String getDeltante() {
 		return deltante;
@@ -125,14 +142,6 @@ public abstract class Pokemon  {
 		this.atras = atras;
 	}
 
-	public PApplet getApp() {
-		return app;
-	}
-
-	public void setApp(PApplet app) {
-		this.app = app;
-	}
-	
 	
 	
 

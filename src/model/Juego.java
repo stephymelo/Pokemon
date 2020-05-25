@@ -138,7 +138,12 @@ public class Juego implements Runnable {
 
 		if (batallaHilo == true) {
 			try {
-
+				pokemonInicial.nivel();
+				if (pokemonSalvajeBatalla.getVida() <= 0) {
+					pokemonInicial.setExperiencia(5);
+					
+				}
+				
 				turno = 0;
 
 				if (this.ataque == true) {
@@ -147,12 +152,14 @@ public class Juego implements Runnable {
 				}
 				Thread.sleep(3000);
 				if (ataqueRival == true) {
-				
-					turno = 2;
-					
-				}
-				
 
+					turno = 2;
+
+				}
+				if(pokemonInicial.getExperiencia() == 5) {
+					pokemonInicial.setExperiencia(0);
+					combate = false;
+				}
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -163,46 +170,42 @@ public class Juego implements Runnable {
 	}
 
 	public void batalla() {
-		if(batallaHilo==false) {
-			turno=0;
-		}
+		if (combate == true) {
+			if (batallaHilo == false) {
+				turno = 0;
+			}
 
-		
+			vidaPokemon();
 
-		vidaPokemon();
+			switch (turno) {
 
-		switch (turno) {
+			case 1:
 
-		case 1:
-			
-		
 //			if(app.frameCount==1000) {
 //			
 //			}
-			if (ataque == true) {
+				if (ataque == true) {
 
-				pokemonSalvajeBatalla.setVida(pokemonSalvajeBatalla.getVida() - 30);
-				mostrarPoder = false;
-				System.out.println("entro");
-				ataque = false;
-				ataqueRival = true;
+					pokemonSalvajeBatalla.setVida(pokemonSalvajeBatalla.getVida() - pokemonInicial.getDano());
+					mostrarPoder = false;
+					System.out.println("entro");
+					ataque = false;
+					ataqueRival = true;
+				}
+				break;
+			case 2:
+				pokemonInicial.setVida(pokemonInicial.getVida() - 20);
+				ataqueRival = false;
+				batallaHilo = false;
+
+				break;
+
+			case 3:
+
 			}
-			break;
-		case 2:
-			pokemonInicial.setVida(pokemonInicial.getVida() - 30);
-			ataqueRival = false;
-			batallaHilo = false;
-			
-
-			break;
-
-		case 3:
-
-//
-//		if (pokemonSalvajeBatalla.getVida() <= 0) {
-//			mostrarPokemon = false;
-
 		}
+
+//			mostrarPokemon = false;
 
 	}
 
@@ -332,7 +335,7 @@ public class Juego implements Runnable {
 		if (PApplet.dist(jugador.getPosX(), jugador.getPosY(), pokemonSalvaje.getPosX(),
 				pokemonSalvaje.getPosY()) < 100) {
 			encontroPokemon = true;
-
+			combate = true;
 		}
 
 		if (encontroPokemon == true) {
@@ -368,21 +371,17 @@ public class Juego implements Runnable {
 
 		if (PApplet.dist(app.mouseX, app.mouseY, 957, 620) < 100 && turno == 0) {
 			randomicosDeCaptura();
-		
-//				System.out.println(jugador.getPokemonCapturados().size());
-				
-			
-			this.intentoCaptura=true;
-			
 
-			
+//				System.out.println(jugador.getPokemonCapturados().size());
+
+			this.intentoCaptura = true;
 
 		}
 
 	}
 
 	public void pokeAtaque() {
-		
+
 		app.fill(255);
 		app.textSize(50);
 		if (turno == 1) {
@@ -441,19 +440,10 @@ public class Juego implements Runnable {
 		}
 	}
 
-	public void capturarPokemon() {
-		jugador.getPokemonCapturados()
-				.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-
-	}
-
 	public void escogerPokemon(String id) {
 		if (id.toLowerCase().trim().equals("agua")) {
 
 			this.pintarPokemon = 1;
-			// pokemonUsers.add(pokemonInicial = new Inicial(id,
-			// "./imagenes/pokemones/sobbleDelante.png",
-			// "./imagenes/pokemones/sobbleAtras.png", 10, 10, app));
 
 			pokemonInicial = new Inicial(id, "./imagenes/pokemones/sobbleDelante.png",
 					"./imagenes/pokemones/sobbleAtras.png", 277, 430, app);
@@ -473,144 +463,110 @@ public class Juego implements Runnable {
 
 			pokemonInicial = new Inicial(id, "./imagenes/pokemones/grookeyDelante.png",
 					"./imagenes/pokemones/grookeyAtras.png", 277, 430, app);
+			
+			
+			/// rival pokemon.add new Inicial ---- 1 
 
 		}
 
 	}
+	
+	
+	// PINTAR POKEMON INICIAL DEL JUGADOR
 
 	public void pintarPokemonInicial() {
 		switch (pintarPokemon) {
 		case 1:
 
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
+			pokemonInicial.setDano(25);
+			app.fill(0);
+			app.text(pokemonInicial.getId(), 400, 500);
+			app.text(pokemonInicial.getNivel() + "LV", 500, 500);
 
 			break;
 
 		case 2:
 
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
-
+			pokemonInicial.setDano(30);
+			app.fill(0);
+			app.text(pokemonInicial.getId(), 400, 500);
+			app.text(pokemonInicial.getNivel() + "LV", 500, 500);
 			break;
 		case 3:
 
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
+			pokemonInicial.setDano(20);
+			app.fill(0);
+			app.text(pokemonInicial.getId(), 400, 500);
+			app.text(pokemonInicial.getNivel() + "LV", 500, 500);
 
 			break;
 		}
 
 	}
 
+	
+	//PINTAR POKEMON INICIAL DE RIVAL
+	
 	public void pintarPokemonInicialVS() {
-		switch (pintarPokemon) {
-		case 1:
-			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
-
-			break;
-
-		case 2:
-			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
-
-			break;
-		case 3:
-			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
-
-			break;
-		}
+		
+		/// RECORRER ARREGLO DEL RIVAL Y PINTARLO
+		// RIVALARREGLO.PINTAR
+		
+//		switch (pintarPokemon) {
+//		case 1:
+//			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+//
+//			break;
+//
+//		case 2:
+//			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+//
+//			break;
+//		case 3:
+//			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
+//
+//			break;
+//		}
 	}
 
-	
-	
-	//
 	public void randomicosDeCaptura() {
 
-		ArrayList<Pokemon>pokemonTemporal=new ArrayList<Pokemon>();
-		// poner arreglo de pokemones (for) aquí
+		ArrayList<Pokemon> pokemonTemporal = new ArrayList<Pokemon>();
 
 		if (this.intentoCaptura == true) {
 
 			this.varCaptura = Math.floor(Math.random() * 100 + 1);
-			// pokemon full vida
-			if (pokemonSalvajeBatalla.getVida() >= 100) {
+
+			if (pokemonSalvajeBatalla.getVida() >= 10) {
 
 				if (this.varCaptura > 67) {
-					pokemonTemporal=jugador.getPokemonCapturados();
-					pokemonTemporal.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-					jugador.setPokemonCapturados(pokemonTemporal);
-					System.out.println(varCaptura+"Fight");
+
+					System.out.println(varCaptura + "Fight");
 				}
 
 				if (this.varCaptura >= 34 && this.varCaptura <= 67) {
-                   pokemonTemporal=jugador.getPokemonCapturados();
 
-					pokemonTemporal.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-					jugador.setPokemonCapturados(pokemonTemporal);
-		
-					System.out.println(varCaptura+"seEspcao");
-                
-					
-					
+					System.out.println(varCaptura + "seEspcao");
+
 				}
 
 				if (this.varCaptura < 34) {
-                 pokemonTemporal=jugador.getPokemonCapturados();
-             	pokemonTemporal.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-             	jugador.setPokemonCapturados(pokemonTemporal);
-             
-				System.out.println(varCaptura+"captura");
-               
-		
-				
+					pokemonTemporal = jugador.getPokemonCapturados();
+					pokemonTemporal
+							.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
+					jugador.setPokemonCapturados(pokemonTemporal);
+
+					System.out.println(varCaptura + "captura");
+
 				}
 
 			}
 		}
-		
 
-//			// pokemon mitad de vida
-//			if (this.pokemones.getVida() < 50 && this.pokemones.getVida() >= 100) {
-//
-//				if (this.varCaptura >= 97) {
-//					jugador.getPokemonCapturados().add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-//					// pokemon escapa del combate
-//				}
-//
-//				if (this.varCaptura <= 96 && this.varCaptura >= 70) {
-//					jugador.getPokemonCapturados().add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-//					// pokemon no es capturado
-//				}
-//
-//				if (this.varCaptura < 70) {
-//
-//					jugador.getPokemonCapturados()
-//							.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-//				}
-//
-//			}
-//
-//			// pokemon poca vida
-//			if (this.pokemones.getVida() >= 50) {
-//
-//				if (this.varCaptura >= 98) {
-//					jugador.getPokemonCapturados().add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-//					// pokemon escapa del combate
-//				}
-//
-//				if (this.varCaptura <= 97 && this.varCaptura >= 90) {
-//					jugador.getPokemonCapturados().add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-//					// pokemon no es capturado
-//				}
-//
-//				if (this.varCaptura < 90) {
-//
-//					jugador.getPokemonCapturados()
-//							.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
-//				}
-//
-//			}
-//		}
 	}
-
-	
 
 	public int getPosXMatriz() {
 		return posXMatriz;
