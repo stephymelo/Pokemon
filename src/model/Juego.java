@@ -64,7 +64,7 @@ public class Juego implements Runnable {
 		// musicaFondo = new SoundFile(app, "./sonidos/mapaMusic.mp3");
 
 		jugador = new Jugador(app, 50, 150);
-        pantallaBatalla=0;
+		pantallaBatalla = 0;
 		pokemonUsers = new ArrayList<Pokemon>();
 		mostrarPokemon = true;
 		mostrarPoder = false;
@@ -490,7 +490,7 @@ public class Juego implements Runnable {
 	}
 
 	public void escogerPokemon(String id) {
-		if (id.toLowerCase().trim().equals("agua")) {
+		if (id.toLowerCase().trim().equals("Sobble")) {
 
 			this.pintarPokemon = 1;
 
@@ -502,7 +502,7 @@ public class Juego implements Runnable {
 					"./imagenes/pokemones/grookeyAtras.png", 277, 430, app);
 
 		}
-		if (id.toLowerCase().trim().equals("fuego")) {
+		if (id.toLowerCase().trim().equals("Scorbunny")) {
 
 			this.pintarPokemon = 2;
 
@@ -514,7 +514,7 @@ public class Juego implements Runnable {
 					"./imagenes/pokemones/sobbleAtras.png", 277, 430, app);
 
 		}
-		if (id.toLowerCase().trim().equals("hierba")) {
+		if (id.toLowerCase().trim().equals("Grookey")) {
 
 			this.pintarPokemon = 3;
 
@@ -567,9 +567,6 @@ public class Juego implements Runnable {
 	// PINTAR POKEMON INICIAL DE RIVAL
 
 	public void pintarPokemonInicialVS() {
-
-		/// RECORRER ARREGLO DEL RIVAL Y PINTARLO
-		// RIVALARREGLO.PINTAR
 
 		switch (pintarPokemon) {
 		case 1:

@@ -41,9 +41,9 @@ public class IntroScreen extends ScreenView {
 		
 		controller=new ControllerMain(app,juego);
 		
-		this.agua="agua";
-		this.fuego="fuego";
-		this.hierba="hierba";
+		this.agua="Sobble";
+		this.fuego="Scorbunny";
+		this.hierba="Grookey";
 		this.escogioPokemon=false;
 	
 	
