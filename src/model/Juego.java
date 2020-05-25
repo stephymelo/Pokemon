@@ -64,7 +64,7 @@ public class Juego implements Runnable {
 		// musicaFondo = new SoundFile(app, "./sonidos/mapaMusic.mp3");
 
 		jugador = new Jugador(app, 50, 150);
-
+        pantallaBatalla=0;
 		pokemonUsers = new ArrayList<Pokemon>();
 		mostrarPokemon = true;
 		mostrarPoder = false;

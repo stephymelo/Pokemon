@@ -10,7 +10,7 @@ import processing.core.PImage;
 
        
 public class BatallaScreen extends ScreenView {
-	private    Timer timer;
+
 	private int pantalla;
 	private BatallaController batallaController;
 	private PImage batallaBg, fightText, triangle, menu,menuExit,menuCatch,notCatch;
@@ -18,8 +18,8 @@ public class BatallaScreen extends ScreenView {
 	public BatallaScreen(PApplet app, Juego juego) {
 		super(app, juego);
 		// TODO Auto-generated constructor stub
-		  timer = new Timer();
-		  pantalla= batallaController.pantallaBatalla();
+		
+	
 		this.batallaBg = app.loadImage("./imagenes/batallaBG.png");
 		this.fightText = app.loadImage("./imagenes/fightBatalla.png");
 		this.menu = app.loadImage("./imagenes/batallaMenu.png");
@@ -29,20 +29,7 @@ public class BatallaScreen extends ScreenView {
 		this.triangle = app.loadImage("./imagenes/triangleBattle.png");
 		this.batallaController = new BatallaController(app, juego);
 		
-		Timer t = new java.util.Timer();
-		t.schedule( 
-		        new java.util.TimerTask() {
-		            @Override
-		            public void run() {
-		                pantalla=0;
-		                t.cancel();
-		            }
-		        }, 
-		        5000 
-		);
-		
 	}
-	
 	
 	
  
@@ -50,7 +37,7 @@ public class BatallaScreen extends ScreenView {
 
 	public void drawScreen() {
 
-		switch(pantalla) {
+		switch(batallaController.pantallaBatalla()) {
 		case 0:
 			app.fill(86, 89, 85);
 			app.textSize(80);
@@ -73,6 +60,7 @@ public class BatallaScreen extends ScreenView {
 			if (app.mouseX > 960 && app.mouseY > 717 && app.mouseX < 1047 && app.mouseY < 758) {
 				app.image(triangle, 920, 720);
 			}
+			break;
 		
 		case 1:
 			app.image(menuExit, app.width / 2, 680);
@@ -83,7 +71,7 @@ public class BatallaScreen extends ScreenView {
 			break;
 		case 3:
 			app.image(notCatch, app.width / 2, 680);
-			TimeUnit.SECONDS.sleep(1);
+		
 			
 			
 			
