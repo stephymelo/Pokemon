@@ -26,6 +26,10 @@ public class BatallaController {
 		juego.batalla();
 		juego.pokeAtaque();
 	}
+	
+	public int pantallaBatalla() {
+		return juego.getPantallaBatalla();
+	}
 
 	
 	

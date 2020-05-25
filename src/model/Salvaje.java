@@ -51,6 +51,14 @@ public class Salvaje extends Pokemon implements Runnable{
 		
 	}
 	
+	public void escape() {
+		posX+=3;
+		if(posX>=1300) {
+			posX=1320;
+		}
+	}
+	
+	
 	public void aparicion() {
 		
 	}

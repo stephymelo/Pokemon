@@ -38,6 +38,8 @@ public class Juego implements Runnable {
 	private int matX, matY;
 	private SoundFile musicaFondo;
 
+	private int pantallaBatalla;
+
 	private double varCaptura;
 	private boolean intentoCaptura;
 	private int posXMatriz, posYMatriz;
@@ -63,7 +65,7 @@ public class Juego implements Runnable {
 		jugador = new Jugador(app, 50, 150);
 
 		pokemonUsers = new ArrayList<Pokemon>();
-		mostrarPokemon = false;
+		mostrarPokemon = true;
 		mostrarPoder = false;
 		batallaHilo = false;
 		this.encontroPokemon = false;
@@ -79,7 +81,7 @@ public class Juego implements Runnable {
 
 		this.varCaptura = 0;
 		this.intentoCaptura = false;
-
+		this.pantallaBatalla = 0;
 		this.turno = 0;
 		this.combate = false;
 		this.ataque = false;
@@ -141,9 +143,9 @@ public class Juego implements Runnable {
 				pokemonInicial.nivel();
 				if (pokemonSalvajeBatalla.getVida() <= 0) {
 					pokemonInicial.setExperiencia(5);
-					
+
 				}
-				
+
 				turno = 0;
 
 				if (this.ataque == true) {
@@ -156,7 +158,7 @@ public class Juego implements Runnable {
 					turno = 2;
 
 				}
-				if(pokemonInicial.getExperiencia() == 5) {
+				if (pokemonInicial.getExperiencia() == 5) {
 					pokemonInicial.setExperiencia(0);
 					combate = false;
 				}
@@ -210,7 +212,17 @@ public class Juego implements Runnable {
 	}
 
 	public void batallaPintar() {
+		if(mostrarPokemon==true) {
 		pokemonSalvajeBatalla.pintar(this.pokemonSalvaje.getPokemonImagenAdelante());
+		}else {
+			
+		}
+		if(pantallaBatalla==1) {
+	    pokemonSalvajeBatalla.escape();
+		}
+		
+		
+		
 		pintarPokemonInicial();
 
 	}
@@ -463,15 +475,13 @@ public class Juego implements Runnable {
 
 			pokemonInicial = new Inicial(id, "./imagenes/pokemones/grookeyDelante.png",
 					"./imagenes/pokemones/grookeyAtras.png", 277, 430, app);
-			
-			
-			/// rival pokemon.add new Inicial ---- 1 
+
+			/// rival pokemon.add new Inicial ---- 1
 
 		}
 
 	}
-	
-	
+
 	// PINTAR POKEMON INICIAL DEL JUGADOR
 
 	public void pintarPokemonInicial() {
@@ -507,14 +517,13 @@ public class Juego implements Runnable {
 
 	}
 
-	
-	//PINTAR POKEMON INICIAL DE RIVAL
-	
+	// PINTAR POKEMON INICIAL DE RIVAL
+
 	public void pintarPokemonInicialVS() {
-		
+
 		/// RECORRER ARREGLO DEL RIVAL Y PINTARLO
 		// RIVALARREGLO.PINTAR
-		
+
 //		switch (pintarPokemon) {
 //		case 1:
 //			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAdelante());
@@ -543,17 +552,22 @@ public class Juego implements Runnable {
 			if (pokemonSalvajeBatalla.getVida() >= 10) {
 
 				if (this.varCaptura > 67) {
-
+					pantallaBatalla=2;
+					
 					System.out.println(varCaptura + "Fight");
 				}
 
 				if (this.varCaptura >= 34 && this.varCaptura <= 67) {
+					pantallaBatalla=1;
+				  
 
-					System.out.println(varCaptura + "seEspcao");
+					System.out.println(varCaptura + "seEscapo");
 
 				}
 
 				if (this.varCaptura < 34) {
+					pantallaBatalla=2;
+					mostrarPokemon=false;
 					pokemonTemporal = jugador.getPokemonCapturados();
 					pokemonTemporal
 							.add(new Salvaje("wooloo", "./imagenes/pokemones/wooloo.png", "noexiste", 5, 450, app));
@@ -566,30 +580,6 @@ public class Juego implements Runnable {
 			}
 		}
 
-	}
-
-	public int getPosXMatriz() {
-		return posXMatriz;
-	}
-
-	public void setPosXMatriz(int posXMatriz) {
-		this.posXMatriz = posXMatriz;
-	}
-
-	public int getPosYMatriz() {
-		return posYMatriz;
-	}
-
-	public void setPosYMatriz(int posYMatriz) {
-		this.posYMatriz = posYMatriz;
-	}
-
-	public boolean isEncontroPokemon() {
-		return encontroPokemon;
-	}
-
-	public void setEncontroPokemon(boolean encontroPokemon) {
-		this.encontroPokemon = encontroPokemon;
 	}
 
 	// POKEDEX
@@ -626,4 +616,41 @@ public class Juego implements Runnable {
 	public void OrdenarNombre() {
 		Collections.sort(pokedexList);
 	}
+
+	public int getPosXMatriz() {
+		return posXMatriz;
+	}
+
+	public void setPosXMatriz(int posXMatriz) {
+		this.posXMatriz = posXMatriz;
+	}
+
+	public int getPosYMatriz() {
+		return posYMatriz;
+	}
+
+	public void setPosYMatriz(int posYMatriz) {
+		this.posYMatriz = posYMatriz;
+	}
+
+	public boolean isEncontroPokemon() {
+		return encontroPokemon;
+	}
+
+	public void setEncontroPokemon(boolean encontroPokemon) {
+		this.encontroPokemon = encontroPokemon;
+	}
+
+	public int getPantallaBatalla() {
+		return pantallaBatalla;
+	}
+
+	public void setPantallaBatalla(int pantallaBatalla) {
+		this.pantallaBatalla = pantallaBatalla;
+	}
+
+	
+	
+	
+	
 }
