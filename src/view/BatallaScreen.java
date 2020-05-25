@@ -35,13 +35,13 @@ public class BatallaScreen extends ScreenView {
 		app.image(menu, app.width / 2, 680);
 
 		if (app.mouseX > 684 && app.mouseY > 633 && app.mouseX < 827 && app.mouseY < 679) {
-			app.image(triangle, 650, 659);
+			app.image(triangle, 650, 645);
 		}
 		if (app.mouseX > 960 && app.mouseY > 633 && app.mouseX < 1111 && app.mouseY < 679) {
-			app.image(triangle, 920, 659);
+			app.image(triangle, 920, 645);
 		}
 		if (app.mouseX > 960 && app.mouseY > 717 && app.mouseX < 1047 && app.mouseY < 758) {
-			app.image(triangle, 920, 730);
+			app.image(triangle, 920, 720);
 		}
 
 	

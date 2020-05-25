@@ -76,6 +76,9 @@ public class MainView extends PApplet {
 			break;
 		case 2:
 			batallaScreen.drawScreen();
+			
+			
+			new Thread(juego).start();
 			break;
 			
 		}

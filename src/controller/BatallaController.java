@@ -24,6 +24,7 @@ public class BatallaController {
 		juego.poder();
 		juego.vidaPokemon();
 		juego.batalla();
+		juego.pokeAtaque();
 	}
 
 	

@@ -277,17 +277,18 @@ if(pantallaIntro!=2) {
 	}
 	}
 	
+	if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==5&&escogioPokemon==true) {
+		pantallaIntro=6;
+		return;
+	}
 
-		try {
-			if(app.mouseX>970&&app.mouseY>700&&app.mouseX<1155&&app.mouseY<750&&pantallaIntro==5&&escogioPokemon==true) {
-				pantallaIntro=6;
-				return;
-			}
-			throw new exceptionCatchPokemon("no escogio");
-		} catch (exceptionCatchPokemon e) {
-			this.showText=true;
-			System.out.println(e.getMessage());
-		}
+//		try {
+//			
+//			throw new exceptionCatchPokemon("no escogio");
+//		} catch (exceptionCatchPokemon e) {
+//			this.showText=true;
+//			System.out.println(e.getMessage());
+//		}
 		
 	
 	
