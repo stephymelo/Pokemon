@@ -23,18 +23,7 @@ public abstract class Pokemon  {
 		this.experiencia=experiencia;
 		this.nivel=nivel;
 		
-		
-//		
-//		this.pokemonImagenAdelante=app.loadImage(delante);
-//		this.pokemonImagenAtras=app.loadImage(atras);
-		
-		
 	}
-	
-//	public void pintar(PImage pokemonImagen) {
-//		app.image(pokemonImagen, posX, posY);
-//		
-//	}
 	
 	
 	
