@@ -14,6 +14,7 @@ public class Salvaje extends Pokemon implements Runnable{
 		this.dirX=1;
 		this.dirY=1;
 		this.pokemonImagenAdelante=app.loadImage(delante);
+		this.vida=vida;
 	}
 	
 	public void run() {
@@ -39,6 +40,8 @@ public class Salvaje extends Pokemon implements Runnable{
 	
 	
 	public void pintar(PImage pokemonImagen) {
+		
+		
 		app.image(pokemonImagen, posX, posY);
 	}
 	
@@ -52,7 +55,8 @@ public class Salvaje extends Pokemon implements Runnable{
 	}
 	
 	public void escape() {
-		posX+=3;
+	
+		posX+=2;
 		if(posX>=1300) {
 			posX=1320;
 		}

@@ -112,9 +112,10 @@ public class Jugador {
 	
 	
 
-	public void capturarPokemon() {
+	public void pokebola() {
 		
 		for(Pokemon elPokemon : pokemonCapturados) {
+			
 			
 			
 			

@@ -37,19 +37,25 @@ public abstract class Pokemon  {
 //	}
 	
 	
+	
+	
+	
+	
 	public void mostrarVida(int posX, int posY) {
 		app.fill(96, 209, 126);
 		app.noStroke();
 		app.rect(posX,posY,vida, 20);
-		if(vida==0) {
+		if(vida<=0) {
 			vida=0;
 		}
 		
 	}
 	
 	public void nivel() {
-		if(experiencia==5) {
+		if(experiencia>=5) {
 			nivel++;
+			experiencia=0;
+			
 		}
 		
 	}

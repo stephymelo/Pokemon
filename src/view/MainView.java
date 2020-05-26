@@ -1,4 +1,6 @@
 package view;
+import java.lang.Thread.State;
+
 import controller.ControllerMain;
 //import controller.MainController;
 import controller.PokedexController;
@@ -55,7 +57,10 @@ public class MainView extends PApplet {
 		pokeController = new PokedexController(this);
 		pokeScreen = new PokedexScreen(this);
 		//musica
-//		new Thread(juego).start();
+		
+		System.out.println(juego.getState());
+		
+		
 		
 	}
 
@@ -76,15 +81,29 @@ public class MainView extends PApplet {
 			break;
 		case 2:
 			batallaScreen.drawScreen();
-			
-			
 			new Thread(juego).start();
+//			if(juego.getState()==State.NEW) {
+//				juego.start();
+//			}
+			
+			
+		
+			
+			
+			
 			break;
 			
 		}
 		
+		
+		
 		if(controllerMain.encontro()==true) {
 			pantalla=2;
+		}
+
+		if(controllerMain.deVueltaMapa()==true) {
+			pantalla=1;
+			
 		}
 		
 		//POKEDEX 
@@ -95,9 +114,13 @@ public class MainView extends PApplet {
 	
 	
 	public void mouseClicked() {
+		if(pantalla==1) {
+			controllerMain.verificarClicksMapa();
+		}
 		if(pantalla==2) {
 		controllerMain.verificarClicks();
 		}
+		
 		
 		
 //		System.out.println(mouseX+"mouseX"+mouseY+"mouseY");

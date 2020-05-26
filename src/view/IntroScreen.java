@@ -27,7 +27,7 @@ public class IntroScreen extends ScreenView {
 	private ControllerMain controller;
 	
 	
-	private String agua,hierba,fuego;
+	private String Sobble,Scorbunny,Grookey;
 	
 	
 	private boolean girlClick,boyClick,escogioPokemon,clickWhite,clickBlue,clickGreen,showText;
@@ -41,9 +41,9 @@ public class IntroScreen extends ScreenView {
 		
 		controller=new ControllerMain(app,juego);
 		
-		this.agua="Sobble";
-		this.fuego="Scorbunny";
-		this.hierba="Grookey";
+		this.Sobble="Sobble";
+		this.Scorbunny="Scorbunny";
+		this.Grookey="Grookey";
 		this.escogioPokemon=false;
 	
 	
@@ -253,7 +253,7 @@ if(pantallaIntro!=2) {
 		//azul
 	if(app.mouseX>900&&app.mouseY>130&&app.mouseX<1155&&app.mouseY<570) {
 		
-		controller.escogerPokemon(agua);
+		controller.escogerPokemon(Sobble);
 		clickBlue=true;
 		escogioPokemon=true;
 		return;
@@ -261,7 +261,7 @@ if(pantallaIntro!=2) {
 	//blanco
 	if(app.mouseX>490&&app.mouseY>60&&app.mouseX<720&&app.mouseY<530) {
 		
-		controller.escogerPokemon(fuego);
+		controller.escogerPokemon(Scorbunny);
 		clickWhite=true;
 		escogioPokemon=true;
 		return;
@@ -269,7 +269,7 @@ if(pantallaIntro!=2) {
 	//verde
 	if(app.mouseX>90&&app.mouseY>170&&app.mouseX<300&&app.mouseY<570) {
 		
-		controller.escogerPokemon(hierba);
+		controller.escogerPokemon(Grookey);
 		clickGreen=true;
 		escogioPokemon=true;
 		return;

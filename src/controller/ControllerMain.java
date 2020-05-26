@@ -33,8 +33,15 @@ public class ControllerMain {
 		return juego.isEncontroPokemon();
 	}
 	
+	public boolean deVueltaMapa() {
+		return juego.isMapaScreen();
+	}
 	
 	
+	
+	public void verificarClicksMapa() {
+		juego.verificarClicksMapa();
+	}
 	
 	public void verificarClicks() {
 		juego.verificarClicks();

@@ -17,7 +17,7 @@ public class BatallaController {
 	
 	public void pintar() {
 		juego.batallaPintar();
-		juego.pintarPokemonRival();
+//		juego.pintarPokemonRival();
 		
 		
 	}

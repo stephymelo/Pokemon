@@ -13,7 +13,7 @@ public class Inicial extends Pokemon {
 		
 	}
 	
-	
+
 	
 	
 	public void pintar(PImage pokemonImagen) {
