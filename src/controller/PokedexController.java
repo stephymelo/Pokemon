@@ -3,15 +3,12 @@ package controller;
 import model.Juego;
 import processing.core.PApplet;
 
-public class PokedexController {
+public class PokedexController extends Controller {
 	
-	Juego juego;
-	PApplet app;
 
 	public PokedexController(PApplet app) {
-		this.app = app;
+	super(app);
 		
-		juego = new Juego(app);
 	}
 	
 	public void pintarJuego() {

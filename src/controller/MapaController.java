@@ -1,18 +1,15 @@
 package controller;
 
-import model.Juego;
+
 
 import processing.core.PApplet;
 
-public class MapaController {
-	private PApplet app;
-	private Juego juego;
+public class MapaController extends Controller {
+
 
 	
-	public MapaController(PApplet app,Juego juego) {
-//		app.imageMode(app.CENTER);
-		this.app=app;
-		this.juego=juego;
+	public MapaController(PApplet app) {
+		super(app);
 		
 	}
 	

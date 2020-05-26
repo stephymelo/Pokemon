@@ -30,11 +30,11 @@ public class IntroScreen extends ScreenView implements Runnable {
 	private boolean girlClick, boyClick, escogioPokemon, clickWhite, clickBlue, clickGreen, showText;
 	private SoundFile musicaFondo;
 
-	public IntroScreen(PApplet app, Juego juego) {
-		super(app, juego);
+	public IntroScreen(PApplet app) {
+		super(app);
 		cp5 = new ControlP5(app);
 		musicaFondo = new SoundFile(app, "./sonidos/mapaMusic.mp3");
-		controller = new ControllerMain(app, juego);
+		controller = new ControllerMain(app);
 		this.Sobble = "Sobble";
 		this.Scorbunny = "Scorbunny";
 		this.Grookey = "Grookey";

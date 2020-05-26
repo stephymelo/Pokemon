@@ -35,16 +35,16 @@ public class MainView extends PApplet {
 
 	public void setup() {
 		background(0);
-		mapaScreen = new MapaScreen(this, juego);
-		introScreen = new IntroScreen(this, juego);
-		batallaScreen = new BatallaScreen(this, juego);
-		controllerMain = new ControllerMain(this, juego);
+		
+		mapaScreen = new MapaScreen(this);
+		introScreen = new IntroScreen(this);
+		batallaScreen = new BatallaScreen(this);
+		controllerMain = new ControllerMain(this);
 		pantalla = 0;
 		imageMode(CENTER);
 		pixelFont = createFont("./pokemon_pixel_font.ttf", 20);
 		pokeController = new PokedexController(this);
 		pokeScreen = new PokedexScreen(this);
-		System.out.println(juego.getState());
 		new Thread(juego).start();
 //		new Thread(introScreen).start();
 
@@ -62,10 +62,12 @@ public class MainView extends PApplet {
 			break;
 		case 2:
 			batallaScreen.drawScreen();
+			
 
 //			if(juego.getState()==State.NEW) {
 //				juego.start();
 //			}
+			
 
 			break;
 

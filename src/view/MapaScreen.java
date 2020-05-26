@@ -13,9 +13,9 @@ public class MapaScreen extends ScreenView {
 	
 	
 	
-	public MapaScreen(PApplet app,Juego juego){
-		super(app,juego);
-		mapaController=new MapaController(app,juego);
+	public MapaScreen(PApplet app){
+		super(app);
+		mapaController=new MapaController(app);
 		
 		this.mapa=app.loadImage("imagenes/fondoPixel.png");
 		this.grass=app.loadImage("imagenes/grassSeperate.png");

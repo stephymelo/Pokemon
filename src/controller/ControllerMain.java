@@ -1,17 +1,16 @@
 package controller;
 
-import model.Juego;
+
 import processing.core.PApplet;
 
-public class ControllerMain {
-	private Juego juego;
-	private PApplet app;
-	private boolean encontro;
+public class ControllerMain extends Controller {
+
+
 	
-	public ControllerMain(PApplet app,Juego juego) {
-		this.app=app;
-		this.juego = juego;
-		encontro=false;
+	public ControllerMain (PApplet app) {
+		super(app);
+
+	
 	}
 	
 	
