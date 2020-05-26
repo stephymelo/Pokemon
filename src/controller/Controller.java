@@ -18,7 +18,7 @@ public abstract class Controller {
 	}
 
 	public void setJuego(Juego juego) {
-	   juego = juego;
+	  Controller.juego = juego;
 	}
 
 	public PApplet getApp() {

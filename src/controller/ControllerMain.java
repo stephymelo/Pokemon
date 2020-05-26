@@ -24,9 +24,6 @@ public class ControllerMain extends Controller {
 		juego.escogerGenero(generoChoose);
 	}
 	
-	public void pintarPokemon() {
-	
-	}
 	
 	public boolean encontro() {
 		return juego.isEncontroPokemon();

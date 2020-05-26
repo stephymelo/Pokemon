@@ -21,7 +21,7 @@ public class MainView extends PApplet {
 	private PFont pixelFont;
 
 	// POKEDEX
-	private PokedexScreen pokeScreen;
+
 	private PokedexController pokeController;
 
 	public static void main(String[] args) {
@@ -44,7 +44,6 @@ public class MainView extends PApplet {
 		imageMode(CENTER);
 		pixelFont = createFont("./pokemon_pixel_font.ttf", 20);
 		pokeController = new PokedexController(this);
-		pokeScreen = new PokedexScreen(this);
 		new Thread(juego).start();
 //		new Thread(introScreen).start();
 

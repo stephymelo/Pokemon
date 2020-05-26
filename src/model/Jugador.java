@@ -16,6 +16,7 @@ public class Jugador {
     private ArrayList<Pokemon> pokemonCapturados;
 	private int genero;
 	private boolean up,down,left,right;
+	private PImage pokeboll;
 	
 	public Jugador(PApplet app,int posX,int posY) {
 		this.app=app;
@@ -29,7 +30,7 @@ public class Jugador {
 		this.right=false;
 		
 		this.pokemonCapturados=new ArrayList<Pokemon>();
-		
+		pokeboll = app.loadImage("./imagenes/menuPoke.png");
 		
 		
 		caminarMujer= new PImage[12];
@@ -113,14 +114,13 @@ public class Jugador {
 	
 
 	public void pokebola() {
+		app.image(pokeboll, 950, 50, 50,50);
 		
-		for(Pokemon elPokemon : pokemonCapturados) {
-			
-			
-			
-			
-		}
-		
+//		for(Pokemon elPokemon : pokemonCapturados) {
+//			elPokemon
+//			
+//			
+//		}
 		
 		
 	}

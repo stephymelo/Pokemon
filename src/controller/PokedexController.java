@@ -1,5 +1,4 @@
 package controller;
-
 import model.Juego;
 import processing.core.PApplet;
 

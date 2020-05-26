@@ -1,6 +1,6 @@
 package controller;
 
-import controlP5.Controller;
+
 import processing.core.PApplet;
 
 public class MapaController extends Controller {
@@ -13,6 +13,7 @@ public class MapaController extends Controller {
 	public void pintarJugador() {
 		juego.jugadores();
 		juego.pintarRival();
+		juego.pintarPokebola();
 
 	}
 
@@ -21,10 +22,11 @@ public class MapaController extends Controller {
 	}
 
 	public void pintarMapa() {
-		juego.pintarPokemones();
+		
 		juego.pintarPokemonSalvaje();
 		juego.pintarMapa();
 		juego.encontrarPokemon();
+		
 
 	}
 

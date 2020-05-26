@@ -38,6 +38,9 @@ public class Juego implements Runnable {
 	private int pintarPokemon;
 	private int matX, matY;
 
+	private PImage oveja;
+	
+
 	private int pantallaBatalla;
 	private double varCaptura;
 	private boolean intentoCaptura, intento;
@@ -75,6 +78,8 @@ public class Juego implements Runnable {
 		this.rival = new Rival(app, 900, 200);
 		this.posXMatriz = 100;
 		this.posYMatriz = 50;
+		
+	
 
 		// filas hacia abajo
 		this.matY = 0;
@@ -195,12 +200,10 @@ public class Juego implements Runnable {
 		System.out.println(turno);
 	}
 
-	public void pintarPokemones() {
+	public void pintarPokebola() {
+		jugador.pokebola();
 		PImage pokemonUno = null;
-		PImage pokeboll;
-		PImage oveja;
-		pokeboll = app.loadImage("./imagenes/pokemones/menuPoke.png");
-		oveja = app.loadImage("./imagenes/pokemones/wooloo.png");
+		
 
 		switch (pintarPokemon) {
 		case 1:
@@ -210,19 +213,21 @@ public class Juego implements Runnable {
 			pokemonUno = app.loadImage("./imagenes/pokemones/scorbunnyDelante.png");
 			break;
 		case 3:
-			pokemonUno = app.loadImage("./imagenes/pokemones/scorbunnyDelante.png");
+			pokemonUno = app.loadImage("./imagenes/pokemones/grookeyDelante.png");
 			break;
 		}
 
-		app.image(pokemonUno, 975, 125, 100, 100);
-		app.image(pokeboll, 950, 100, 150, 150);
-
-		if (pokemonCapturado == true) {
-
-			app.image(oveja, 975, 325, 100, 100);
-			app.image(pokeboll, 950, 300, 150, 150);
-
+		app.image(pokemonUno, 1000, 55, 80, 50);
+		
+		if(pokemonCapturado) {
+			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
+			app.image(pokemonUno, 1100, 55, 80, 50);
+			
 		}
+		
+
+
+		
 	}
 
 	public void batallaPintar() {
