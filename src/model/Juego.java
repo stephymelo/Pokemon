@@ -142,7 +142,7 @@ public class Juego implements Runnable {
 				Thread.sleep(3000);
 				if (ataqueRival == true) {
 					
-                  
+					System.out.println("entro");
 					turno = 2;
 
 				}
@@ -195,7 +195,7 @@ public class Juego implements Runnable {
 			break;
 
 		}
-		System.out.println(turno);
+		
 	}
 
 	public void batallaPintar() {
