@@ -49,7 +49,7 @@ public class MainView extends PApplet {
 		menuScreen = new MenuScreen(this);
 		usuController = new UsuarioController(this);
 
-//		new Thread(introScreen).start();
+		new Thread(introScreen).start();
 
 	}
 
@@ -111,6 +111,7 @@ public class MainView extends PApplet {
 		if (pantalla == 2) {
 			controllerMain.verificarClicks();
 		}
+		controllerMain.verificarClickPokedex();
 
 		//System.out.println(mouseX + "mouseX" + mouseY + "mouseY");
 
@@ -151,9 +152,6 @@ public class MainView extends PApplet {
 
 	}
 
-	public void keyReleased() {
-
-	}
 
 	public int getPantalla() {
 		return pantalla;

@@ -45,15 +45,12 @@ public class Juego implements Runnable {
 	private String[] textUsu;
 	private LinkedList<Usuario> usuarioList;
 	private UsuarioFecha UsuarioOrd;
-
-	private ArrayList<Pokemon> pokemonUsers;
 	private int pintarPokemon;
 	private int matX, matY;
 	private boolean regresoBatalla;
 
 	private int pantallaBatalla;
 	private double varCaptura;
-	private boolean intentoCaptura, intento;
 	private int posXMatriz, posYMatriz;
 	private int turno;
 	private boolean ataque, ataqueRival, batallaHilo;
@@ -72,11 +69,9 @@ public class Juego implements Runnable {
 
 		jugador = new Jugador(app, 50, 150);
 		pantallaBatalla = 0;
-		pokemonUsers = new ArrayList<Pokemon>();
 		mostrarPokemon = true;
 		regresoBatalla = false;
 		mostrarPoder = false;
-		intento = false;
 		escapePokemon = false;
 		showError = false;
 		batallaHilo = false;
@@ -89,14 +84,9 @@ public class Juego implements Runnable {
 		this.rival = new Rival(app, 900, 200);
 		this.posXMatriz = 100;
 		this.posYMatriz = 50;
-
-		// filas hacia abajo
 		this.matY = 0;
-		// columnas hacia horizantal
 		this.matX = 3;
 		this.varCaptura = 0;
-		this.intentoCaptura = false;
-		this.intento = false;
 		this.pantallaBatalla = 0;
 		this.turno = 0;
 		this.ataque = false;
@@ -106,18 +96,18 @@ public class Juego implements Runnable {
 		pokedexList = new LinkedList<Pokedex>();
 		pokeOrd = new PokedexTipo();
 
-		grockey = app.loadImage("../imagenes/Pokedex/Verde.png");
-		rookidee = app.loadImage("../imagenes/Pokedex/buho.png");
-		sobble = app.loadImage("../imagenes/Pokedex/Azul.png");
-		scorbunny = app.loadImage("../imagenes/Pokedex/Blanco.png");
-		wooloo = app.loadImage("../imagenes/Pokedex/oveja.png");
-		butterfree = app.loadImage("../imagenes/Pokedex/Butterfree.png");
-		hoothoot = app.loadImage("../imagenes/Pokedex/Hoothoot.png");
-		pidove = app.loadImage("../imagenes/Pokedex/Pidove.png");
-		minccino = app.loadImage("../imagenes/Pokedex/Minccino.png");
-		caterpie = app.loadImage("../imagenes/Pokedex/Caterpie.png");
+		grockey = app.loadImage("./imagenes/Pokedex/Verde.png");
+		rookidee = app.loadImage("./imagenes/Pokedex/buho.png");
+		sobble = app.loadImage("./imagenes/Pokedex/Azul.png");
+		scorbunny = app.loadImage("./imagenes/Pokedex/Blanco.png");
+		wooloo = app.loadImage("./imagenes/Pokedex/oveja.png");
+		butterfree = app.loadImage("./imagenes/Pokedex/Butterfree.png");
+		hoothoot = app.loadImage("./imagenes/Pokedex/Hoothoot.png");
+		pidove = app.loadImage("./imagenes/Pokedex/Pidove.png");
+		minccino = app.loadImage("./imagenes/Pokedex/Minccino.png");
+		caterpie = app.loadImage("./imagenes/Pokedex/Caterpie.png");
 
-		text = app.loadStrings("../pokedexTXT/pokedex.txt");
+		text = app.loadStrings("./pokedexTXT/pokedex.txt");
 
 		grockeyB = false;
 		rookideeB = false;
@@ -152,7 +142,7 @@ public class Juego implements Runnable {
 		// USUARIO
 		usuarioList = new LinkedList<Usuario>();
 
-		textUsu = app.loadStrings("../usuariosTXT/userRegister.txt");
+		textUsu = app.loadStrings("./usuariosTXT/userRegister.txt");
 
 		try {
 
@@ -197,16 +187,16 @@ public class Juego implements Runnable {
 			try {
 
 				turno = 0;
-				System.out.println("probandoUno");
+				
 
 				if (ataque == true) {
 					turno = 1;
-					System.out.println("probandoDos");
+				
 
 				}
 				Thread.sleep(3000);
 				if (ataqueRival == true) {
-					System.out.println("syso");
+					
 					turno = 2;
 
 				}
@@ -246,16 +236,13 @@ public class Juego implements Runnable {
 				mostrarPoder = false;
 				ataque = false;
 				ataqueRival = true;
-				System.out.println(turno + "turno");
-
+				turno=2;
 			}
 			break;
 		case 2:
 			pokemonInicial.setVida(pokemonInicial.getVida() - pokemonSalvajeBatalla.getDano());
 			ataqueRival = false;
 			batallaHilo = false;
-			System.out.println(batallaHilo + " SientrohilooDOS");
-
 			break;
 
 		}
@@ -277,36 +264,27 @@ public class Juego implements Runnable {
 			pokemonUno = app.loadImage("./imagenes/pokemones/grookeyDelante.png");
 			break;
 		}
-
-		app.image(pokemonUno, 1000, 55, 80, 50);
-
+     	app.image(pokemonUno, 1000, 55, 80, 50);
 		if (pokemonCapturado) {
 			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
 			app.image(pokemonUno, 1100, 55, 80, 50);
-
 		}
-
 	}
 
 	public void batallaPintar() {
-
 		if (mostrarPokemon) {
 			pokemonSalvajeBatalla.pintar(pokemonSalvajeBatalla.getPokemonImagenAdelante());
 			pokemonSalvajeBatalla.setDano(20);
 			app.fill(0);
 			app.text("Wooloo" + " " + " " + "2 LV", 110, 145);
 		} else {
-
 		}
-
 		if (pokemonSalvajeBatalla.getVida() <= 0) {
 			pokemonSalvajeBatalla.morir();
-
 		}
 		if (escapePokemon) {
 			pokemonSalvajeBatalla.escape();
 		}
-
 		pintarPokemonInicial();
 		pokemonInicial.nivel();
 
@@ -320,7 +298,6 @@ public class Juego implements Runnable {
 	public void pintarPokemonSalvaje() {
 		jugadorPasto();
 		pokemonSalvaje.pintar(this.pokemonSalvaje.getPokemonImagenAdelante());
-
 		if (pokemonSalvaje.isEnPasto() == true) {
 			new Thread(pokemonSalvaje).start();
 		}
@@ -331,15 +308,12 @@ public class Juego implements Runnable {
 			for (int col = 0; col < 12; col++) {
 				app.fill(mapa[fila][col] == 0 ? 150 : mapa[fila][col] == 2 ? 100 : mapa[fila][col] == 1 ? 255 : 0);
 				app.rect(col * 100, fila * 50, 100, 50);
-
 			}
 		}
-
 	}
 
 	public void escogerGenero(int generoChoose) {
 		jugador.setGenero(generoChoose);
-
 	}
 
 	public void verificarJugador() {
@@ -354,7 +328,6 @@ public class Juego implements Runnable {
 			break;
 		case PConstants.RIGHT:
 			if (matY + 1 < 12) {
-
 				if (mapa[matX][matY + 1] != 0) {
 					matY += 1;
 					jugador.setPosX(jugador.getPosX() + 100);
@@ -395,7 +368,6 @@ public class Juego implements Runnable {
 		if (pokemonSalvaje.getPosX() < 5 + 100) {
 			pokemonSalvaje.setDirX(1);
 		}
-
 	}
 
 	public void pintarRival() {
@@ -407,7 +379,6 @@ public class Juego implements Runnable {
 		if (PApplet.dist(jugador.getPosX(), jugador.getPosY(), pokemonSalvaje.getPosX(),
 				pokemonSalvaje.getPosY()) < 100) {
 			encontroPokemon = true;
-
 		}
 		if (encontroPokemon == true) {
 			pokemonSalvaje.setEnPasto(false);
@@ -421,27 +392,21 @@ public class Juego implements Runnable {
 	// TODO aca se verifican clicks
 	public void verificarClicks() {
 		System.out.println(batallaHilo + "hiloo");
-
 		// fight
 		if (PApplet.dist(app.mouseX, app.mouseY, 700, 650) < 100 && turno == 0 && mostrarPoder == false) {
 			mostrarPoder = true;
 			return;
 		}
-
 		// poder
 		if (PApplet.dist(app.mouseX, app.mouseY, 800, 680) < 100 && turno == 0 && mostrarPoder == true) {
-
 			ataque = true;
+			turno=1;
 			batallaHilo = true;
-
 		}
-
 		if (PApplet.dist(app.mouseX, app.mouseY, pokemonInicial.getPosX(), pokemonInicial.getPosY()) < 100
 				&& pokemonSalvajeBatalla.getVida() == 0) {
 			pokemonInicial.setExperiencia(5);
-
 		}
-
 		if (PApplet.dist(app.mouseX, app.mouseY, 957, 620) < 100 && turno == 0) {
 			randomicosDeCaptura();
 		}
@@ -451,14 +416,12 @@ public class Juego implements Runnable {
 			pantallaBatalla = 0;
 			pokemonCapturado = true;
 			pokemonInicial.setVida(250);
-
 		}
 	}
 
 	public void verificarClicksMapa() {
 		System.out.println(mostrarPokemon + "poke");
-
-//		if(pokemonCapturado = true) {
+		if(pokemonCapturado = true) {
 		try {
 			if (app.mouseX > 860 && app.mouseX < 930 && app.mouseY > 130 && app.mouseY < 260) {
 				combateRival = true;
@@ -469,6 +432,7 @@ public class Juego implements Runnable {
 		} catch (exceptionRival e) {
 			System.out.println(e.getMessage());
 		}
+	  }
 	}
 
 	public void pokeAtaque() {
@@ -489,8 +453,13 @@ public class Juego implements Runnable {
 		}
 
 	}
-
-	// Seleccionar poder del pokemon para atacar
+	
+	/**
+	 * Aparece el poder antes de atacar
+	 *
+	 * 
+	 */
+	
 	public void poder() {
 		if (mostrarPoder) {
 			app.textSize(80);
@@ -569,18 +538,14 @@ public class Juego implements Runnable {
 		case 1:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
 			pokemonInicial.setDano(25);
-
 			break;
-
 		case 2:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
 			pokemonInicial.setDano(30);
-
 			break;
 		case 3:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
 			pokemonInicial.setDano(20);
-
 			break;
 		}
 	}
@@ -595,7 +560,6 @@ public class Juego implements Runnable {
 			app.fill(0);
 			app.text("Grookey", 100, 140);
 			app.text(pokemonRival.getNivel() + "LV", 400, 140);
-
 			break;
 
 		case 2:
@@ -604,7 +568,6 @@ public class Juego implements Runnable {
 			app.fill(0);
 			app.text("Sobble", 100, 140);
 			app.text(pokemonRival.getNivel() + "LV", 400, 140);
-
 			break;
 		case 3:
 			pokemonRival.pintar(this.pokemonRival.getPokemonImagenAdelante());
@@ -612,7 +575,6 @@ public class Juego implements Runnable {
 			app.fill(0);
 			app.text("Scorbunny", 100, 140);
 			app.text(pokemonRival.getNivel() + "LV", 400, 140);
-
 			break;
 		}
 	}
@@ -658,28 +620,13 @@ public class Juego implements Runnable {
 	}
 
 	// POKEDEX
-
 	public void pintarPokedex() {
-		
-		/*try{
-			Pokedex poke = null;
-			if(poke == null) {
-				app.ellipse(6, 46, 55, 55);
-				
-			}
-		}catch(NullPointerException e) {
-			System.out.println("idk");
-			
-		}*/
-
 		app.fill(86, 89, 85);
 		app.textSize(60);
 		for (int i = 0; i < pokedexList.size(); i++) {
 			Pokedex poke = pokedexList.get(i);
 			app.text(poke.getNombre(), 735, 150 + (i * 68));
-
 		}
-
 		if (grockeyB == true) {
 			app.image(grockey, 202, 227);
 		}
@@ -722,8 +669,7 @@ public class Juego implements Runnable {
 	}
 
 	public void mouseLogica() {
-		if (app.mousePressed == true) {
-
+		
 			// #001
 			if (app.mouseX > 726 & app.mouseX < 979 && app.mouseY > 110 & app.mouseY < 161) {
 
@@ -1087,14 +1033,12 @@ public class Juego implements Runnable {
 
 				if (pokedexList.get(9).getNombre().equals("Grockey")) {
 					grockeyB = true;
-
 				}
 				if (pokedexList.get(9).getNombre().equals("Rookidee")) {
 					rookideeB = true;
 				}
 				if (pokedexList.get(9).getNombre().equals("Sobble")) {
 					sobbleB = true;
-
 				}
 				if (pokedexList.get(9).getNombre().equals("Scorbunny")) {
 					scorbunnyB = true;
@@ -1109,11 +1053,9 @@ public class Juego implements Runnable {
 				if (pokedexList.get(9).getNombre().equals("Hoothoot")) {
 					hoothootB = true;
 				}
-
 				if (pokedexList.get(9).getNombre().equals("Pidove")) {
 					pidoveB = true;
 				}
-
 				if (pokedexList.get(9).getNombre().equals("Minccino")) {
 					minccinoB = true;
 				}
@@ -1134,7 +1076,6 @@ public class Juego implements Runnable {
 				pidoveB = false;
 				minccinoB = false;
 				caterpieB = false;
-
 				posicion1 = false;
 				posicion2 = false;
 				posicion3 = false;
@@ -1158,7 +1099,6 @@ public class Juego implements Runnable {
 				pidoveB = false;
 				minccinoB = false;
 				caterpieB = false;
-
 				posicion1 = false;
 				posicion2 = false;
 				posicion3 = false;
@@ -1171,7 +1111,7 @@ public class Juego implements Runnable {
 				posicion10 = false;
 			}
 
-		}
+		
 
 		// DESACTIVAR POKEMONES VISIBLES
 		if (grockeyB == true && posicion1 == true) {
@@ -1184,7 +1124,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
-
 			posicion2 = false;
 			posicion3 = false;
 			posicion4 = false;
@@ -1206,7 +1145,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			grockeyB = false;
-
 			posicion1 = false;
 			posicion3 = false;
 			posicion4 = false;
@@ -1228,7 +1166,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion4 = false;
@@ -1250,7 +1187,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1272,7 +1208,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1295,7 +1230,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1317,7 +1251,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1339,7 +1272,6 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			caterpieB = false;
 			minccinoB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1361,7 +1293,6 @@ public class Juego implements Runnable {
 			woolooB = false;
 			minccinoB = false;
 			caterpieB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1383,7 +1314,6 @@ public class Juego implements Runnable {
 			woolooB = false;
 			pidoveB = false;
 			caterpieB = false;
-
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
