@@ -28,12 +28,12 @@ public class Juego implements Runnable {
 	private static Salvaje pokemonSalvaje;
 	private Salvaje pokemonSalvajeBatalla;
 	private boolean pokemonCapturado;
+
+	// POKEDEX
 	private String[] text;
 	private Pokedex pokedex;
 	private LinkedList<Pokedex> pokedexList;
 	private PokedexTipo pokeOrd;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private boolean grockeyB, rookideeB, sobbleB, scorbunnyB, woolooB, butterfreeB, hoothootB, pidoveB, minccinoB,
 			caterpieB;
 	private boolean posicion1, posicion2, posicion3, posicion4, posicion5, posicion6, posicion7, posicion8, posicion9,
@@ -45,20 +45,15 @@ public class Juego implements Runnable {
 	private String[] textUsu;
 	private LinkedList<Usuario> usuarioList;
 	private UsuarioFecha UsuarioOrd;
-=======
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-	private boolean verdeB;
-	private PImage verde;
+
 	private ArrayList<Pokemon> pokemonUsers;
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 	private int pintarPokemon;
 	private int matX, matY;
 	private boolean regresoBatalla;
-	
 
 	private int pantallaBatalla;
 	private double varCaptura;
+	private boolean intentoCaptura, intento;
 	private int posXMatriz, posYMatriz;
 	private int turno;
 	private boolean ataque, ataqueRival, batallaHilo;
@@ -77,9 +72,11 @@ public class Juego implements Runnable {
 
 		jugador = new Jugador(app, 50, 150);
 		pantallaBatalla = 0;
+		pokemonUsers = new ArrayList<Pokemon>();
 		mostrarPokemon = true;
-		regresoBatalla=false;
+		regresoBatalla = false;
 		mostrarPoder = false;
+		intento = false;
 		escapePokemon = false;
 		showError = false;
 		batallaHilo = false;
@@ -92,41 +89,35 @@ public class Juego implements Runnable {
 		this.rival = new Rival(app, 900, 200);
 		this.posXMatriz = 100;
 		this.posYMatriz = 50;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-		
-	
 
 		// filas hacia abajo
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		this.matY = 0;
+		// columnas hacia horizantal
 		this.matX = 3;
 		this.varCaptura = 0;
+		this.intentoCaptura = false;
+		this.intento = false;
 		this.pantallaBatalla = 0;
 		this.turno = 0;
 		this.ataque = false;
 		this.ataqueRival = false;
+
 		// POKEDEX
 		pokedexList = new LinkedList<Pokedex>();
 		pokeOrd = new PokedexTipo();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-		grockey = app.loadImage("./imagenes/Pokedex/Verde.png");
-		rookidee = app.loadImage("./imagenes/Pokedex/buho.png");
-		sobble = app.loadImage("./imagenes/Pokedex/Azul.png");
-		scorbunny = app.loadImage("./imagenes/Pokedex/Blanco.png");
-		wooloo = app.loadImage("./imagenes/Pokedex/oveja.png");
-		butterfree = app.loadImage("./imagenes/Pokedex/Butterfree.png");
-		hoothoot = app.loadImage("./imagenes/Pokedex/Hoothoot.png");
-		pidove = app.loadImage("./imagenes/Pokedex/Pidove.png");
-		minccino = app.loadImage("./imagenes/Pokedex/Minccino.png");
-		caterpie = app.loadImage("./imagenes/Pokedex/Caterpie.png");
+		grockey = app.loadImage("../imagenes/Pokedex/Verde.png");
+		rookidee = app.loadImage("../imagenes/Pokedex/buho.png");
+		sobble = app.loadImage("../imagenes/Pokedex/Azul.png");
+		scorbunny = app.loadImage("../imagenes/Pokedex/Blanco.png");
+		wooloo = app.loadImage("../imagenes/Pokedex/oveja.png");
+		butterfree = app.loadImage("../imagenes/Pokedex/Butterfree.png");
+		hoothoot = app.loadImage("../imagenes/Pokedex/Hoothoot.png");
+		pidove = app.loadImage("../imagenes/Pokedex/Pidove.png");
+		minccino = app.loadImage("../imagenes/Pokedex/Minccino.png");
+		caterpie = app.loadImage("../imagenes/Pokedex/Caterpie.png");
 
-		text = app.loadStrings("./pokedexTXT/pokedex.txt");
+		text = app.loadStrings("../pokedexTXT/pokedex.txt");
 
 		grockeyB = false;
 		rookideeB = false;
@@ -149,18 +140,6 @@ public class Juego implements Runnable {
 		posicion8 = false;
 		posicion9 = false;
 		posicion10 = false;
-=======
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-		verde = app.loadImage("./imagenes/Pokedex/Verde.png");
-
-		text = app.loadStrings("./pokedexTXT/pokedex.txt");
-
-		verdeB = false;
-<<<<<<< HEAD
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 
 		for (int i = 0; i < text.length; i++) {
 			String[] poketxt = text[i].split(" ");
@@ -168,20 +147,29 @@ public class Juego implements Runnable {
 			String tipo = poketxt[2];
 
 			pokedexList.add(new Pokedex(nombre, tipo));
-<<<<<<< HEAD
-<<<<<<< HEAD
 		}
 
 		// USUARIO
 		usuarioList = new LinkedList<Usuario>();
 
-		textUsu = app.loadStrings("./usuariosTXT/userRegister.txt");
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+		textUsu = app.loadStrings("../usuariosTXT/userRegister.txt");
 
+		try {
+
+			for (int i = 0; i < text.length; i++) {
+
+				String[] usutext = textUsu[i].split(" ");
+				String username = usutext[0];
+				String fecha = usutext[1];
+
+				usuarioList.add(new Usuario(username, fecha));
+			}
+
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(e);
 		}
+
+		UsuarioOrd = new UsuarioFecha();
 
 	}
 
@@ -199,27 +187,26 @@ public class Juego implements Runnable {
 	}
 
 	/**
-	 * Hilo de Batalla 
+	 * Hilo de Batalla
 	 *
 	 * 
 	 */
 	public void run() {
-		
 
 		if (batallaHilo == true) {
 			try {
 
 				turno = 0;
-				
+				System.out.println("probandoUno");
 
 				if (ataque == true) {
 					turno = 1;
-				
+					System.out.println("probandoDos");
 
 				}
 				Thread.sleep(3000);
 				if (ataqueRival == true) {
-					
+					System.out.println("syso");
 					turno = 2;
 
 				}
@@ -250,8 +237,6 @@ public class Juego implements Runnable {
 			turno = 0;
 		}
 
-		
-
 		switch (turno) {
 
 		case 1:
@@ -261,44 +246,25 @@ public class Juego implements Runnable {
 				mostrarPoder = false;
 				ataque = false;
 				ataqueRival = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
-				turno=2;
-=======
-				System.out.println(turno+"turno");
-				
-				
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-				System.out.println(turno+"turno");
-				
-				
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+				System.out.println(turno + "turno");
+
 			}
 			break;
 		case 2:
 			pokemonInicial.setVida(pokemonInicial.getVida() - pokemonSalvajeBatalla.getDano());
 			ataqueRival = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
 			batallaHilo = false;
-=======
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-			batallaHilo=false;
-			System.out.println(batallaHilo+" SientrohilooDOS");
+			System.out.println(batallaHilo + " SientrohilooDOS");
 
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 			break;
 
 		}
-		
+
 	}
 
 	public void pintarPokebola() {
 		jugador.pokebola();
 		PImage pokemonUno = null;
-		
 
 		switch (pintarPokemon) {
 		case 1:
@@ -311,83 +277,36 @@ public class Juego implements Runnable {
 			pokemonUno = app.loadImage("./imagenes/pokemones/grookeyDelante.png");
 			break;
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-     	app.image(pokemonUno, 1000, 55, 80, 50);
+
+		app.image(pokemonUno, 1000, 55, 80, 50);
+
 		if (pokemonCapturado) {
 			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
 			app.image(pokemonUno, 1100, 55, 80, 50);
+
 		}
+
 	}
 
 	public void batallaPintar() {
-=======
 
-		app.image(pokemonUno, 1000, 55, 80, 50);
-		
-		if(pokemonCapturado) {
-			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
-			app.image(pokemonUno, 1100, 55, 80, 50);
-=======
-
-		app.image(pokemonUno, 1000, 55, 80, 50);
-		
-		if(pokemonCapturado) {
-			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
-			app.image(pokemonUno, 1100, 55, 80, 50);
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-			
-		}
-		
-
-
-		
-	}
-
-	public void batallaPintar() {
-		
-		
-		
-		
-<<<<<<< HEAD
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		if (mostrarPokemon) {
 			pokemonSalvajeBatalla.pintar(pokemonSalvajeBatalla.getPokemonImagenAdelante());
 			pokemonSalvajeBatalla.setDano(20);
 			app.fill(0);
 			app.text("Wooloo" + " " + " " + "2 LV", 110, 145);
 		} else {
+
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		if (pokemonSalvajeBatalla.getVida() <= 0) {
 			pokemonSalvajeBatalla.morir();
-=======
-		
-		if(pokemonSalvajeBatalla.getVida()<=0) {
-			pokemonSalvajeBatalla.morir();
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-		
-		if(pokemonSalvajeBatalla.getVida()<=0) {
-			pokemonSalvajeBatalla.morir();
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+
 		}
 		if (escapePokemon) {
 			pokemonSalvajeBatalla.escape();
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-		
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-		
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+
 		pintarPokemonInicial();
 		pokemonInicial.nivel();
 
@@ -401,6 +320,7 @@ public class Juego implements Runnable {
 	public void pintarPokemonSalvaje() {
 		jugadorPasto();
 		pokemonSalvaje.pintar(this.pokemonSalvaje.getPokemonImagenAdelante());
+
 		if (pokemonSalvaje.isEnPasto() == true) {
 			new Thread(pokemonSalvaje).start();
 		}
@@ -411,12 +331,15 @@ public class Juego implements Runnable {
 			for (int col = 0; col < 12; col++) {
 				app.fill(mapa[fila][col] == 0 ? 150 : mapa[fila][col] == 2 ? 100 : mapa[fila][col] == 1 ? 255 : 0);
 				app.rect(col * 100, fila * 50, 100, 50);
+
 			}
 		}
+
 	}
 
 	public void escogerGenero(int generoChoose) {
 		jugador.setGenero(generoChoose);
+
 	}
 
 	public void verificarJugador() {
@@ -431,6 +354,7 @@ public class Juego implements Runnable {
 			break;
 		case PConstants.RIGHT:
 			if (matY + 1 < 12) {
+
 				if (mapa[matX][matY + 1] != 0) {
 					matY += 1;
 					jugador.setPosX(jugador.getPosX() + 100);
@@ -471,6 +395,7 @@ public class Juego implements Runnable {
 		if (pokemonSalvaje.getPosX() < 5 + 100) {
 			pokemonSalvaje.setDirX(1);
 		}
+
 	}
 
 	public void pintarRival() {
@@ -482,6 +407,7 @@ public class Juego implements Runnable {
 		if (PApplet.dist(jugador.getPosX(), jugador.getPosY(), pokemonSalvaje.getPosX(),
 				pokemonSalvaje.getPosY()) < 100) {
 			encontroPokemon = true;
+
 		}
 		if (encontroPokemon == true) {
 			pokemonSalvaje.setEnPasto(false);
@@ -492,63 +418,30 @@ public class Juego implements Runnable {
 		}
 	}
 
-	
 	// TODO aca se verifican clicks
 	public void verificarClicks() {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		System.out.println(batallaHilo + "hiloo");
-=======
-		System.out.println(batallaHilo+"hiloo");
-		
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-		System.out.println(batallaHilo+"hiloo");
-		
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+
 		// fight
 		if (PApplet.dist(app.mouseX, app.mouseY, 700, 650) < 100 && turno == 0 && mostrarPoder == false) {
 			mostrarPoder = true;
 			return;
 		}
+
 		// poder
 		if (PApplet.dist(app.mouseX, app.mouseY, 800, 680) < 100 && turno == 0 && mostrarPoder == true) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+
 			ataque = true;
-			turno=1;
 			batallaHilo = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		}
+
 		if (PApplet.dist(app.mouseX, app.mouseY, pokemonInicial.getPosX(), pokemonInicial.getPosY()) < 100
 				&& pokemonSalvajeBatalla.getVida() == 0) {
 			pokemonInicial.setExperiencia(5);
-=======
-			
-			
+
 		}
-		
-		if (PApplet.dist(app.mouseX, app.mouseY, pokemonInicial.getPosX(), pokemonInicial.getPosY()) < 100 && pokemonSalvajeBatalla.getVida()==0) {
-			pokemonInicial.setExperiencia(5);
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-			
-			
-		}
-		
-		if (PApplet.dist(app.mouseX, app.mouseY, pokemonInicial.getPosX(), pokemonInicial.getPosY()) < 100 && pokemonSalvajeBatalla.getVida()==0) {
-			pokemonInicial.setExperiencia(5);
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-		}
+
 		if (PApplet.dist(app.mouseX, app.mouseY, 957, 620) < 100 && turno == 0) {
 			randomicosDeCaptura();
 		}
@@ -558,52 +451,25 @@ public class Juego implements Runnable {
 			pantallaBatalla = 0;
 			pokemonCapturado = true;
 			pokemonInicial.setVida(250);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-			
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-			
-			
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+
 		}
 	}
 
 	public void verificarClicksMapa() {
 		System.out.println(mostrarPokemon + "poke");
-<<<<<<< HEAD
-<<<<<<< HEAD
-		if(pokemonCapturado = true) {
-=======
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-		
+
 //		if(pokemonCapturado = true) {
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		try {
 			if (app.mouseX > 860 && app.mouseX < 930 && app.mouseY > 130 && app.mouseY < 260) {
 				combateRival = true;
-				regresoBatalla=true;
-				
+				regresoBatalla = true;
+
 			}
 			throw new exceptionRival("no capturaste");
 		} catch (exceptionRival e) {
 			System.out.println(e.getMessage());
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-	  }
 	}
-=======
-		}
-	
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-		}
-	
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 
 	public void pokeAtaque() {
 		app.fill(255);
@@ -623,13 +489,8 @@ public class Juego implements Runnable {
 		}
 
 	}
-	
-	/**
-	 * Aparece el poder antes de atacar
-	 *
-	 * 
-	 */
-	
+
+	// Seleccionar poder del pokemon para atacar
 	public void poder() {
 		if (mostrarPoder) {
 			app.textSize(80);
@@ -651,13 +512,13 @@ public class Juego implements Runnable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Recibe el id del intro.
 	 *
 	 * Crea un pokemon y lo agrega al arreglo
 	 */
-	
+
 	public void escogerPokemon(String id) {
 		ArrayList<Pokemon> pokemonTemporal = new ArrayList<Pokemon>();
 		pokemonTemporal = jugador.getPokemonCapturados();
@@ -708,14 +569,18 @@ public class Juego implements Runnable {
 		case 1:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
 			pokemonInicial.setDano(25);
+
 			break;
+
 		case 2:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
 			pokemonInicial.setDano(30);
+
 			break;
 		case 3:
 			pokemonInicial.pintar(this.pokemonInicial.getPokemonImagenAtras());
 			pokemonInicial.setDano(20);
+
 			break;
 		}
 	}
@@ -727,9 +592,10 @@ public class Juego implements Runnable {
 		case 1:
 			pokemonRival.pintar(this.pokemonRival.getPokemonImagenAdelante());
 			pokemonRival.setDano(20);
-			app.fill(0);	
+			app.fill(0);
 			app.text("Grookey", 100, 140);
 			app.text(pokemonRival.getNivel() + "LV", 400, 140);
+
 			break;
 
 		case 2:
@@ -738,6 +604,7 @@ public class Juego implements Runnable {
 			app.fill(0);
 			app.text("Sobble", 100, 140);
 			app.text(pokemonRival.getNivel() + "LV", 400, 140);
+
 			break;
 		case 3:
 			pokemonRival.pintar(this.pokemonRival.getPokemonImagenAdelante());
@@ -745,6 +612,7 @@ public class Juego implements Runnable {
 			app.fill(0);
 			app.text("Scorbunny", 100, 140);
 			app.text(pokemonRival.getNivel() + "LV", 400, 140);
+
 			break;
 		}
 	}
@@ -790,15 +658,28 @@ public class Juego implements Runnable {
 	}
 
 	// POKEDEX
+
 	public void pintarPokedex() {
+		
+		/*try{
+			Pokedex poke = null;
+			if(poke == null) {
+				app.ellipse(6, 46, 55, 55);
+				
+			}
+		}catch(NullPointerException e) {
+			System.out.println("idk");
+			
+		}*/
+
 		app.fill(86, 89, 85);
 		app.textSize(60);
 		for (int i = 0; i < pokedexList.size(); i++) {
 			Pokedex poke = pokedexList.get(i);
 			app.text(poke.getNombre(), 735, 150 + (i * 68));
+
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		if (grockeyB == true) {
 			app.image(grockey, 202, 227);
 		}
@@ -837,23 +718,12 @@ public class Juego implements Runnable {
 
 		if (caterpieB == true) {
 			app.image(caterpie, 202, 227);
-=======
-
-		if (verdeB == true) {
-			app.image(verde, 202, 227);
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-
-		if (verdeB == true) {
-			app.image(verde, 202, 227);
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		}
 	}
 
 	public void mouseLogica() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
+		if (app.mousePressed == true) {
+
 			// #001
 			if (app.mouseX > 726 & app.mouseX < 979 && app.mouseY > 110 & app.mouseY < 161) {
 
@@ -1108,19 +978,26 @@ public class Juego implements Runnable {
 				if (pokedexList.get(6).getNombre().equals("Scorbunny")) {
 					scorbunnyB = true;
 				}
-=======
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-		if (app.mousePressed == true) {
-			// for (int i = 0; i < pokedex.getNombre().pokedexList.size(); i++) {
 
-			if (pokedexList.get(0).getNombre().equals("Grockey")) {
-				verdeB = true;
-<<<<<<< HEAD
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-
+				if (pokedexList.get(6).getNombre().equals("Wooloo")) {
+					woolooB = true;
+				}
+				if (pokedexList.get(6).getNombre().equals("Butterfree")) {
+					butterfreeB = true;
+				}
+				if (pokedexList.get(6).getNombre().equals("Hoothoot")) {
+					hoothootB = true;
+				}
+				if (pokedexList.get(6).getNombre().equals("Pidove")) {
+					pidoveB = true;
+				}
+				if (pokedexList.get(6).getNombre().equals("Minccino")) {
+					minccinoB = true;
+				}
+				if (pokedexList.get(6).getNombre().equals("Caterpie")) {
+					caterpieB = true;
+				}
 			}
-<<<<<<< HEAD
 
 			// #008
 			if (app.mouseX > 726 & app.mouseX < 979 && app.mouseY > 576 && app.mouseY < 630) {
@@ -1210,12 +1087,14 @@ public class Juego implements Runnable {
 
 				if (pokedexList.get(9).getNombre().equals("Grockey")) {
 					grockeyB = true;
+
 				}
 				if (pokedexList.get(9).getNombre().equals("Rookidee")) {
 					rookideeB = true;
 				}
 				if (pokedexList.get(9).getNombre().equals("Sobble")) {
 					sobbleB = true;
+
 				}
 				if (pokedexList.get(9).getNombre().equals("Scorbunny")) {
 					scorbunnyB = true;
@@ -1230,9 +1109,11 @@ public class Juego implements Runnable {
 				if (pokedexList.get(9).getNombre().equals("Hoothoot")) {
 					hoothootB = true;
 				}
+
 				if (pokedexList.get(9).getNombre().equals("Pidove")) {
 					pidoveB = true;
 				}
+
 				if (pokedexList.get(9).getNombre().equals("Minccino")) {
 					minccinoB = true;
 				}
@@ -1253,6 +1134,7 @@ public class Juego implements Runnable {
 				pidoveB = false;
 				minccinoB = false;
 				caterpieB = false;
+
 				posicion1 = false;
 				posicion2 = false;
 				posicion3 = false;
@@ -1276,6 +1158,7 @@ public class Juego implements Runnable {
 				pidoveB = false;
 				minccinoB = false;
 				caterpieB = false;
+
 				posicion1 = false;
 				posicion2 = false;
 				posicion3 = false;
@@ -1288,7 +1171,7 @@ public class Juego implements Runnable {
 				posicion10 = false;
 			}
 
-		
+		}
 
 		// DESACTIVAR POKEMONES VISIBLES
 		if (grockeyB == true && posicion1 == true) {
@@ -1301,6 +1184,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
+
 			posicion2 = false;
 			posicion3 = false;
 			posicion4 = false;
@@ -1322,6 +1206,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			grockeyB = false;
+
 			posicion1 = false;
 			posicion3 = false;
 			posicion4 = false;
@@ -1343,6 +1228,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion4 = false;
@@ -1364,6 +1250,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1385,6 +1272,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1407,6 +1295,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1428,6 +1317,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			minccinoB = false;
 			caterpieB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1449,6 +1339,7 @@ public class Juego implements Runnable {
 			pidoveB = false;
 			caterpieB = false;
 			minccinoB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1470,6 +1361,7 @@ public class Juego implements Runnable {
 			woolooB = false;
 			minccinoB = false;
 			caterpieB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1491,6 +1383,7 @@ public class Juego implements Runnable {
 			woolooB = false;
 			pidoveB = false;
 			caterpieB = false;
+
 			posicion1 = false;
 			posicion2 = false;
 			posicion3 = false;
@@ -1542,21 +1435,45 @@ public class Juego implements Runnable {
 		if (posicion10 == true) {
 			app.text(pokedexList.get(9).getNombre(), 220, 155);
 			app.text(pokedexList.get(9).getTipo(), 300, 725);
-=======
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
-=======
-
-			}
->>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		}
 	}
 
 	public void OrdenarTipo() {
-		Collections.sort(pokedexList, pokeOrd);
+		if (app.mouseX > 76 & app.mouseX < 280 && app.mouseY > 570 & app.mouseY < 617) {
+			Collections.sort(pokedexList, pokeOrd);
+		}
 	}
 
 	public void OrdenarNombre() {
-		Collections.sort(pokedexList);
+		if (app.mouseX > 322 & app.mouseX < 519 && app.mouseY > 570 & app.mouseY < 617) {
+			Collections.sort(pokedexList);
+		}
+		;
+	}
+
+	public void PintarUsuarioLista() {
+		app.fill(86, 89, 85);
+		app.textSize(60);
+		for (int i = 0; i < usuarioList.size(); i++) {
+			Usuario usu = usuarioList.get(i);
+			app.text(usu.getUsername(), 407, 225 + (i * 68));
+			app.text(usu.getFecha(), 782, 225 + (i * 68));
+		}
+
+	}
+
+	public void OrdenarFecha() {
+		if (app.mouseX > 48 & app.mouseX < 252 && app.mouseY > 597 & app.mouseY < 637) {
+			Collections.sort(usuarioList, UsuarioOrd);
+			System.out.println("fecha");
+		}
+	}
+
+	public void OrdenarNombreUsuario() {
+		if (app.mouseX > 48 & app.mouseX < 252 && app.mouseY > 661 & app.mouseY < 669) {
+			Collections.sort(usuarioList);
+			System.out.println("nombre");
+		}
 	}
 
 	public int getPosXMatriz() {
@@ -1614,7 +1531,5 @@ public class Juego implements Runnable {
 	public void setCombateRival(boolean combateRival) {
 		this.combateRival = combateRival;
 	}
-	
-	
 
 }

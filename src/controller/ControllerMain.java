@@ -43,9 +43,6 @@ public class ControllerMain extends Controller {
 		juego.verificarClicks();
 	}
 
-	public void verificarClickPokedex() {
-		juego.mouseLogica();
-	}
 
 
 	public boolean regresoBatalla() {
