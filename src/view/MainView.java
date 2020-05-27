@@ -44,7 +44,7 @@ public class MainView extends PApplet {
 		imageMode(CENTER);
 		pixelFont = createFont("./pokemon_pixel_font.ttf", 20);
 		pokeController = new PokedexController(this);
-		new Thread(juego).start();
+		
 //		new Thread(introScreen).start();
 
 	}
@@ -61,6 +61,7 @@ public class MainView extends PApplet {
 			break;
 		case 2:
 			batallaScreen.drawScreen();
+			new Thread(juego).start();
 			
 
 //			if(juego.getState()==State.NEW) {
@@ -79,6 +80,10 @@ public class MainView extends PApplet {
 		if (controllerMain.deVueltaMapa() == true) {
 			pantalla = 1;
 
+		}
+		
+		if(controllerMain.regresoBatalla()==true) {
+			pantalla=2;
 		}
 
 		// POKEDEX

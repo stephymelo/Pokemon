@@ -35,7 +35,14 @@ public class BatallaScreen extends ScreenView {
 		app.imageMode(PConstants.CENTER);
 		app.image(batallaBg, app.width / 2, app.height / 2);
 		app.image(fightText, 900, 700);
-		batallaController.pintar();
+		
+		if(batallaController.combateRival()==true) {
+			batallaController.pintar();
+			batallaController.pintarRival();
+		}else {
+			batallaController.pintar();
+		}
+		
 		app.image(menu, app.width / 2, 680);
 		if (app.mouseX > 684 && app.mouseY > 633 && app.mouseX < 827 && app.mouseY < 679) {
 			app.image(triangle, 650, 645);

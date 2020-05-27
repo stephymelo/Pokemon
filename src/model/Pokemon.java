@@ -11,6 +11,7 @@ public abstract class Pokemon  {
 	protected float vida;
 	protected String id;
 	protected String deltante,atras;
+	protected float trans;
 //	protected PImage pokemonImagenAdelante,pokemonImagenAtras;
 	
 	
@@ -20,8 +21,8 @@ public abstract class Pokemon  {
 		this.posY=posY;
 		this.vida=250;
 		this.app=app;
-		this.experiencia=experiencia;
-		this.nivel=nivel;
+		this.trans=255;
+	
 		
 	}
 	
@@ -57,8 +58,12 @@ public abstract class Pokemon  {
 	}
 	
 	public void morir() {
-		
-	}
+		System.out.println("ahaa");
+		posX+=3;
+		  
+		}
+
+	
 	
 	public void defensa() {
 		

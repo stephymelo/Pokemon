@@ -7,6 +7,7 @@ public class Salvaje extends Pokemon implements Runnable{
 	
 	private boolean enPasto;
 	private int dirX,dirY;
+	private boolean morir;
 	private PImage pokemonImagenAdelante;
 	public Salvaje(String id,String delante,String atras, int posX,int posY,PApplet app) {
 		super(id,delante, atras, posX,posY, app);
@@ -15,6 +16,7 @@ public class Salvaje extends Pokemon implements Runnable{
 		this.dirY=1;
 		this.pokemonImagenAdelante=app.loadImage(delante);
 		this.vida=vida;
+		this.morir=false;
 	}
 	
 	public void run() {
@@ -43,6 +45,7 @@ public class Salvaje extends Pokemon implements Runnable{
 		
 		
 		app.image(pokemonImagen, posX, posY);
+		
 	}
 	
 	
@@ -104,8 +107,17 @@ public class Salvaje extends Pokemon implements Runnable{
 		this.pokemonImagenAdelante = pokemonImagenAdelante;
 	}
 
+	public boolean isMorir() {
+		return morir;
+	}
+
+	public void setMorir(boolean morir) {
+		this.morir = morir;
+	}
 
 
+
+	
 	
 	
 

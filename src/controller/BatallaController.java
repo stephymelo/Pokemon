@@ -14,11 +14,20 @@ public class BatallaController extends Controller {
 	
 	
 	public void pintar() {
-		juego.batallaPintar();
-//		juego.pintarPokemonRival();
-		
+		juego.batallaPintar();	
 		
 	}
+	
+	public void pintarRival() {
+		juego.pintarPokemonInicialVS();
+	}
+	
+	public boolean combateRival() {
+		return juego.isCombateRival();
+	}
+	
+	
+	
 	public void pintarPoder() {
 		juego.poder();
 		juego.vidaPokemon();

@@ -42,6 +42,12 @@ public class ControllerMain extends Controller {
 	public void verificarClicks() {
 		juego.verificarClicks();
 	}
+
+
+
+	public boolean regresoBatalla() {
+		return juego.isRegresoBatalla();
+	}
 	
 
 }

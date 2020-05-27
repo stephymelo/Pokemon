@@ -37,8 +37,7 @@ public class Juego implements Runnable {
 	private ArrayList<Pokemon> pokemonUsers;
 	private int pintarPokemon;
 	private int matX, matY;
-
-	private PImage oveja;
+	private boolean regresoBatalla;
 	
 
 	private int pantallaBatalla;
@@ -64,6 +63,7 @@ public class Juego implements Runnable {
 		pantallaBatalla = 0;
 		pokemonUsers = new ArrayList<Pokemon>();
 		mostrarPokemon = true;
+		regresoBatalla=false;
 		mostrarPoder = false;
 		intento = false;
 		escapePokemon = false;
@@ -96,9 +96,9 @@ public class Juego implements Runnable {
 		pokedexList = new LinkedList<Pokedex>();
 		pokeOrd = new PokedexTipo();
 
-		verde = app.loadImage("../imagenes/Pokedex/Verde.png");
+		verde = app.loadImage("./imagenes/Pokedex/Verde.png");
 
-		text = app.loadStrings("../pokedexTXT/pokedex.txt");
+		text = app.loadStrings("./pokedexTXT/pokedex.txt");
 
 		verdeB = false;
 
@@ -127,25 +127,27 @@ public class Juego implements Runnable {
 	}
 
 	/**
-	 * Hilo de Batalla con Musica
+	 * Hilo de Batalla 
 	 *
 	 * 
 	 */
 	public void run() {
-		System.out.println("funciona");
+		
 
 		if (batallaHilo == true) {
 			try {
 
 				turno = 0;
+				System.out.println("probandoUno");
 
 				if (ataque == true) {
 					turno = 1;
+					System.out.println("probandoDos");
 
 				}
 				Thread.sleep(3000);
 				if (ataqueRival == true) {
-
+					System.out.println("syso");
 					turno = 2;
 
 				}
@@ -170,12 +172,13 @@ public class Juego implements Runnable {
 	// BATALLA
 
 	public void batalla() {
+		vidaPokemon();
 
 		if (batallaHilo == false) {
 			turno = 0;
 		}
 
-		vidaPokemon();
+		
 
 		switch (turno) {
 
@@ -186,18 +189,21 @@ public class Juego implements Runnable {
 				mostrarPoder = false;
 				ataque = false;
 				ataqueRival = true;
-				System.out.println(ataqueRival);
+				System.out.println(turno+"turno");
+				
+				
 			}
 			break;
 		case 2:
 			pokemonInicial.setVida(pokemonInicial.getVida() - pokemonSalvajeBatalla.getDano());
 			ataqueRival = false;
-//			batallaHilo=false;
+			batallaHilo=false;
+			System.out.println(batallaHilo+" SientrohilooDOS");
 
 			break;
 
 		}
-		System.out.println(turno);
+		
 	}
 
 	public void pintarPokebola() {
@@ -231,17 +237,27 @@ public class Juego implements Runnable {
 	}
 
 	public void batallaPintar() {
+		
+		
+		
+		
 		if (mostrarPokemon) {
-			pokemonSalvajeBatalla.pintar(this.pokemonSalvaje.getPokemonImagenAdelante());
+			pokemonSalvajeBatalla.pintar(pokemonSalvajeBatalla.getPokemonImagenAdelante());
+			pokemonSalvajeBatalla.setDano(20);
+			app.fill(0);
+			app.text("Wooloo" + " " + " " + "2 LV", 110, 145);
 		} else {
 
+		}
+		
+		if(pokemonSalvajeBatalla.getVida()<=0) {
+			pokemonSalvajeBatalla.morir();
+			
 		}
 		if (escapePokemon) {
 			pokemonSalvajeBatalla.escape();
 		}
-		app.fill(0);
-		app.text("Wooloo" + " " + " " + "2 LV", 110, 145);
-//		System.out.println(mostrarPokemon + "poke");
+		
 		pintarPokemonInicial();
 		pokemonInicial.nivel();
 
@@ -353,8 +369,11 @@ public class Juego implements Runnable {
 		}
 	}
 
+	
 	// TODO aca se verifican clicks
 	public void verificarClicks() {
+		System.out.println(batallaHilo+"hiloo");
+		
 		// fight
 		if (PApplet.dist(app.mouseX, app.mouseY, 700, 650) < 100 && turno == 0 && mostrarPoder == false) {
 			mostrarPoder = true;
@@ -363,9 +382,16 @@ public class Juego implements Runnable {
 
 		// poder
 		if (PApplet.dist(app.mouseX, app.mouseY, 800, 680) < 100 && turno == 0 && mostrarPoder == true) {
-			turno = 1;
+			
 			ataque = true;
 			batallaHilo = true;
+			
+			
+		}
+		
+		if (PApplet.dist(app.mouseX, app.mouseY, pokemonInicial.getPosX(), pokemonInicial.getPosY()) < 100 && pokemonSalvajeBatalla.getVida()==0) {
+			pokemonInicial.setExperiencia(5);
+			
 		}
 
 		if (PApplet.dist(app.mouseX, app.mouseY, 957, 620) < 100 && turno == 0) {
@@ -376,22 +402,28 @@ public class Juego implements Runnable {
 			mapaScreen = true;
 			pantallaBatalla = 0;
 			pokemonCapturado = true;
-			encontroPokemon = false;
+			pokemonInicial.setVida(250);
+			
+			
 		}
 	}
 
 	public void verificarClicksMapa() {
+		System.out.println(mostrarPokemon + "poke");
+		
+//		if(pokemonCapturado = true) {
 		try {
-			if (app.mouseX > 860 && app.mouseX < 930 && app.mouseY > 130 && app.mouseY < 260
-					&& pokemonCapturado == true) {
+			if (app.mouseX > 860 && app.mouseX < 930 && app.mouseY > 130 && app.mouseY < 260) {
 				combateRival = true;
-				encontroPokemon = true;
+				regresoBatalla=true;
+				
 			}
 			throw new exceptionRival("no capturaste");
 		} catch (exceptionRival e) {
 			System.out.println(e.getMessage());
 		}
-	}
+		}
+	
 
 	public void pokeAtaque() {
 		app.fill(255);
@@ -434,8 +466,13 @@ public class Juego implements Runnable {
 			}
 		}
 	}
-
-	// El pokemon que escoges se agrega al arreglo
+	
+	/**
+	 * Recibe el id del intro.
+	 *
+	 * Crea un pokemon y lo agrega al arreglo
+	 */
+	
 	public void escogerPokemon(String id) {
 		ArrayList<Pokemon> pokemonTemporal = new ArrayList<Pokemon>();
 		pokemonTemporal = jugador.getPokemonCapturados();
@@ -447,7 +484,7 @@ public class Juego implements Runnable {
 					"./imagenes/pokemones/sobbleAtras.png", 277, 430, app));
 			// pokemon rival
 			pokemonRival = new Inicial(id, "./imagenes/pokemones/grookeyDelante.png",
-					"./imagenes/pokemones/grookeyAtras.png", 277, 430, app);
+					"./imagenes/pokemones/grookeyAtras.png", 875, 200, app);
 		}
 		if (id.trim().equals("Scorbunny")) {
 			this.pintarPokemon = 2;
@@ -458,7 +495,7 @@ public class Juego implements Runnable {
 
 			// pokemon rival
 			pokemonRival = new Inicial(id, "./imagenes/pokemones/sobbleDelante.png",
-					"./imagenes/pokemones/sobbleAtras.png", 277, 430, app);
+					"./imagenes/pokemones/sobbleAtras.png", 875, 200, app);
 		}
 		if (id.trim().equals("Grookey")) {
 			this.pintarPokemon = 3;
@@ -470,7 +507,7 @@ public class Juego implements Runnable {
 
 			// pokemon rival
 			pokemonRival = new Inicial(id, "./imagenes/pokemones/scorbunnyDelante.png",
-					"./imagenes/pokemones/scorbunnyAtras.png", 277, 430, app);
+					"./imagenes/pokemones/scorbunnyAtras.png", 850, 175, app);
 
 		}
 
@@ -480,7 +517,7 @@ public class Juego implements Runnable {
 
 	public void pintarPokemonInicial() {
 		app.fill(0);
-		app.text(pokemonInicial.getId(), 750, 440);
+		app.text(pokemonInicial.getId(), 700, 440);
 		app.text(pokemonInicial.getNivel() + "LV", 1000, 440);
 		switch (pintarPokemon) {
 		case 1:
@@ -509,9 +546,9 @@ public class Juego implements Runnable {
 		case 1:
 			pokemonRival.pintar(this.pokemonRival.getPokemonImagenAdelante());
 			pokemonRival.setDano(20);
-			app.fill(0);
-			app.text(pokemonRival.getId(), 800, 150);
-			app.text(pokemonRival.getNivel() + "LV", 900, 300);
+			app.fill(0);	
+			app.text("Grookey", 100, 140);
+			app.text(pokemonRival.getNivel() + "LV", 400, 140);
 
 			break;
 
@@ -519,16 +556,16 @@ public class Juego implements Runnable {
 			pokemonRival.pintar(this.pokemonRival.getPokemonImagenAdelante());
 			pokemonRival.setDano(25);
 			app.fill(0);
-			app.text(pokemonRival.getId(), 800, 150);
-			app.text(pokemonRival.getNivel() + "LV", 900, 300);
+			app.text("Sobble", 100, 140);
+			app.text(pokemonRival.getNivel() + "LV", 400, 140);
 
 			break;
 		case 3:
 			pokemonRival.pintar(this.pokemonRival.getPokemonImagenAdelante());
 			pokemonRival.setDano(30);
 			app.fill(0);
-			app.text(pokemonRival.getId(), 800, 150);
-			app.text(pokemonRival.getNivel() + "LV", 900, 300);
+			app.text("Scorbunny", 100, 140);
+			app.text(pokemonRival.getNivel() + "LV", 400, 140);
 
 			break;
 		}
@@ -648,5 +685,23 @@ public class Juego implements Runnable {
 	public void setPantallaBatalla(int pantallaBatalla) {
 		this.pantallaBatalla = pantallaBatalla;
 	}
+
+	public boolean isRegresoBatalla() {
+		return regresoBatalla;
+	}
+
+	public void setRegresoBatalla(boolean regresoBatalla) {
+		this.regresoBatalla = regresoBatalla;
+	}
+
+	public boolean isCombateRival() {
+		return combateRival;
+	}
+
+	public void setCombateRival(boolean combateRival) {
+		this.combateRival = combateRival;
+	}
+	
+	
 
 }
