@@ -197,16 +197,16 @@ public class Juego implements Runnable {
 			try {
 
 				turno = 0;
-				System.out.println("probandoUno");
+				
 
 				if (ataque == true) {
 					turno = 1;
-					System.out.println("probandoDos");
+					
 
 				}
 				Thread.sleep(3000);
 				if (ataqueRival == true) {
-					System.out.println("syso");
+					
 					turno = 2;
 
 				}
@@ -246,7 +246,8 @@ public class Juego implements Runnable {
 				mostrarPoder = false;
 				ataque = false;
 				ataqueRival = true;
-				System.out.println(turno + "turno");
+				turno=2;
+				
 
 			}
 			break;
@@ -254,7 +255,7 @@ public class Juego implements Runnable {
 			pokemonInicial.setVida(pokemonInicial.getVida() - pokemonSalvajeBatalla.getDano());
 			ataqueRival = false;
 			batallaHilo = false;
-			System.out.println(batallaHilo + " SientrohilooDOS");
+			
 
 			break;
 
@@ -433,6 +434,7 @@ public class Juego implements Runnable {
 
 			ataque = true;
 			batallaHilo = true;
+			turno=1;
 
 		}
 

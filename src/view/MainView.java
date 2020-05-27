@@ -49,7 +49,7 @@ public class MainView extends PApplet {
 		menuScreen = new MenuScreen(this);
 		usuController = new UsuarioController(this);
 
-//		new Thread(introScreen).start();
+		new Thread(introScreen).start();
 
 	}
 
