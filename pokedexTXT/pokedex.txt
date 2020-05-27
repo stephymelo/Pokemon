@@ -6,5 +6,5 @@
 006 Hoothoot Flying
 007 Rookidee Flying
 008 Wooloo Normal 
-009 Pidove Flying
-010 Minccino Normal
+009 Roselia Poison
+010 Munna Psychc

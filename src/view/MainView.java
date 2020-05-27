@@ -5,7 +5,6 @@ import java.lang.Thread.State;
 import controller.ControllerMain;
 //import controller.MainController;
 import controller.PokedexController;
-import controller.UsuarioController;
 import model.Juego;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -21,10 +20,9 @@ public class MainView extends PApplet {
 	private int pantalla;
 	private PFont pixelFont;
 
-	// MENU
-	private MenuScreen menuScreen;
+	// POKEDEX
+
 	private PokedexController pokeController;
-	private UsuarioController usuController;
 
 	public static void main(String[] args) {
 		PApplet.main(MainView.class.getName());
@@ -37,7 +35,7 @@ public class MainView extends PApplet {
 
 	public void setup() {
 		background(0);
-
+		
 		mapaScreen = new MapaScreen(this);
 		introScreen = new IntroScreen(this);
 		batallaScreen = new BatallaScreen(this);
@@ -46,10 +44,15 @@ public class MainView extends PApplet {
 		imageMode(CENTER);
 		pixelFont = createFont("./pokemon_pixel_font.ttf", 20);
 		pokeController = new PokedexController(this);
+<<<<<<< HEAD
 		menuScreen = new MenuScreen(this);
 		usuController = new UsuarioController(this);
 
 		new Thread(introScreen).start();
+=======
+		
+//		new Thread(introScreen).start();
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 
 	}
 
@@ -62,27 +65,17 @@ public class MainView extends PApplet {
 			break;
 		case 1:
 			mapaScreen.drawScreen();
-			// POKEDEX
-			menuScreen.drawView0();
-			menuScreen.mouseMenu();
 			break;
 		case 2:
 			batallaScreen.drawScreen();
 			new Thread(juego).start();
+			
 
 //			if(juego.getState()==State.NEW) {
 //				juego.start();
 //			}
+			
 
-			break;
-		case 3:
-			menuScreen.drawView();
-			pokeController.pintarJuego();
-			pokeController.mouseJuego();
-			break;
-		case 4:
-			menuScreen.drawView2();
-			usuController.pintarUsuario();
 			break;
 
 		}
@@ -95,13 +88,16 @@ public class MainView extends PApplet {
 			pantalla = 1;
 
 		}
-
-		if (controllerMain.regresoBatalla() == true) {
-			pantalla = 2;
+		
+		if(controllerMain.regresoBatalla()==true) {
+			pantalla=2;
 		}
 
-		
-
+		// POKEDEX
+		/*
+		 * pokeScreen.drawPokedex(); pokeController.pintarJuego();
+		 * pokeController.mouseJuego();
+		 */
 	}
 
 	public void mouseClicked() {
@@ -113,7 +109,7 @@ public class MainView extends PApplet {
 		}
 		controllerMain.verificarClickPokedex();
 
-		//System.out.println(mouseX + "mouseX" + mouseY + "mouseY");
+		System.out.println(mouseX + "mouseX" + mouseY + "mouseY");
 
 		//////// INTRO
 
@@ -128,22 +124,13 @@ public class MainView extends PApplet {
 		/////////
 
 		// POKEDEX
-
-		if (mouseX > 208 && mouseX < 312 && mouseY > 137 && mouseY < 158) {
-			pantalla = 3;
-		}
-		if (mouseX > 206 && mouseX < 290 && mouseY > 200 && mouseY < 228) {
-			pantalla = 4;
-		}
-		if (mouseX > 1080 && mouseX < 1122 && mouseY > 23 && mouseY < 58) {
-			pantalla = 1;
+		if (mouseX > 76 & mouseX < 280 && mouseY > 570 & mouseY < 617) {
+			pokeController.ordenarParcial();
 		}
 
-		pokeController.ordenarParcial();
-		pokeController.ordenarNatural();
-		
-		usuController.ordenarParcial();
-		usuController.ordenarNatural();
+		if (mouseX > 322 & mouseX < 519 && mouseY > 570 & mouseY < 617) {
+			pokeController.ordenarNatural();
+		}
 	}
 
 	public void keyPressed() {
