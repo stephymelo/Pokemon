@@ -13,14 +13,14 @@ public class MenuScreen {
 	public MenuScreen(PApplet app) {
 		this.app = app;
 
-		this.pokedex = app.loadImage("../imagenes/Pokedex/View.jpg");
-		this.botonNom = app.loadImage("../imagenes/Pokedex/BotonNom.png");
-		this.botonTipo = app.loadImage("../imagenes/Pokedex/BotonTipo.png");
-		this.menu = app.loadImage("../imagenes/Pokedex/menuPoke.png");
-		this.openMenu = app.loadImage("../imagenes/Pokedex/menu.png");
-		this.flecha = app.loadImage("../imagenes/Pokedex/triangleBattle.png");
-		this.usuarios = app.loadImage("../imagenes/Pokedex/Usuarios.jpg");
-		this.close = app.loadImage("../imagenes/Pokedex/X.png");
+		this.pokedex = app.loadImage("./imagenes/Pokedex/View.jpg");
+		this.botonNom = app.loadImage("./imagenes/Pokedex/BotonNom.png");
+		this.botonTipo = app.loadImage("./imagenes/Pokedex/BotonTipo.png");
+		this.menu = app.loadImage("./imagenes/Pokedex/menuPoke.png");
+		this.openMenu = app.loadImage("./imagenes/Pokedex/menu.png");
+		this.flecha = app.loadImage("./imagenes/Pokedex/triangleBattle.png");
+		this.usuarios = app.loadImage("./imagenes/Pokedex/Usuarios.jpg");
+		this.close = app.loadImage("./imagenes/Pokedex/X.png");
 
 	}
 

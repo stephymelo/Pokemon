@@ -63,7 +63,7 @@ public class MainView extends PApplet {
 		case 1:
 			mapaScreen.drawScreen();
 			// POKEDEX
-			menuScreen.drawView0();
+			menuScreen.drawView();
 			menuScreen.mouseMenu();
 			break;
 		case 2:
@@ -111,7 +111,7 @@ public class MainView extends PApplet {
 		if (pantalla == 2) {
 			controllerMain.verificarClicks();
 		}
-		controllerMain.verificarClickPokedex();
+		
 
 		//System.out.println(mouseX + "mouseX" + mouseY + "mouseY");
 
