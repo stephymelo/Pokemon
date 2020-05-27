@@ -33,6 +33,7 @@ public class Juego implements Runnable {
 	private LinkedList<Pokedex> pokedexList;
 	private PokedexTipo pokeOrd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private boolean grockeyB, rookideeB, sobbleB, scorbunnyB, woolooB, butterfreeB, hoothootB, pidoveB, minccinoB,
 			caterpieB;
 	private boolean posicion1, posicion2, posicion3, posicion4, posicion5, posicion6, posicion7, posicion8, posicion9,
@@ -45,6 +46,8 @@ public class Juego implements Runnable {
 	private LinkedList<Usuario> usuarioList;
 	private UsuarioFecha UsuarioOrd;
 =======
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 	private boolean verdeB;
 	private PImage verde;
 	private ArrayList<Pokemon> pokemonUsers;
@@ -90,7 +93,10 @@ public class Juego implements Runnable {
 		this.posXMatriz = 100;
 		this.posYMatriz = 50;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		
 	
 
@@ -107,6 +113,7 @@ public class Juego implements Runnable {
 		pokedexList = new LinkedList<Pokedex>();
 		pokeOrd = new PokedexTipo();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		grockey = app.loadImage("./imagenes/Pokedex/Verde.png");
 		rookidee = app.loadImage("./imagenes/Pokedex/buho.png");
@@ -143,11 +150,16 @@ public class Juego implements Runnable {
 		posicion9 = false;
 		posicion10 = false;
 =======
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		verde = app.loadImage("./imagenes/Pokedex/Verde.png");
 
 		text = app.loadStrings("./pokedexTXT/pokedex.txt");
 
 		verdeB = false;
+<<<<<<< HEAD
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+=======
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 
 		for (int i = 0; i < text.length; i++) {
@@ -157,12 +169,15 @@ public class Juego implements Runnable {
 
 			pokedexList.add(new Pokedex(nombre, tipo));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 
 		// USUARIO
 		usuarioList = new LinkedList<Usuario>();
 
 		textUsu = app.loadStrings("./usuariosTXT/userRegister.txt");
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 
@@ -247,7 +262,13 @@ public class Juego implements Runnable {
 				ataque = false;
 				ataqueRival = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				turno=2;
+=======
+				System.out.println(turno+"turno");
+				
+				
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 				System.out.println(turno+"turno");
 				
@@ -259,8 +280,11 @@ public class Juego implements Runnable {
 			pokemonInicial.setVida(pokemonInicial.getVida() - pokemonSalvajeBatalla.getDano());
 			ataqueRival = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			batallaHilo = false;
 =======
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 			batallaHilo=false;
 			System.out.println(batallaHilo+" SientrohilooDOS");
 
@@ -288,6 +312,7 @@ public class Juego implements Runnable {
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
      	app.image(pokemonUno, 1000, 55, 80, 50);
 		if (pokemonCapturado) {
 			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
@@ -303,6 +328,14 @@ public class Juego implements Runnable {
 		if(pokemonCapturado) {
 			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
 			app.image(pokemonUno, 1100, 55, 80, 50);
+=======
+
+		app.image(pokemonUno, 1000, 55, 80, 50);
+		
+		if(pokemonCapturado) {
+			pokemonUno = app.loadImage("./imagenes/pokemones/wooloo.png");
+			app.image(pokemonUno, 1100, 55, 80, 50);
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 			
 		}
 		
@@ -316,6 +349,9 @@ public class Juego implements Runnable {
 		
 		
 		
+<<<<<<< HEAD
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+=======
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		if (mostrarPokemon) {
 			pokemonSalvajeBatalla.pintar(pokemonSalvajeBatalla.getPokemonImagenAdelante());
@@ -325,8 +361,15 @@ public class Juego implements Runnable {
 		} else {
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (pokemonSalvajeBatalla.getVida() <= 0) {
 			pokemonSalvajeBatalla.morir();
+=======
+		
+		if(pokemonSalvajeBatalla.getVida()<=0) {
+			pokemonSalvajeBatalla.morir();
+			
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 		
 		if(pokemonSalvajeBatalla.getVida()<=0) {
@@ -338,6 +381,10 @@ public class Juego implements Runnable {
 			pokemonSalvajeBatalla.escape();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 		
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
@@ -449,7 +496,12 @@ public class Juego implements Runnable {
 	// TODO aca se verifican clicks
 	public void verificarClicks() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		System.out.println(batallaHilo + "hiloo");
+=======
+		System.out.println(batallaHilo+"hiloo");
+		
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 		System.out.println(batallaHilo+"hiloo");
 		
@@ -462,6 +514,10 @@ public class Juego implements Runnable {
 		// poder
 		if (PApplet.dist(app.mouseX, app.mouseY, 800, 680) < 100 && turno == 0 && mostrarPoder == true) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 			
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
@@ -469,10 +525,20 @@ public class Juego implements Runnable {
 			turno=1;
 			batallaHilo = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 		if (PApplet.dist(app.mouseX, app.mouseY, pokemonInicial.getPosX(), pokemonInicial.getPosY()) < 100
 				&& pokemonSalvajeBatalla.getVida() == 0) {
 			pokemonInicial.setExperiencia(5);
+=======
+			
+			
+		}
+		
+		if (PApplet.dist(app.mouseX, app.mouseY, pokemonInicial.getPosX(), pokemonInicial.getPosY()) < 100 && pokemonSalvajeBatalla.getVida()==0) {
+			pokemonInicial.setExperiencia(5);
+			
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 			
 			
@@ -493,6 +559,11 @@ public class Juego implements Runnable {
 			pokemonCapturado = true;
 			pokemonInicial.setVida(250);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			
+			
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 			
 			
@@ -503,8 +574,11 @@ public class Juego implements Runnable {
 	public void verificarClicksMapa() {
 		System.out.println(mostrarPokemon + "poke");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if(pokemonCapturado = true) {
 =======
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		
 //		if(pokemonCapturado = true) {
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
@@ -519,8 +593,13 @@ public class Juego implements Runnable {
 			System.out.println(e.getMessage());
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  }
 	}
+=======
+		}
+	
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 =======
 		}
 	
@@ -719,6 +798,7 @@ public class Juego implements Runnable {
 			app.text(poke.getNombre(), 735, 150 + (i * 68));
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (grockeyB == true) {
 			app.image(grockey, 202, 227);
 		}
@@ -762,10 +842,16 @@ public class Juego implements Runnable {
 		if (verdeB == true) {
 			app.image(verde, 202, 227);
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+=======
+
+		if (verdeB == true) {
+			app.image(verde, 202, 227);
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		}
 	}
 
 	public void mouseLogica() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		
 			// #001
@@ -1023,11 +1109,14 @@ public class Juego implements Runnable {
 					scorbunnyB = true;
 				}
 =======
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		if (app.mousePressed == true) {
 			// for (int i = 0; i < pokedex.getNombre().pokedexList.size(); i++) {
 
 			if (pokedexList.get(0).getNombre().equals("Grockey")) {
 				verdeB = true;
+<<<<<<< HEAD
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 
 			}
@@ -1454,6 +1543,10 @@ public class Juego implements Runnable {
 			app.text(pokedexList.get(9).getNombre(), 220, 155);
 			app.text(pokedexList.get(9).getTipo(), 300, 725);
 =======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
+=======
+
+			}
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		}
 	}

@@ -45,11 +45,14 @@ public class MainView extends PApplet {
 		pixelFont = createFont("./pokemon_pixel_font.ttf", 20);
 		pokeController = new PokedexController(this);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		menuScreen = new MenuScreen(this);
 		usuController = new UsuarioController(this);
 
 		new Thread(introScreen).start();
 =======
+=======
+>>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
 		
 //		new Thread(introScreen).start();
 >>>>>>> parent of 00c7a19... Menu, pokedex, usuarios.
